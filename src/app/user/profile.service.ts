@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { User } from './user';
 import { Album } from './albums/album';
-// import { Photo } from '../shared/photo';
+import { Photo } from '../shared/photo';
 
 @Injectable() 
   export class ProfileService {
@@ -36,15 +36,6 @@ import { Album } from './albums/album';
 
   }
 
-  getSavedUser(user): Observable<any> {
-    console.log(user);
-    return this.http
-      .get(this.userUrl)
-        .map((res: Response) => <User>res.json().data || {} )
-        .do(data => console.log(JSON.parse(JSON.stringify(data))))
-        .catch((error: any) => Observable.throw(error.json().error || 'Server error')) 
-  }
-
   getUser(id): Observable<any> {
         console.log(id);
     return this.http
@@ -54,23 +45,22 @@ import { Album } from './albums/album';
         .catch((error: any) => Observable.throw(error.json().error || 'Server error')) 
     }
 
-  // addPhoto (pic): Observable<any> {
-  //   console.log(pic);
-  //   let body = JSON.parse(JSON.stringify(pic));
-  //   let headers    = new Headers({ 'Content-Type': 'application/json' }); 
-  //   let options    = new RequestOptions({ headers: headers });
-  //   return this.http
-  //       .post(`${this.albumUrl}`, body, options) 
-  //         .map((res:Response) => res.json().data) 
-  //         .do(data => console.log(JSON.parse(JSON.stringify(data))))
-  //         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
-  //   }
+  addPhoto (pic): Observable<any> {
+    console.log(pic);
+    let body = JSON.parse(JSON.stringify(pic));
+    let headers    = new Headers({ 'Content-Type': 'application/json' }); 
+    let options    = new RequestOptions({ headers: headers });
+    return this.http
+        .post(`${this.albumUrl}`, body, options) //added the body part...nvm but maybe
+          .map((res:Response) => res.json().data) 
+          .do(data => console.log(JSON.parse(JSON.stringify(data))))
+          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    }
 
   getAlbums(): Observable<any> {
- 
     return this.http
       .get(`${this.albumUrl}`) 
-        .map((res: Response) => <Album>res.json().data || {} )
+        .map((res: Response) => <any>res.json().data || {} )
         .do(album => console.log(JSON.parse(JSON.stringify(album))))
         .catch((error: any) => Observable.throw(error.json().error || 'Server error'))  
   }
@@ -101,7 +91,7 @@ import { Album } from './albums/album';
       let headers    = new Headers({ 'Content-Type': 'application/json' }); 
       let options    = new RequestOptions({ headers: headers });
       return this.http
-        .post(this.albumUrl, body, options)
+        .post(`${this.albumUrl}`, body, options)
           .map((res:Response) => res.json().data as Album) 
           .do(album => console.log(JSON.parse(JSON.stringify(album))))
           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));

@@ -11,7 +11,8 @@ import { PhotoDetailsComponent } from './photo-details.component';
 	imports: [ SharedModule, mainRouting ], 
 	declarations: [ 
 					CategoriesComponent,
-					CategoryDetailsComponent					
+					CategoryDetailsComponent,
+					PhotoDetailsComponent					
 				  ],
 	providers: [ CategoryService ]
 })

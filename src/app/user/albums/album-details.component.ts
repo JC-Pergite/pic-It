@@ -9,7 +9,7 @@ import { Album } from './album';
   selector: 'pic-it-album-details',
   template: `
     <div *ngFor="let albumm of album">
-					<h3>{{albumm?.title}}</h3>
+			<h3>{{albumm?.title}}</h3>
 			<div id="albums">
 				<ul *ngFor="let pic of albumm?.photos">
 					<li>

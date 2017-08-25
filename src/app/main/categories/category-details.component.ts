@@ -9,18 +9,16 @@ import { Category } from '../../shared/category';
 @Component({
   selector: 'pic-it-category-details',
   template: `
-  	<div>
-			<a [routerLink]="['/categories']">Home</a>
-		</div>
 		<div *ngFor="let type of category">
 			<h2>{{type.name}}</h2>
 			<div *ngFor="let pic of type?.photos">
 				<ul> 
 					<h1>{{pic.type}}</h1>
 					<li>{{pic.name}}</li>
-					<img src={{pic.photoUrl}} width="333" height="333" class="img-responsive" alt="Responsive image">
+					<img src={{pic.photoUrl}} width="333" height="333" class="img-responsive" 
+						alt="Responsive image"/>
 	  	   	<a [routerLink]="['photo/' + pic.id]">
-	    			Check itt!
+	    			Show me da Deets!
 	 				</a>
 				</ul>
 		  </div>

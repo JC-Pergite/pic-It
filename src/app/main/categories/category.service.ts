@@ -17,10 +17,10 @@ import { Comment } from '../../shared/comment';
   getCategories(): Observable<any> {
     return this.http
       .get(this.categoryUrl)
-      .map((res: Response) => res.json().data || {} )
-      .do(category => console.log(JSON.parse(JSON.stringify(category))))
-      .catch((error: any) => Observable.throw(error.json().error || 'Server error'))  
-  }
+        .map((res: Response) => res.json().data || {} )
+        .do(category => console.log(JSON.parse(JSON.stringify(category))))
+        .catch((error: any) => Observable.throw(error.json().error || 'Server error'))  
+    }
 
   getCategory(id): Observable<any> {
     console.log(id);
@@ -34,9 +34,9 @@ import { Comment } from '../../shared/comment';
 	getPhotos(): Observable<any> {
 		return this.http
 			.get(this.photoUrl)
-			.map((res: Response) => <Photo>res.json().data || {} )
-			.do(photos => console.log(JSON.parse(JSON.stringify(photos))))
-			.catch((error: any) => Observable.throw(error.json().error || 'Server error'))	
+  			.map((res: Response) => <Photo>res.json().data || {} )
+  			.do(photos => console.log(JSON.parse(JSON.stringify(photos))))
+  			.catch((error: any) => Observable.throw(error.json().error || 'Server error'))	
 	}
 
 	getPhoto(id): Observable<any> {
@@ -48,17 +48,15 @@ import { Comment } from '../../shared/comment';
         .catch((error: any) => Observable.throw(error.json().error || 'Server error'))    
     }
 
-  newComment (comment): Observable<any> {
-
-    let body = JSON.parse(JSON.stringify(comment));
+  newComment (pic): Observable<Photo> { 
+    let body = JSON.parse(JSON.stringify(pic));
     let headers    = new Headers({ 'Content-Type': 'application/json' }); 
     let options    = new RequestOptions({ headers: headers });
-
     return this.http
-      .post(this.photoUrl, body, options)
-      .map((res:Response) => res.json().data as Photo) 
-      .do(photo => console.log(JSON.parse(JSON.stringify(photo))))
-      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+      .post(this.photoUrl, body, options) 
+        .map((res:Response) => <Photo>res.json().data as Photo) 
+        .do(photo => console.log(JSON.parse(JSON.stringify(photo))))
+        .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
     }
 
 }

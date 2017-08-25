@@ -73,9 +73,9 @@ export class LoginComponent implements OnInit {
 
  	onSubmit({ value, valid }: { value: User, valid: boolean }) {
     this.profileService.saveUser(value)
-				  					   	.subscribe(data => { 
-				  					   		{ this.currentUser = data}; {console.log(this.currentUser) } 
-				  					   	});
+    					.subscribe(data => { 
+				  			{ this.currentUser = data}; {console.log(this.currentUser) } 
+				  		});
   }
 
 }

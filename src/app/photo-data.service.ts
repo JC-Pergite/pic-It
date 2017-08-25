@@ -3,7 +3,7 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 export class PhotoDataService implements InMemoryDbService {
 	createDb() {
 		let users = [
-			
+
 		];
 
 		let albums = [ 

@@ -22,7 +22,7 @@ import { CategoryResolver } from './main/categories/category.resolver';
     ReactiveFormsModule,
     NgbModule.forRoot(),
     AppRoutingModule,
-    InMemoryWebApiModule.forRoot(PhotoDataService),
+    InMemoryWebApiModule.forRoot(PhotoDataService, { delay: 0 }),
     CategoryModule,
     UserModule
   ],

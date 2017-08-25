@@ -17,7 +17,7 @@ import { AlbumComponent } from './albums/album.component';
 			<h1>{{info.name}}</h1>
 			<p>{{info.bio}}</p>
 			<h2>Albums</h2>
-			<pic-it-album *ngFor="let album of info?.albums" [album]="albums">	
+			<pic-it-album *ngFor="let album of info?.albums" [album]="albums | async">	
 			</pic-it-album>
 			<div class="newAlbum">
 				<label>
@@ -32,6 +32,7 @@ import { AlbumComponent } from './albums/album.component';
   `
 })
 export class ProfileComponent implements OnInit {
+
 	usersAlbums;
 	user: User;
 	choice;
@@ -47,6 +48,9 @@ export class ProfileComponent implements OnInit {
 	}	
 
 	userUpdate(userInfo, entry) {
+		console.log(userInfo);
+				console.log(entry);
+
  		userInfo.albums.push(entry);
  		this.profileService.updateUser(userInfo)
  												.subscribe(data => {
