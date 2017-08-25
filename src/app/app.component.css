@@ -1,0 +1,37 @@
+ul.nav.nav-tabs {
+	border: none;
+}
+
+.panel {
+	position: relative;
+	background-color: transparent;
+	border: 1pt solid aquamarine;
+}
+
+.panel-heading.panel-leftHeading {
+  width: 42px;
+  padding: 10px 15px;
+  border-right: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  float: left;
+  height: 100%;
+  position: absolute;
+}
+
+.panel-title.panel-leftTitle {
+  margin-top: 3.5em;
+  margin-bottom: 0;
+  font-size: 16px;
+  color: inherit;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-align: justify;
+  width: 0;
+}
+
+.panel-body {
+	padding: 2.5em 7em 2.5em;
+}
