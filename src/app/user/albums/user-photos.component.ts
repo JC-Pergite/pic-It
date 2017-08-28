@@ -33,7 +33,9 @@ export class UserPhotosComponent implements OnInit {
   constructor(private route: ActivatedRoute, private categoryService: CategoryService,
             private profileService: ProfileService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {   // TWO OPTIONS: either somehow make comments prop immutable/locked, or 
+                        // figure out how to make a new function call that comes from profileService
+                        // instead of cat   - of course this is all pointless if immutability sets in 
       this.route.paramMap
       .switchMap((params: ParamMap) =>
           this.categoryService.getPhoto(params.get('id')))

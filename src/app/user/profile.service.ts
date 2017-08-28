@@ -51,7 +51,7 @@ import { Photo } from '../shared/photo';
     let headers    = new Headers({ 'Content-Type': 'application/json' }); 
     let options    = new RequestOptions({ headers: headers });
     return this.http
-        .post(`${this.albumUrl}`, body, options) //added the body part...nvm but maybe
+        .post(`${this.albumUrl}`, body, options)
           .map((res:Response) => res.json().data) 
           .do(data => console.log(JSON.parse(JSON.stringify(data))))
           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));

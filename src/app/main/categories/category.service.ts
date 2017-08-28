@@ -48,12 +48,15 @@ import { Comment } from '../../shared/comment';
         .catch((error: any) => Observable.throw(error.json().error || 'Server error'))    
     }
 
-  newComment (pic): Observable<Photo> { 
+  newComment (pic): Observable<Photo> { //maybe switch to comment[] here and in component ?
     let body = JSON.parse(JSON.stringify(pic));
+    console.log(body);
+    // console.log(body['comments']); //maybe pull it out here instead!
     let headers    = new Headers({ 'Content-Type': 'application/json' }); 
     let options    = new RequestOptions({ headers: headers });
     return this.http
-      .post(this.photoUrl, body, options) 
+            // .put(`${this.photoUrl}/${body['id']}`, body, options) //post is for now also working
+      .post(this.photoUrl, body, options) // if only comment might have to change "as Photo"
         .map((res:Response) => <Photo>res.json().data as Photo) 
         .do(photo => console.log(JSON.parse(JSON.stringify(photo))))
         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));

@@ -39,7 +39,6 @@ import { Album } from './albums/album';
 	      <label for="textArea" class="col-lg-2 control-label">Bio:</label>
 	      <div class="col-lg-10">
 	        <textarea class="form-control" formControlName="bio" rows="3" id="textArea"></textarea>
-	        <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
 	      </div>
 	    </div>
 	    <div class="form-group">

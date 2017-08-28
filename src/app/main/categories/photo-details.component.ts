@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap }  from '@angular/router';
-
+// import { fromJS, Map } from 'immutable';
 import { ProfileService } from '../../user/profile.service';
 import { CategoryService } from './category.service';
 import { Photo } from '../../shared/photo';
@@ -12,11 +12,11 @@ import { Album } from '../../user/albums/album';
 @Component({
   selector: 'pic-it-photo-details',
   template: `
-  		<div>
-	      <button type="button" id="dropdownMenuButton"> 
-	       {{choice?.title}}
-	      </button>
-	  		<div>
+	  			<div>
+			      <button type="button" id="dropdownMenuButton"> 
+			       {{choice?.title}}
+			      </button>
+	  			<div>
 	  			<h2>Album Selections Include: </h2>
 	        <ul *ngFor="let album of albums">
 	          <li class="dropdown-item" (click)="albumChosen(album)">
@@ -49,6 +49,7 @@ export class PhotoDetailsComponent implements OnInit {
   choice = '';
   collection: Album;
 	photos: Photo[];
+	// public id: number;
 
 	constructor(private route: ActivatedRoute, private categoryService: CategoryService,
 							private profileService: ProfileService) { }
@@ -74,12 +75,14 @@ export class PhotoDetailsComponent implements OnInit {
   }
 
   addPhoto(newPhoto): void {
-      this.albumPhotos.push(newPhoto);
-      this.profileService.addPhoto(this.choice)
-          .subscribe(data => this.collection = data)
-  }
+    this.albumPhotos.push(newPhoto);
+    this.profileService.addPhoto(this.choice)
+					.subscribe(data => { this.collection = data; },
+                  error => { console.log("Battsu!"); }
+        );  
+}
 
-	addComment(pic, comment): void { // needs alteration for changeDetection trigger
+	addComment(pic, comment): void { 
     let commentary = pic.comments;
     commentary.push(comment); 
     this.categoryService.newComment(pic)
