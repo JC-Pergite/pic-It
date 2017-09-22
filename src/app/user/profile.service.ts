@@ -1,101 +1,143 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { User } from './user';
 import { Album } from './albums/album';
 import { Photo } from '../shared/photo';
 
-@Injectable() 
-  export class ProfileService {
+@Injectable()
+
+ export class ProfileService {
 
   private userUrl = 'http://localhost:4200/pic-it/users';
   private albumUrl = 'http://localhost:4200/pic-it/albums';
-  public currentUser: any = undefined;
+
+  private currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(User);
+  public currentUser = this.currentUserSubject.asObservable().distinctUntilChanged();
+
+  // //User Album:
+  public currentUserAlbumSubject: BehaviorSubject<any> = new BehaviorSubject<any>({});
+  public currentUserAlbum = this.currentUserAlbumSubject.asObservable().distinctUntilChanged();
 
   constructor (private http: Http) { }
 
-  getUsers(): Observable<any> {
-    return this.http
-      .get(this.userUrl)
-        .map((res: Response) => <User>res.json().data || {} )
-        .do(user => this.currentUser = JSON.parse(JSON.stringify(user)))
-        .catch((error: any) => Observable.throw(error.json().error || 'Server error')) 
+  setUserAlbum(album) {
+    this.currentUserAlbumSubject.next(album);
+ }
+
+  setUser(user: User) {
+    this.currentUserSubject.next(user);
+  }
+
+  getCurrentUser(): any {
+    return this.currentUserSubject.value;
   }
 
   saveUser(newUser): Observable<User> {
     let body = JSON.parse(JSON.stringify(newUser));
-    console.log(body);
     let headers    = new Headers({ 'Content-Type': 'application/json' }); 
     let options    = new RequestOptions({ headers: headers });
     return this.http
       .post(this.userUrl, body, options)
-        .map((res: Response) => <User>res.json().data || {} )
-        .do(user => this.currentUser = JSON.parse(JSON.stringify(user)))
-        .catch((error: any) => Observable.throw(error.json().error || 'Server error')) 
-
+      .mergeMap(userData => { this.setUser(userData.json().data); 
+        return  Observable.of([userData.json().data]) })
+      // .do(data => console.log(JSON.parse(JSON.stringify(data))))
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error')) 
   }
 
-  getUser(id): Observable<any> {
-        console.log(id);
-    return this.http
-      .get(`{$this.userUrl}/{$id}`) 
-        .map(res => (<User[]>res.json().data).filter(user => user.id == id))
-        .do(data => console.log(JSON.parse(JSON.stringify(data))))
-        .catch((error: any) => Observable.throw(error.json().error || 'Server error')) 
-    }
-
   addPhoto (pic): Observable<any> {
-    console.log(pic);
     let body = JSON.parse(JSON.stringify(pic));
     let headers    = new Headers({ 'Content-Type': 'application/json' }); 
     let options    = new RequestOptions({ headers: headers });
     return this.http
         .post(`${this.albumUrl}`, body, options)
           .map((res:Response) => res.json().data) 
-          .do(data => console.log(JSON.parse(JSON.stringify(data))))
+          // .do(data => console.log(JSON.parse(JSON.stringify(data))))
           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
     }
 
-  getAlbums(): Observable<any> {
-    return this.http
-      .get(`${this.albumUrl}`) 
-        .map((res: Response) => <any>res.json().data || {} )
-        .do(album => console.log(JSON.parse(JSON.stringify(album))))
-        .catch((error: any) => Observable.throw(error.json().error || 'Server error'))  
-  }
-
-  getAlbum(id): Observable<Album[]> {
-    return this.http
-        .get(`${this.albumUrl}`) 
-          .map(res => (<Album[]>res.json().data).filter(album => album.id == id))
-          .do(album => console.log(JSON.parse(JSON.stringify(album))))
-          .catch((error: any) => Observable.throw(error.json().error || 'Server error'))    
-  }
-
-  updateUser (user): Observable<User> {
-      let body = JSON.parse(JSON.stringify(user));
-      console.log(body)
-      let headers = new Headers({ 'Content-Type': 'application/json' }); 
-      let options = new RequestOptions({ headers: headers });
-      return this.http
-        .put(`${this.userUrl}/${body['id']}`,body, options)
-          .map((res:Response) => res.json().data as User) 
-          .do(user => this.currentUser = JSON.parse(JSON.stringify(user)))
-          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
-  } 
-
   addAlbum (newAlbum): Observable<Album> {
       let body = JSON.parse(JSON.stringify(newAlbum));
-      console.log(body)
       let headers    = new Headers({ 'Content-Type': 'application/json' }); 
       let options    = new RequestOptions({ headers: headers });
       return this.http
         .post(`${this.albumUrl}`, body, options)
           .map((res:Response) => res.json().data as Album) 
-          .do(album => console.log(JSON.parse(JSON.stringify(album))))
+          // .do(album => console.log(JSON.parse(JSON.stringify(album))))
           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   } 
 
+
+
+
+  // getAlbum(user, albumId): Observable<Album[]> {
+  //   // let body = JSON.parse(JSON.stringify(user));
+  //     console.log(user);
+  //           console.log(albumId);
+
+  //     let headers = new Headers({ 'Content-Type': 'application/json' }); 
+  //     let options = new RequestOptions({ headers: headers });
+
+  // return Observable.forkJoin([
+  //       this.http.get('/pic-it/users/').map(res => res.json()),
+  //       this.http.get('/pic-it/albums/' + albumId) 
+  //         .map(res => (<Album[]>res.json().data).filter(album => album.id == albumId))
+  //                 ])     
+
+  //         .do(album => console.log(JSON.parse(JSON.stringify(album))))
+  //         .catch((error: any) => Observable.throw(error.json().error || 'Server error')) 
+  // }
+
+
+
+  // postPhotoInAlbum(alb, foto): Observable<any> {
+  //   let body = JSON.parse(JSON.stringify(foto));
+  //   console.log(body)
+  //   let headers    = new Headers({ 'Content-Type': 'application/json' }); 
+  //   let options    = new RequestOptions({ headers: headers });
+
+  //   return Observable.forkJoin([
+  //     this.http.get('/pic-it/albums/' + alb.id).map(res => res.json()),
+  //     this.http.post('/pic-it/users/', body, options)
+  //                 .map(res => res.json())
+  //                 .do(data => console.log(JSON.parse(JSON.stringify(data))))
+  //   ])
+  //     .map((results: any[]) => {
+  //       let album: Album = results[0].data;
+  //       let fotos: Photo[] = results[1];
+  //       album.photos.push(results[1]);
+  //       return album.photos;
+  //     });
+  // }
+
+ 
+
+// THIS POSTS A NEW Album WITH THE INFO FROM PHOTO
+    // postAlbumWithPhoto(alb, foto): Observable<any> {
+ 
+    //       let body = JSON.parse(JSON.stringify(foto));
+    
+    //       let headers    = new Headers({ 'Content-Type': 'application/json' }); 
+    //       let options    = new RequestOptions({ headers: headers });
+
+    //   return Observable.forkJoin([
+    //     this.http.get('/pic-it/albums/' + alb.id)
+    //               .map(res => res.json())
+    //                               .do(album => console.log(JSON.parse(JSON.stringify(album)))),
+
+    //     this.http.post( "/pic-it/photos/" + "/pic-it/albums/" + alb.id + "/photo/", body, options)
+    //               .map((res:Response) => res.json().data as Photo) 
+    //                 .do(data => console.log(JSON.parse(JSON.stringify(data))))
+
+    //   ])
+    //   .map((results: any[]) => {
+    //     let album: Album = results[0].data;
+    //     let fotos: Photo[] = results[1];
+    //        album.photos.push(results[1]);
+    //        // return fotos;
+    //     return album.photos;
+    //   });
+    // }
   
 }

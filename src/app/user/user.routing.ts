@@ -12,16 +12,14 @@ const userRoutes: Routes = [
 			{ path: 'profile',
 				children: 
 					[
-					  { path: ':id', component: ProfileComponent }, 
-					  { path: 'album', 
+					  { path: 'album',
 					      children: 
 							[
-								{ path: '', component: AlbumComponent },
 								{ path: ':id', component: AlbumDetailsComponent },
 								{ path: ':id/photo/:id', component: UserPhotosComponent }
 							]
 					  },
-					  { path: '', component: ProfileComponent } 
+					  { path: '', component: ProfileComponent, pathMatch:'full' } 
 					]
 			}
 ];

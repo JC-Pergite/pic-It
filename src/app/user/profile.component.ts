@@ -1,22 +1,20 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute }  from '@angular/router';
 
 import { ProfileService } from './profile.service';
 import { User } from './user';
-import { Album } from './albums/album';
-import { Photo } from '../shared/photo';
 import { AlbumComponent } from './albums/album.component';
 
 @Component({
   selector: 'pic-it-profile',
   template: `
-    <div>
-    	<a [routerLink]="['/categories']">Category</a>
-    </div>
 		<div *ngFor="let info of user">
 			<h1>{{info.name}}</h1>
-			<p>{{info.bio}}</p>
+			<p>My Bio: {{info.bio}}</p>
 			<h3>My Albums:</h3>
+			<br>
+			<br/>
+			<pic-it-album #albumy></pic-it-album>
 			<br>
 			<br/>
 			<div class="newAlbum">
@@ -28,29 +26,29 @@ import { AlbumComponent } from './albums/album.component';
 			 	   Create Album
 				</button>
 			</div>	
-		<pic-it-album #albumy></pic-it-album>
 		</div>	
   `
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
+
 	@ViewChild(AlbumComponent)
  	private albumy: AlbumComponent;
+	user: User[] = [];
+  private alive: boolean = true;
 
-	user: User;
-
-	constructor(private profileService: ProfileService) { }
+	constructor(private route: ActivatedRoute, private profileService: ProfileService) { }
 
 	ngOnInit(): void {
-   	this.profileService.getUsers()
-   	.subscribe( 
-   		profile =>  this.user = profile
-		);
+   		this.profileService.currentUser.takeWhile(() => this.alive)
+   																	 .subscribe((data: User) => this.user.push(data));								
 	}	
 
 	goGet(info, title) {
 		this.albumy.albumCreator(info, title);
 	}
 
+	ngOnDestroy() {
+		this.alive = false;
+	}
+
 }
-
-

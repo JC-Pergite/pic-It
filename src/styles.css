@@ -1,8 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
 body {
 	background-color: #272b30 !important;
 }
 
 h1, h2, h3, h4, p {
 	color: salmon !important;
+}
+
+li {
+	color: deepskyblue !important;
+	font-size: 1.5em;
 }

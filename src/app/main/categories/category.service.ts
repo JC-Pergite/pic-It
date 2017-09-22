@@ -7,7 +7,8 @@ import { Photo } from '../../shared/photo';
 import { Comment } from '../../shared/comment';
 
 @Injectable()
-  export class CategoryService {
+
+export class CategoryService {
 
 	private categoryUrl = 'http://localhost:4200/pic-it/categories';
 	private photoUrl = 'http://localhost:4200/pic-it/photos';
@@ -18,7 +19,7 @@ import { Comment } from '../../shared/comment';
     return this.http
       .get(this.categoryUrl)
         .map((res: Response) => res.json().data || {} )
-        .do(category => console.log(JSON.parse(JSON.stringify(category))))
+        // .do(category => console.log(JSON.parse(JSON.stringify(category))))
         .catch((error: any) => Observable.throw(error.json().error || 'Server error'))  
     }
 
@@ -27,7 +28,7 @@ import { Comment } from '../../shared/comment';
     return this.http
       .get(this.categoryUrl) 
         .map(res => (<Category[]>res.json().data).filter(category => category.id == id))
-        .do(category => console.log(JSON.parse(JSON.stringify(category))))
+        // .do(category => console.log(JSON.parse(JSON.stringify(category))))
         .catch((error: any) => Observable.throw(error.json().error || 'Server error'))    
     }
 
@@ -35,7 +36,7 @@ import { Comment } from '../../shared/comment';
 		return this.http
 			.get(this.photoUrl)
   			.map((res: Response) => <Photo>res.json().data || {} )
-  			.do(photos => console.log(JSON.parse(JSON.stringify(photos))))
+  			// .do(photos => console.log(JSON.parse(JSON.stringify(photos))))
   			.catch((error: any) => Observable.throw(error.json().error || 'Server error'))	
 	}
 
@@ -44,21 +45,18 @@ import { Comment } from '../../shared/comment';
     return this.http
       .get(this.photoUrl) 
         .map(res => (<Photo[]>res.json().data).filter(photo => photo.id == id))
-        .do(photo => console.log(JSON.parse(JSON.stringify(photo))))
+        // .do(photo => console.log(JSON.parse(JSON.stringify(photo))))
         .catch((error: any) => Observable.throw(error.json().error || 'Server error'))    
     }
 
-  newComment (pic): Observable<Photo> { //maybe switch to comment[] here and in component ?
+  newComment (pic): Observable<Photo> { 
     let body = JSON.parse(JSON.stringify(pic));
-    console.log(body);
-    // console.log(body['comments']); //maybe pull it out here instead!
     let headers    = new Headers({ 'Content-Type': 'application/json' }); 
     let options    = new RequestOptions({ headers: headers });
     return this.http
-            // .put(`${this.photoUrl}/${body['id']}`, body, options) //post is for now also working
-      .post(this.photoUrl, body, options) // if only comment might have to change "as Photo"
+      .post(this.photoUrl, body, options)
         .map((res:Response) => <Photo>res.json().data as Photo) 
-        .do(photo => console.log(JSON.parse(JSON.stringify(photo))))
+        // .do(photo => console.log(JSON.parse(JSON.stringify(photo))))
         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
     }
 

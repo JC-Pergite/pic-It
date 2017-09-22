@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
    	this.user = this.fb.group({
-     	name: ['', [Validators.required, Validators.minLength(2)]],
+     	name: ['', [Validators.required, Validators.minLength(1)]],
      	bio: ['', Validators.required],
      	account: this.fb.group({
        	email: ['', Validators.required],
@@ -70,10 +70,10 @@ export class LoginComponent implements OnInit {
     });
 	}
 
- 	onSubmit({ value, valid }: { value: User, valid: boolean }) {
+  onSubmit({ value, valid }: { value: User, valid: boolean }) {
     this.profileService.saveUser(value)
-    					.subscribe(data => { 
-				  			{ this.currentUser = data}; {console.log(this.currentUser) } 
+    					.subscribe((data: User) => { 
+				  			{ this.currentUser = data }  
 				  		});
   }
 

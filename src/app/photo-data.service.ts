@@ -3,13 +3,11 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 export class PhotoDataService implements InMemoryDbService {
 	createDb() {
 		let users = [
-				{ id: 1, name: 'Josh', bio: 'D O P E', account: { email: 'me@me.com', password: 'coolio' },
-					albums: [], comments: []
-				}
+	
 		];
 
 		let albums = [ 
-			
+
 		];
 
 		let photos = [
