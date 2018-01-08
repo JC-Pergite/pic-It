@@ -12,7 +12,7 @@ import { PhotoDetailsComponent } from './photo-details.component';
 	declarations: [ 
 					CategoriesComponent,
 					CategoryDetailsComponent,
-					PhotoDetailsComponent					
+					PhotoDetailsComponent
 				  ],
 	providers: [ CategoryService ]
 })

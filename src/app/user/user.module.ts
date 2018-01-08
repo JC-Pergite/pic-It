@@ -7,6 +7,8 @@ import { AlbumComponent } from './albums/album.component';
 import { AlbumDetailsComponent } from './albums/album-details.component';
 import { ProfileService } from './profile.service';
 import { UserPhotosComponent } from './albums/user-photos.component';
+import { AuthGuard }            from './auth-guard.service';
+import { AuthService }          from './auth.service';
 
 @NgModule ({
 	imports: [ SharedModule, userRouting ],
@@ -16,6 +18,6 @@ import { UserPhotosComponent } from './albums/user-photos.component';
 					AlbumDetailsComponent,
 					UserPhotosComponent
 				  ],
-	providers: [ ProfileService ]
+	providers: [ ProfileService, AuthGuard, AuthService ]
 })
 export class UserModule { }

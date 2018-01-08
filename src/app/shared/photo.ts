@@ -1,4 +1,5 @@
 import { Comment } from './comment';
+import { User } from '../user/user';
 
 export class Photo {
 	constructor( 
@@ -6,6 +7,10 @@ export class Photo {
 		public name: string,
 		public type: string,
 	    public photoUrl: string,
-	    public comments: Comment[]
+	    public comments: Comment[],
+		public likes?: {
+			likes: number,
+			user_id?: User[] 
+		}
 	) { }
 }

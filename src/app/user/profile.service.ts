@@ -23,6 +23,7 @@ import { Photo } from '../shared/photo';
   constructor (private http: Http) { }
 
   setUserAlbum(album) {
+    console.log(album);
     this.currentUserAlbumSubject.next(album);
  }
 
@@ -34,6 +35,10 @@ import { Photo } from '../shared/photo';
     return this.currentUserSubject.value;
   }
 
+  getCurrentAlbum(): any {
+    return this.currentUserAlbumSubject.value;
+  }
+
   saveUser(newUser): Observable<User> {
     let body = JSON.parse(JSON.stringify(newUser));
     let headers    = new Headers({ 'Content-Type': 'application/json' }); 
@@ -42,7 +47,7 @@ import { Photo } from '../shared/photo';
       .post(this.userUrl, body, options)
       .mergeMap(userData => { this.setUser(userData.json().data); 
         return  Observable.of([userData.json().data]) })
-      // .do(data => console.log(JSON.parse(JSON.stringify(data))))
+      .do(data => console.log(JSON.parse(JSON.stringify(data))))
       .catch((error: any) => Observable.throw(error.json().error || 'Server error')) 
   }
 
@@ -53,7 +58,7 @@ import { Photo } from '../shared/photo';
     return this.http
         .post(`${this.albumUrl}`, body, options)
           .map((res:Response) => res.json().data) 
-          // .do(data => console.log(JSON.parse(JSON.stringify(data))))
+          .do(data => console.log(JSON.parse(JSON.stringify(data))))
           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
     }
 
@@ -64,80 +69,7 @@ import { Photo } from '../shared/photo';
       return this.http
         .post(`${this.albumUrl}`, body, options)
           .map((res:Response) => res.json().data as Album) 
-          // .do(album => console.log(JSON.parse(JSON.stringify(album))))
+          .do(album => console.log(JSON.parse(JSON.stringify(album))))
           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   } 
-
-
-
-
-  // getAlbum(user, albumId): Observable<Album[]> {
-  //   // let body = JSON.parse(JSON.stringify(user));
-  //     console.log(user);
-  //           console.log(albumId);
-
-  //     let headers = new Headers({ 'Content-Type': 'application/json' }); 
-  //     let options = new RequestOptions({ headers: headers });
-
-  // return Observable.forkJoin([
-  //       this.http.get('/pic-it/users/').map(res => res.json()),
-  //       this.http.get('/pic-it/albums/' + albumId) 
-  //         .map(res => (<Album[]>res.json().data).filter(album => album.id == albumId))
-  //                 ])     
-
-  //         .do(album => console.log(JSON.parse(JSON.stringify(album))))
-  //         .catch((error: any) => Observable.throw(error.json().error || 'Server error')) 
-  // }
-
-
-
-  // postPhotoInAlbum(alb, foto): Observable<any> {
-  //   let body = JSON.parse(JSON.stringify(foto));
-  //   console.log(body)
-  //   let headers    = new Headers({ 'Content-Type': 'application/json' }); 
-  //   let options    = new RequestOptions({ headers: headers });
-
-  //   return Observable.forkJoin([
-  //     this.http.get('/pic-it/albums/' + alb.id).map(res => res.json()),
-  //     this.http.post('/pic-it/users/', body, options)
-  //                 .map(res => res.json())
-  //                 .do(data => console.log(JSON.parse(JSON.stringify(data))))
-  //   ])
-  //     .map((results: any[]) => {
-  //       let album: Album = results[0].data;
-  //       let fotos: Photo[] = results[1];
-  //       album.photos.push(results[1]);
-  //       return album.photos;
-  //     });
-  // }
-
- 
-
-// THIS POSTS A NEW Album WITH THE INFO FROM PHOTO
-    // postAlbumWithPhoto(alb, foto): Observable<any> {
- 
-    //       let body = JSON.parse(JSON.stringify(foto));
-    
-    //       let headers    = new Headers({ 'Content-Type': 'application/json' }); 
-    //       let options    = new RequestOptions({ headers: headers });
-
-    //   return Observable.forkJoin([
-    //     this.http.get('/pic-it/albums/' + alb.id)
-    //               .map(res => res.json())
-    //                               .do(album => console.log(JSON.parse(JSON.stringify(album)))),
-
-    //     this.http.post( "/pic-it/photos/" + "/pic-it/albums/" + alb.id + "/photo/", body, options)
-    //               .map((res:Response) => res.json().data as Photo) 
-    //                 .do(data => console.log(JSON.parse(JSON.stringify(data))))
-
-    //   ])
-    //   .map((results: any[]) => {
-    //     let album: Album = results[0].data;
-    //     let fotos: Photo[] = results[1];
-    //        album.photos.push(results[1]);
-    //        // return fotos;
-    //     return album.photos;
-    //   });
-    // }
-  
 }

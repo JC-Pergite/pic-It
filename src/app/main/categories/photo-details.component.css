@@ -1,0 +1,377 @@
+img {
+  width: 400px;
+  height: 400px;
+	border-radius: 8px;
+  margin-left: 275pt;
+  margin-top: 77pt;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.backForth {
+  margin-left: 15pt; 
+  position: absolute; 
+}
+
+button.btn.btn-primary.prior {
+  color: seashell !important;
+  background-color: #272b30 !important;
+  border: none !important;
+  transition: none !important;
+}
+
+button.btn.btn-primary.prior:hover {
+  border: 1px solid #ccc !important;
+  color: seashell !important;
+  background: none !important;
+}
+
+.btn.btn-outline-secondary.next:hover {
+  color: snow !important;
+}
+
+a.photoCategory {
+    position: relative;
+    left: 17em;
+    top: 1em;
+    border-left: 1pt solid royalblue;
+    border-bottom: 1pt solid palegoldenrod;
+    color: salmon !important;
+    font-size: 3em;
+    font-weight: 100;
+    font-variant: small-caps;
+    padding-left: .3em;
+    padding-bottom: .2em;
+}
+
+.title-container {
+  height: 400px;
+  position: absolute;
+  top: 18em;
+  left: 16em;
+  padding-top: 5em;
+}
+
+.selected {
+  background-color: #2E3C71;
+}
+
+.like {   
+  display: block;
+  width: 70px;
+  height: 70px;
+  line-height:50px;
+  border: 2px solid #5167F4;
+  border-radius: 50%;
+  text-decoration:none;
+  background: none;
+  font-size:20px;
+  position: absolute;
+  left: 12em;
+  top: 15.5em;
+  -webkit-padding-before: initial;
+}
+
+.unlike {   
+  display: block;
+  width: 62px;
+  height: 62px;
+  line-height:50px;
+  border: 1.5px solid #fb2d2d;
+  border-radius: 50%;
+  text-decoration:none;
+  background: #3a3f44;
+  font-size:20px;
+  position: absolute;
+  left: 12.2em;
+  top: 15.7em;
+  -webkit-padding-before: initial;
+}
+
+#noLikey.btn.btn-outline-danger {
+    display: none;
+    visibility: hidden;
+}
+
+#noLikey.btn.btn-outline-danger.unlike {
+    display: inherit;
+    visibility: visible;
+    padding-left: 8px;
+    color: #f70b4a;
+    font-weight: 300;
+    position: fixed;
+    border: none;
+    letter-spacing: .25em;
+    background-image: none;
+    background-color: transparent;
+    font-variant: petite-caps;
+    transform: rotate(30deg);
+} 
+
+.btn.btn-outline-info.likes {
+    color: mediumslateblue;
+    float: right;
+    height: 50.5pt;
+    background-image: none;
+    background-color: transparent;
+    border: none;
+    padding-right: 15px;
+    font-size: .7em;
+}    
+
+
+h3.amountLiked {
+    border-right: 2px solid #5bc0de;
+    left: -0.2em;
+    border-radius: 5px;
+    position: absolute;
+    text-shadow: 1px 1px 3px deepskyblue;
+    font-size: .6em;
+    text-align: center;
+    color: cyan;
+    height: 100%;
+    letter-spacing: -5px;
+    padding: 4px 4px 4px 4px;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+}
+
+h3.amountLiked.liked {
+    transition: all 2s ease-in;
+    transform: translate(12px);
+    border-right: none; 
+}
+
+.btn.btn-outline-primary.likes {
+  position: absolute;
+  top: 8em;
+  left: 1em;
+  border-radius: 13px;
+
+  color: white;
+  margin-top: -.3em;
+  margin-left: -.2em;
+  font-weight: 300;
+  letter-spacing: .15em;
+  background-image: none;
+  background-color: transparent;
+  border-color: rgba(81, 103, 244, 0.88);
+  font-variant: petite-caps;
+} 
+
+.btn.btn-outline-primary.likes:hover {
+    color: #06e8f7;
+    background-color: #313539;
+    border-color: whitesmoke;
+}    
+
+div#userAlbums  {
+  border: 1.2pt solid rgba(255, 222, 173, 0.94);
+  top: 15.5em;
+  position: absolute;
+  border-radius: 8px;
+  left: 90em;
+  width: 20em;
+  padding-right: 1px;  
+}
+
+#userAlbums ul {
+  padding: 0 0 0 0;
+}
+
+
+#userAlbums li {
+  cursor: pointer;
+  color: #E94755 !important;
+  list-style: none;
+  height: 2em;
+  font-size: 1.5em;
+  margin-right: 0pt;
+  margin-left: 0pt;
+  margin-bottom: 5.5pt;
+  padding-top: 5pt;
+  text-align: center;
+  border-top: 1px solid coral;
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.15);
+}
+
+#userAlbums li:hover {
+  background-color: #0D47CA;
+}
+
+#userAlbums li.selected:hover {
+  background-color: #3a3f44 !important;
+}
+
+.createAlbum {
+  height: 23pt;
+  text-align: center;
+  border-top: 1px solid coral;
+}
+
+.noAlbumsYet {
+  position: relative;
+  height: 20pt !important;
+  left: 87em;
+  top: 22.5em;
+  border-bottom: 1px solid coral !important;
+  border-radius: 4px;
+}
+
+.firstOne {
+  margin-top: 0 !important;
+}
+
+button.btn.btn-outline-warning#popupNewAlbum.create {
+  background: none;
+  border: none; 
+  padding-bottom: 3px;
+  margin-top: 2.5pt;
+  font-size: 1.2em !important;
+  color: peachpuff !important;
+} 
+
+button.btn.btn-outline-warning#popupNewAlbum.create:hover {
+  color: aliceblue !important;
+  border: 1px solid aliceblue !important;
+  background-color: tomato !important;
+}
+
+h2 {
+  color: aliceblue;
+  font-size: 2em;
+  position: static;
+}
+
+h1 {
+    color: lightsalmon !important;
+    writing-mode: vertical-lr;
+    text-orientation: upright;    
+    font-size: 3em;
+    font-weight: 100;
+    font-variant: small-caps;
+    text-shadow: 2px 6px 3px #E24456;
+}
+
+h4 {   
+    color: rgba(255, 127, 80, 0.94);
+  	font-size: initial;
+    padding: 8pt 13pt 6pt 12pt;
+    font-variant: all-petite-caps;
+    text-align: center;
+    border-bottom: 1px solid #E94755;
+    text-shadow: 0px 2px 2px rgba(0,0,0,0.1);
+}
+
+.collect {
+    display: block;
+    width: 70px;
+    height: 70px;
+    line-height: 50px;
+    border: 2px solid #E76122;
+    border-radius: 50%;
+    color: #E30754;
+    text-decoration: none;
+    background: none;
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    left: 40.5em;
+    top: 15.5em;
+    -webkit-padding-before: initial;
+}  
+
+.collect:hover {
+    background-color: #313539;
+    border: 2px solid #E30754;
+    color: #E76122;
+}
+
+.comentator {
+  left: 38pt;
+  top: -14pt;
+  position: relative;
+  margin-bottom: 22pt;
+}
+
+input.inputBox {
+  width: 45%;
+  text-align: center;
+  border-radius: 4px;
+  color: seashell;
+  margin-left: 285pt;
+  margin-top: 35pt;
+  margin-bottom: 3pt;
+  background-color: #292a2b;
+  height: 20pt;
+  letter-spacing: .03em;
+  font-weight: lighter;
+}
+
+input[type="comment"].inputBox::-webkit-input-placeholder {
+  color: gainsboro;
+}
+input[type="comment"].inputBox:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+button.btn.btn-outline-warning.comment {
+  height: 20pt;
+  position: relative;
+  left: 86pt;
+}
+
+.commentary {
+  margin-bottom: -2em !important;
+}
+
+.commentary ul.comments:first-of-type {
+    margin-top: -26px;
+}
+
+ul.comments {
+    color: floralwhite;
+    font-family: fantasy;
+    font-size: 1.2em;
+}  
+
+table.table {
+  position: relative;
+  width: 32.5em !important;
+  left: 250pt;
+  margin-bottom: -1em !important;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.btn.btn-outline-danger.comment {
+  position: relative;
+  left: 73.5em;;
+  top: -2.15em;
+  height: 25pt;
+  width: 30px;
+  font-weight: 400;
+}
+
+.table>tbody>tr>td {
+  border-top: 1px solid rgba(31, 32, 35, 0.93);
+}
+
+.addedPulse {
+    animation: pulse ease-out 2.5s;
+    -webkit-animation: pulse ease-out 2.5s;
+}
+
+@keyframes pulse {
+    0% {
+        background-color: #3a3f44;
+    }
+    100% {
+        background-color: mediumseagreen
+    }
+}
+
+@media all and (min-width: 69em) {
+  div.noAlbumsYet {
+    left: 92em;
+  }
+}

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
 //Third-Party Modules
@@ -12,21 +13,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './user/login.component';
 import { CategoryModule } from './main/categories/category.module';
 import { UserModule } from './user/user.module';
-import { CategoryResolver } from './main/categories/category.resolver';
+import { CategoryService } from './main/categories/category.service';
+import { PopupCreateComponent } from './popup-create.component';
+import { PopupLikersComponent } from './popup-likers.component';
+
 
 @NgModule({
-  declarations: [ AppComponent, LoginComponent ],
+  declarations: [ AppComponent, LoginComponent, PopupCreateComponent, PopupLikersComponent ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpModule,
     ReactiveFormsModule,
     NgbModule.forRoot(),
     AppRoutingModule,
-    InMemoryWebApiModule.forRoot(PhotoDataService, { delay: 0 }),
+    InMemoryWebApiModule.forRoot(PhotoDataService, { delay: 500 }),
     CategoryModule,
     UserModule
   ],
-  providers: [ CategoryResolver ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

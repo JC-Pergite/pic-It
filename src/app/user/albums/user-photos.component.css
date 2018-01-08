@@ -1,0 +1,137 @@
+img {
+    width: 450px;
+    height: 450px;
+  	border-radius: 8px;
+    margin-left: 255pt;
+    margin-top: 65pt;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    position: absolute;
+    color: lightsalmon !important;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    margin-top: 150pt;
+    margin-right: 680pt;
+    font-size: 4em;
+    font-weight: 100;
+    font-variant: small-caps;
+    text-shadow: 2px 6px 3px #E24456;
+}
+
+.eliminate {
+    display: block;
+    width: 60px;
+    height: 60px;
+    line-height: 50px;
+    border: 2px dashed #E76122;
+    border-radius: 50%;
+    color: rgba(193, 38, 51, 0.97);
+    text-decoration: none;
+    background-color: #272b30;
+    font-size: 16px;
+    font-weight: bold;
+    position: absolute;
+    top: 230pt;
+    left: 730pt;
+    -webkit-padding-before: initial;
+}  
+
+.eliminate:hover {
+    background-color: #313539;
+    border: 2px solid #E30754;
+    color: #E76122;
+}
+
+.comentator {
+  left: 38pt;
+  top: 1em;
+  position: relative;
+  margin-bottom: 22pt;
+}
+
+input.inputBox {
+  width: 45%;
+  text-align: center;
+  border-radius: 4px;
+  color: seashell;
+  margin-left: 285pt;
+  margin-top: 35pt;
+  margin-bottom: 3pt;
+  background-color: #292a2b;
+  height: 20pt;
+  letter-spacing: .03em;
+  font-weight: lighter;
+}
+
+input[type="comment"].inputBox::-webkit-input-placeholder {
+  color: gainsboro;
+}
+input[type="comment"].inputBox:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+button.btn.btn-outline-warning.comment {
+  height: 20pt;
+  position: relative;
+  left: 86pt;
+}
+
+.commentary {
+  margin-bottom: -3.5em !important;
+}
+
+ul.comments:nth-child(1) {
+    margin-top: 26px;
+}
+
+ul.comments {
+    color: floralwhite;
+    font-family: fantasy;
+    font-size: 1.2em;
+}  
+
+table.table {
+  position: relative;
+  width: 32.5em !important;
+  left: 250pt;
+  margin-bottom: -1em !important;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.btn.btn-outline-danger.comment {
+  position: relative;
+  left: 73.5em;;
+  top: -2.15em;
+  height: 25pt;
+  width: 30px;
+  font-weight: 400;
+}
+
+.table>tbody>tr>td {
+  border-top: 1px solid rgba(31, 32, 35, 0.93);
+}
+
+.backForth {
+  margin-left: 15pt; 
+  position: absolute; 
+}
+
+button.btn.btn-primary.prior {
+  color: seashell !important;
+  background-color: #272b30 !important;
+  border: none !important;
+  transition: none !important;
+}
+
+button.btn.btn-primary.prior:hover {
+  border: 1px solid #ccc !important;
+  color: seashell !important;
+  background: none !important;
+}
+
+.btn.btn-outline-secondary.next:hover {
+  color: snow !important;
+}

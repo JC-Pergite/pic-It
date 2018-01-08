@@ -1,8 +1,12 @@
 import { NgModule }              from '@angular/core';
 import { RouterModule, Routes }  from '@angular/router';
+import { PopupCreateComponent } from './popup-create.component';
+import { PopupLikersComponent } from './popup-likers.component';
 
 const appRoutes: Routes = [
-      { path: '', redirectTo: 'categories', pathMatch: 'full' },
+      { path: 'createAlbum', component: PopupCreateComponent, outlet: 'albumPopUp' },
+      { path: 'viewLikers', component: PopupLikersComponent, outlet: 'likersPopUp' },
+      { path: 'categories', redirectTo: 'categories', pathMatch: 'full' },
   	  { path: 'login', redirectTo: 'login', pathMatch: 'full' }
 ];
 
@@ -10,7 +14,6 @@ const appRoutes: Routes = [
   imports: [
     RouterModule.forRoot(
       appRoutes
-      // { enableTracing: true } // <-- debugging purposes only
     )
   ],
   exports: [

@@ -10,7 +10,6 @@ export class User {
 			 email: string,
 			 password: string
 		},
-		public albums: Album[],
-		public comments: Comment[]
+		public albums: Album[]
 	) { }
 }

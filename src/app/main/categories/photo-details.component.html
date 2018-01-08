@@ -1,0 +1,87 @@
+<div>
+  <div class="backForth">
+  <button type="button" [style.display] = "noLess ? 'none' : 'initial'"  (click)="backwards()"
+    class="btn btn-primary prior">
+      Prior
+  </button>
+  <button type="button" [style.display] = "noMore ? 'none' : 'initial'" (click)="forward()" 
+  class="btn btn-outline-secondary next">
+      Next
+  </button>
+  <div *ngIf="!albumsExist">
+    <div class="createAlbum noAlbumsYet">
+      <button type="button" class="btn btn-outline-warning create firstOne" id="popupNewAlbum" 
+        (click)="newAlbum()">
+        Create Album
+      </button>
+    </div>
+  </div>
+  <div *ngIf="albumsExist" id="userAlbums">
+      <h4>{{this.user[0].name}}'s Albums</h4>
+    <ul>
+      <div class="createAlbum">
+        <button type="button" class="btn btn-outline-warning create" id="popupNewAlbum" 
+          (click)="newAlbum()">
+          Create Album
+        </button>
+      </div>
+      <li *ngFor="let album of albums" (click)="albumChosen(album)"  
+          [ngClass]="{'addedPulse': green}" [class.selected]="album === selectedAlbum">
+        {{album?.title}}
+      </li>
+    </ul>
+  </div>
+</div> 
+<div *ngFor="let pic of photos">
+  <a class="photoCategory" [routerLink]="['../../']">{{pic.type}}</a>
+  <div class="title-container">
+    <h1>{{pic.name}}</h1> 
+  </div>  
+ <div>
+  <button type="button" class="collect" (click)="addPhoto(pic)">
+    +
+  </button>
+ </div> 
+ <img src={{pic.photoUrl}}/>
+  <div *ngIf="beenLiked" [ngClass]="{ 'unlike': hover}">
+   <button type="button" id="noLikey" class="btn btn-outline-danger" [ngClass]="{ 'unlike': hover}"
+    (click)="noBueno(pic)">
+     Unlike
+   </button>
+ </div>
+ <div class="like" (mouseover)="hover=true" 
+          (mouseleave)="hover=false">
+   <button type="button" *ngIf="!beenLiked"
+   (click)="whenClicked=!whenClicked" 
+     class="btn btn-outline-info likes" [style.display] = "whenClicked ? 'initial' : 'none'"
+           (click)="likedBy(pic)">
+           ^
+   </button>
+   <h3 class="amountLiked" [ngClass]="{ 'liked': lovingIt}">{{likes}}</h3>
+   <button type="button" class="btn btn-outline-primary likes" (click)="likers()">Likes</button>
+           <router-outlet name="likersPopUp"></router-outlet>
+ </div>        
+ <div class="comentator">
+    <label><input type="comment" class="inputBox" placeholder="Comment" #newComment /></label>
+    <button type="button" class="btn btn-outline-warning comment"
+        (click)="addComment(newComment.value); newComment.value=''">
+      Post
+    </button>
+  </div>  
+    <div class="commentary" *ngFor="let comment of pic?.comments; let odd = odd; let even = even; 
+        let i = index; trackBy: trackByFn">
+    <ul class="comments">
+      <table class="table table-striped table-hover table-bordered">
+       <tbody>
+          <tr  [ngClass]="{'active': odd}">
+            <td> - {{(comment)?.content}}</td>
+          </tr>
+        </tbody>
+      </table> 
+      <button type="button" *ngIf="comment.user_id === this.user[0].id" 
+        (click)="deleteComment(comment, i)" class="btn btn-outline-danger comment">
+          X
+      </button>
+    </ul>
+  </div>   
+</div>

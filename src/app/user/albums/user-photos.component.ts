@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Params}  from '@angular/router';
+import { Component, OnInit, Input, OnDestroy,
+         ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { ActivatedRoute, Params, Router}  from '@angular/router';
 
 import { ProfileService } from '../profile.service';
 import { CategoryService } from '../../main/categories/category.service';
@@ -10,37 +11,36 @@ import { Album } from './album';
 
 @Component({
   selector: 'pic-it-user-photos',
-  template: `
-  <div *ngFor="let pic of photos">
-    <h2>{{pic.name}}</h2>
-    <img src={{pic.photoUrl}} width="333" height="333" />
-    <div class="comentator">
-      <label><input class="inputBox" placeholder="Written Thoughts" #newComment /></label>
-      <button type="button" (click)="addComment(pic, newComment.value); newComment.value=''">
-        Comment
-      </button>
-    </div>  
-    <div class="commentary" *ngFor="let comment of pic?.comments; let i = index; trackBy: trackByFn">
-      <ul>
-        <li>{{(comment)?.content | json}}</li>
-      </ul>        
-    </div>  
-  </div>
-  `  
+  templateUrl: './user-photos.component.html',
+  styleUrls: ['./user-photos.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush  
 })
 export class UserPhotosComponent implements OnInit, OnDestroy {
 
-  @Input() photos: Photo[] =[];
+  @Input() photos: Photo[] = [];
   private id: number;
-  private album: any; 
   private alive: boolean = true;
+  user: User[] = [];
+  private userId: number;
+  album: Album[] = [];
+  commentary: string[];
+  private albumId: number;
+  public noMore: boolean = false;
+  public noLess: boolean = false;
   
-  constructor(private route: ActivatedRoute, private categoryService: CategoryService,
-              private profileService: ProfileService) { }
+  constructor(private route: ActivatedRoute, private router: Router, 
+              private categoryService: CategoryService,
+              private profileService: ProfileService, private ref: ChangeDetectorRef) { 
+      let getUser = this.profileService.getCurrentUser();
+      this.user.push(getUser);
+      this.userId = this.user[0].id;
+      this.album.push(this.profileService.getCurrentAlbum());
+  }
 
   ngOnInit(): void { 
     this.photos = [];
     this.searchIt();
+    this.albumId = this.album[0].id;
   }
 
   searchIt(): void {  
@@ -52,28 +52,86 @@ export class UserPhotosComponent implements OnInit, OnDestroy {
                             .subscribe((photo: Photo) => { 
                                this.photos.push(photo);
                             });
+                                      this.ref.markForCheck();
+
   }
           
-  trackByFn(index, item) {
-    item.id = index;
-    return item.id;
-   } 
+  commentTracker(index, item) {
+    if (item.id != undefined || null) {
+        return item.id
+    } 
+    else {  
+       item.id = index;
+        return item.id; 
+    }  
+  } 
 
   addComment(pic, comment): void { 
-    let commentary = pic.comments;
     if (pic.comments != null) {
-      let makeNew = new Comment(this.id, comment); 
+      let makeNew = new Comment(this.id, comment, pic.id, this.user[0].id); 
       pic.comments.push(makeNew);
     } 
     else {
       pic.comments = [];
-      let makeNew = new Comment(this.id, comment); 
+      let makeNew = new Comment(this.id, comment, pic.id, this.user[0].id); 
       pic.comments.push(makeNew); 
+    }
+    this.ref.markForCheck();
+  }
+
+  deleteComment(index) { 
+   this.ref.detectChanges();
+    let commentary = this.photos[0].comments;
+    let commentId = commentary[index].id
+    for (var i = 0; i < commentary.length; i++) {
+          if ( commentId === commentary[i].id  ) {
+            commentary.splice(index, 1);
+          }
+      this.ref.markForCheck();
+    }      
+  }
+
+  deletePhoto(pic, index) { 
+    let pics = this.album[0].photos;
+    let prev = pics.indexOf(pic);
+    if(prev != -1) {
+      pics.splice(prev, 1);
+    }
+    if(pics.length == 0) {
+      this.router.navigate(['/profile']);
+    } 
+    else {
+      this.router.navigate(['/profile/album', this.albumId ]);
+    } 
+        this.ref.markForCheck();
+  }
+
+  forward(pic: Photo) {
+    let nextPic = pic.id + 1;
+    let finalPic = this.album[0].photos.length; 
+    if(nextPic >= finalPic) {
+      this.noMore = true;
+    }
+    else {
+      this.router.navigate(['/profile/album/' + this.albumId + '/photo/' + nextPic]);
+      this.photos = [];
+    }
+    this.ref.markForCheck();
+  }
+
+  backwards(pic: Photo) {
+    let priorPic = pic.id - 1;
+    if(priorPic < 0) {
+      this.noLess = true;
+    }
+    else {
+     this.router.navigate(['/profile/album/' + this.albumId + '/photo/' + priorPic]);
+      this.photos = [];
+      this.ref.markForCheck();
     }
   }
   
   ngOnDestroy() {
     this.alive = false;
   }
-
 } 

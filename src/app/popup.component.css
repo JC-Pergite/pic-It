@@ -1,0 +1,105 @@
+.main {
+	border: 2px solid darkorange;
+}
+
+button.btn.btn-outline-success.create {
+	color: snow;
+    font-weight: normal;
+	font-size: 1.1em;
+    background-color: rgba(39, 43, 48, 0.70) !important;
+    border-radius: 5px;
+}
+
+button.btn.btn-outline-success.create:hover {
+    background-color: #5cb85c !important;
+    border-color: #5cb85c !important;  
+}
+   
+button.btn.btn-outline-danger.create {
+    font-weight: normal;
+	font-size: 1.1em;
+    background-color: rgba(39, 43, 48, 0.70) !important;
+    border-radius: 5px;
+}
+
+button.btn.btn-outline-danger.create:hover {
+    background-color: #d9534f !important;
+    border-color: #d9534f !important;  
+}
+
+div.modal.create {
+	display: inline-block !important;
+	width: 280pt;
+	top: 31pt;
+    left: 286pt;
+}
+
+div.modal-content.create {
+	background: none !important;
+    border-radius: 14px !important;
+}
+
+p#create {
+	margin-top: 1em;
+    font-size: 1.1em;
+    text-align: center;
+    color: seashell !important;
+}
+
+input.inputBox.create {
+    border-radius: 4px !important;
+    text-align: center !important;
+    background: none !important;
+	letter-spacing: .1em !important;
+    color: #5167F4 !important;
+}
+
+div.modal.likers {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    left: -71.5%;
+    top: 15%;
+}
+
+div.modal-content.likers {
+	background: rgba(39, 43, 48, 0.87) !important;
+    border-radius: 14px !important;
+}
+
+ul.likerList {
+    flex: 1 0 12em;
+	color: #5167F4;
+}
+
+li.likers {
+	font-size: 1.5em;
+	list-style-type: square;
+}
+
+li.likers::first-letter {
+    text-transform: capitalize;
+}    
+
+button.btn.btn-outline-danger.likers {
+    margin-right: 2.9em;
+}
+
+
+@media all and (max-width: 38.5em) {
+    div.modal.likers {
+        left: -46%;
+    }
+}
+
+@media all and (max-width: 50em) {
+    div.modal.likers {
+        left: -60%;
+    }
+}
+
+@media all and (min-width: 75em) {
+    div.modal.likers {
+        left: -75%;
+    }
+}

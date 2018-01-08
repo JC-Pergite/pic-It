@@ -1,28 +1,57 @@
+.navbar>.container-fluid .navbar-brand {
+    position: relative;
+    left: -8.5em;
+    top: .05em;
+}
+
+.navbar-brand {
+    color: bisque;
+    font-size: 3.6em;
+    font-family: garamond;
+    font-style: italic;
+    text-shadow: 3px 3px 3px rgba(0,0,0,0.2);
+}
+
+li {
+  font-size: 1.5em !important;
+  list-style: none !important;
+}
+
+h1.navbar-brand {
+  margin-top: -7pt;
+}
+
 ul.nav.nav-tabs {
 	border: none;
 }
-/*
-<div class="panel panel-success earth">
-  <div class="panel-heading panel-leftHeading ">
-    <h3 class="panel-title panel-leftTitle ">Earth</h3>
-  </div>
-  <div class="panel-body">
-  <img src="https://www.grandkoi.com/wp-content/uploads/2015/09/koi_swim.jpg" width="200" height="200" />
-  </div>
-</div>*/
-/*div.container.earth {
-	width: 1140px;
-    max-width: 100%;
-    border: solid 1pt aquamarine;
-    height: 260px;
-    padding-top: 2.7em;
-    padding-left: 2.7em;
-}*/
 
-   /* border-bottom-width: .5px;
-    border-left: .1px;
-    border-top-color: coral;
-*/
+a.profile {
+  font-family: fantasy;
+  color: #5167F4;
+}
+
+a:focus, a:hover {
+  color: deepskyblue;
+  text-decoration: none;
+}
+
+a.logout {
+  font-family: fantasy;
+  color: #d6514d;
+  text-decoration: none;
+}
+
+a.logout:hover {
+  cursor: pointer
+}
+
+div#bs-example-navbar-collapse.collapse.navbar-collapse {
+  position: relative;
+  left: 25em;
+  top: .3em;
+  font-size: 1.1em;
+}
+
 .panel {
 	position: relative;
 	background-color: transparent;
@@ -39,7 +68,6 @@ ul.nav.nav-tabs {
   border-bottom-right-radius: 3px;
   float: left;
   height: 100%;
-  position: absolute;
 }
 
 .panel-title.panel-leftTitle {
@@ -55,4 +83,22 @@ ul.nav.nav-tabs {
 
 .panel-body {
 	padding: 2.5em 7em 2.5em;
+}
+
+@media all and (max-width: 70em) {
+  .navbar>.container-fluid .navbar-brand {
+    left: -7.3em;
+  }
+}
+
+@media all and (max-width: 61em) {
+  .navbar>.container-fluid .navbar-brand {
+    left: -6.3em;
+  }
+}
+
+@media all and (min-width: 75em) {
+  .navbar>.container-fluid .navbar-brand {
+    left: -9.3em;
+  }
 }

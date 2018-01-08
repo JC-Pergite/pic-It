@@ -1,5 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, ParamMap }  from '@angular/router';
+import { Component, OnInit, OnDestroy, Input,
+  ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { NgStyle } from '@angular/common';
+import { ActivatedRoute, ParamMap, Router }  from '@angular/router';
 import { fromJS, Map } from 'immutable';
 import { ProfileService } from '../../user/profile.service';
 import { CategoryService } from './category.service';
@@ -8,143 +10,241 @@ import { Comment } from '../../shared/comment';
 import { Category } from '../../shared/category';
 import { User } from '../../user/user';
 import { Album } from '../../user/albums/album';
-
+import { Observable } from 'rxjs/Observable';
+   
 @Component({
   selector: 'pic-it-photo-details',
-  template: `
-	<div>
-    <button type="button" id="dropdownMenuButton"> 
-       {{choice?.title}}
-    </button>
-		<div>
-			<h2>Album Selections Include: </h2>
-      <ul *ngFor="let album of albums">
-        <li class="dropdown-item" (click)="albumChosen(album)">
-        	<h3>{{album.title}}</h3>
-        </li>
-      </ul>
-    </div>
-  </div> 
-  <div *ngFor="let pic of photo">
-    <h2>{{pic.name}}</h2>
-	  <button type="button" (click)="addPhoto(pic)">
-      Collect!
-    </button>
-    <img src={{pic.photoUrl}} width="333" height="333" />
-    <div class="comentator">
-      <label><input class="inputBox" placeholder="Written Thoughts" #newComment /></label>
-      <button type="button" (click)="addComment(pic, newComment.value); newComment.value=''">
-        Comment
-      </button>
-    </div>  
-    <div class="commentary" *ngFor="let comment of pic?.comments; let i = index; trackBy: trackByFn">
-      <ul>
-        <li>{{comment}}</li>
-      </ul>  
-    </div>  
-  </div>
-  `  
+  templateUrl: './photo-details.component.html',
+  styleUrls: ['./photo-details.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush  
 })
 export class PhotoDetailsComponent implements OnInit, OnDestroy { 
-	albumPhotos: Album[];
-	albums: any;
+  albumPhotos: Album[];
+  albums: Album[] = []; 
   choice: any;
-	photo: Photo[];
-	public id: number;
-	user: User[] = [];
+  selectedAlbum: Album;
+  class1 = true;
+  green = false;
+  @Input() photos: Photo[] = [];
+  private paramId: number;
+  public id: number;
+  user: User[] = [];
   private alive: boolean = true;
+  public albumsExist: boolean = false;
+  public likes: number;
+  trendiest = this.categoryService.getCoolLimiter();
+  public userId: number;
+  whenClicked = [true];
+  likerId: number;
+  beenLiked: boolean;
+  private lovingIt: boolean = false;
+  public noMore: boolean = false;
+  public noLess: boolean = false;
+  currentCategory: Category[] = [];
 
-	constructor(private route: ActivatedRoute, private categoryService: CategoryService,
-							private profileService: ProfileService) { }
+  constructor(private route: ActivatedRoute, private categoryService: CategoryService, 
+              private profileService: ProfileService, private ref: ChangeDetectorRef, 
+              private router: Router) { 
 
-	ngOnInit(): void {
-		this.route.paramMap
-  	.switchMap((params: ParamMap) =>
-   		 this.categoryService.getPhoto(params.get('id')))
-              .takeWhile(() => this.alive)
-														.subscribe((pic: Photo[]) => 
-														{ 
-															this.photo = pic
-														});
-		this.viewAlbums();
-	}
+       this.route.parent.params.takeWhile(() => this.alive)
+                        .subscribe(params => this.paramId = +params['id']); 
+                        let currentCat = this.categoryService.getCurrentCats();
+                        if(!currentCat.length) {
+                          this.currentCategory.push(currentCat);
+                        }
+                        else {
+                          this.currentCategory = currentCat;
+                        }
+                        // console.log(Object.is(currentCat, this.currentCategory));
 
-	viewAlbums(): void { 
-		let getuser = this.profileService.getCurrentUser();
-		this.user.push(getuser);
-					this.albums = this.user[0].albums;
-	}
+  }                      
 
-  albumChosen(selection): void {
+  ngOnInit(): void { 
+    let be = this.categoryService.getCurrentComments();
+    this.photos.push(be);    
+    this.likeOmeter(this.photos[0]);
+    this.viewAlbums();
+    this.ref.markForCheck();
+  }
+
+  viewAlbums(): void { 
+    let getuser = this.profileService.getCurrentUser();
+    this.user.push(getuser);
+    this.userId = this.user[0].id;
+    if (this.user[0].albums != undefined && this.user[0].albums.length != 0) {
+      this.albumsExist = true;
+      this.albums = this.user[0].albums;
+      this.ref.detectChanges();
+    }
+    this.ref.markForCheck();
+  }
+
+  newAlbum() {
+    this.router.navigate([{ outlets: { albumPopUp: ['createAlbum'] } }]);
+    setTimeout(() => {
+      this.albumsExist = true;
+      this.albums = this.user[0].albums;
+      this.ref.markForCheck();
+    }, 4500);
+      this.ref.markForCheck();
+  }
+
+  albumChosen(selection: Album): void {
     this.profileService.setUserAlbum(selection);
-              this.profileService.currentUserAlbum
-                                 .takeWhile(() => this.alive) 
-                                 .subscribe(album => 
-                                            this.choice = album
-                                           );
+    this.selectedAlbum = selection;
+    this.profileService.currentUserAlbum
+                         .takeWhile(() => this.alive) 
+                         .subscribe(album => {
+                           this.choice = album ;
+                         });                          
   }
   
   trackByFn(index, item) {
-    return index;
+    if (item.id != undefined) {
+        return item.id
+    } 
+    else {  
+       item.id = index;
+        return item.id; 
+    }  
   } 
 
+  // trackLikers(index, item) {
+  //    return item.name;
+  // } 
+
+  likeOmeter(photo) {
+     if(photo.likes.user_id == [] || undefined || null){
+            photo.likes.user_id.push(10);
+    }
+      if(photo.likes.likes == undefined){
+            photo.likes.likes = 0;
+      this.likes = photo.likes.likes;
+    }
+    else {
+      this.likes = photo.likes.likes; 
+      if(photo.likes.user_id.find((user: User) => user.id !== this.userId)) {
+        this.beenLiked = true;
+        this.lovingIt = true;
+        this.whenClicked = [false];
+      }
+      else {
+        this.beenLiked = false;
+        this.lovingIt = false;
+        this.whenClicked = [true];
+      }   
+      this.ref.markForCheck(); 
+    }
+  }
+
+  likedBy(pic) {
+    let photoLiker = this.photos[0].likes.user_id;
+    if(photoLiker.find((user: User) => user.id === this.userId)) {
+    }
+    else {
+      photoLiker.push(this.user[0]);
+      this.photos[0].likes.likes += 1;
+      this.likes = this.photos[0].likes.likes;
+    };
+    if(this.likes > this.trendiest) {
+      this.categoryService.setTrending(pic);          
+    }
+    this.lovingIt = true;
+    this.beenLiked = true;
+    this.ref.markForCheck();
+  }
+
+  likers() {
+      this.router.navigate([{ outlets: { likersPopUp: ['viewLikers'] } }]);
+  }
+
+  noBueno(pic) {
+    let photoLiker = this.photos[0].likes.user_id;
+    for (var i = 0; i < photoLiker.length; i++) {
+      let noLikey = photoLiker.indexOf(photoLiker[i]);
+      if(noLikey != -1) {
+        photoLiker.splice(noLikey, 1);
+      }
+      this.ref.markForCheck();
+    }
+    this.beenLiked = false;
+  }
+
   addPhoto(newPhoto): void { 
-    let currentAlbum = this.choice;
-    let pics = currentAlbum.photos;
-
-    if (pics.length) {
-      this.id = pics.length + 1 
-    } else {
-      this.id = 1;
-    };                                  
-
-	  let permanentPic = Map({
-  		id: newPhoto.id,
-  		name: newPhoto.name,
-  		type: newPhoto.type,
-  		photoUrl: newPhoto.photoUrl,
-  		comments: newPhoto.comments
-  	});
-
-  	let userPic = permanentPic.merge({
-			id: this.id,
-			comments: null
-  	});
-  	
-  	let userPhoto = userPic.toObject();
-  	pics.push(userPhoto);
-
+    let pics = this.choice.photos;
+    this.green = true;
+    if(pics.find((photo: Photo) => photo.name === newPhoto.name )) {   
+        console.log("Whoops; duplicate!");
+    }
+    else {
+      let permanentPic = Map({
+        id: newPhoto.id,
+        name: newPhoto.name,
+        type: newPhoto.type,
+        photoUrl: newPhoto.photoUrl,
+        comments: newPhoto.comments
+      });
+      let userPic = permanentPic.merge({
+        id: this.id,
+        comments: null,
+      });
+      let userPhoto = userPic.toObject();
+      pics.push(userPhoto);
+      this.profileService.setUserAlbum(this.choice);
+    };
   }
 
-	addComment(pic, comment): void { 
-    let commentary = pic.comments;
-    commentary.push(comment); 
-    this.categoryService.newComment(pic)
-                     			.subscribe(data => { pic = data }, 
-                                		error => { console.log("Battsu!") }
-                          );
+  addComment(comment): void { 
+    let commentary = this.photos[0].comments;
+    let makeNew = new Comment(this.id, comment, this.photos[0].id, this.user[0].id); 
+    commentary.push(makeNew)
+    this.ref.markForCheck();
   }
 
+  deleteComment(comment, index) { 
+    this.ref.detectChanges();
+      let commentary = this.photos[0].comments;
+      let commentId = commentary[index].id
+      for (var i = 0; i < commentary.length; i++) {
+            if ( commentId === commentary[i].id  ) {
+              commentary.splice(index, 1);
+            }
+            this.ref.markForCheck();
+      }      
+  }
+
+  forward() {
+    let nextId = this.photos[0].id + 1; 
+    let nextPic = this.currentCategory[0].photos[nextId];
+    let finalPic = this.currentCategory[0].photos.length; 
+    if(nextId >= finalPic) {
+      this.noMore = true;
+    }
+    else {
+      this.router.navigate(['/categories/' + this.currentCategory[0].id + '/photo/' + nextId]);
+      this.photos.splice(0, 1, nextPic);
+      this.categoryService.setPhotoComments(nextPic);
+      this.likeOmeter(this.photos[0]);  
+      this.ref.markForCheck();
+    }
+  }
+
+  backwards() {
+    let priorId = this.photos[0].id - 1;
+    let priorPic = this.currentCategory[0].photos[priorId];
+    if(priorId < 0) {
+      this.noLess = true;
+    }
+    else {
+      this.router.navigate(['/categories/' + this.currentCategory[0].id + '/photo/' + priorId]);
+      this.photos.splice(0, 1, priorPic);
+      this.categoryService.setPhotoComments(priorPic);
+      this.likeOmeter(this.photos[0]);  
+      this.ref.markForCheck();
+    }
+  }
+  
   ngOnDestroy() {
     this.alive = false; 
   }
-
-
-  //for Admin to add photo:
-    // createPhoto() {
-
-    //        this.profileService
-    //       .postPhotoInAlbum(this.choice, userPhoto)
-        // .subscribe((results: any) => {
-       //      // results[0].albums = results[1];
-       //      // this.user = results[0];
-       //    
-       //                  // this.collection = results // when results equals album
-       //                  this.albumPhotos.push(results[0]) // when results equal photos
-
-       //      // console.log(results[1]);
-       //                  // console.log(results[0].albums);
-
-       //    });
-    // }
 }

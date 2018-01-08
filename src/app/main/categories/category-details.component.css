@@ -1,0 +1,63 @@
+.photo-container {
+    margin-left: 80pt;
+}
+
+a#details {   
+    position: absolute;
+    font-size: 1.15em;
+    margin-top: -52pt;
+    margin-left: -2.5pt; 
+    color: peachpuff;  
+    letter-spacing: .03em;
+    text-shadow: 2px 3px 3px rgba(0,0,0,0.25);
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -webkit-transform: rotate(90deg); 
+    -moz-transform: rotate(90deg); 
+} 
+
+a#details:focus, a#details:hover {
+    color: sandybrown;
+    text-decoration: underline;
+}   
+
+ul.pics {
+    float: left;
+    margin-top: 44pt;
+    margin-left: 20pt;
+}
+
+img {
+    width: 250px;
+    height: 250px;
+    border-radius: 4.5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+h1.type-title {
+    position: absolute;
+    border-left: 1pt solid royalblue;
+    border-bottom: 1pt solid palegoldenrod;
+    color: salmon !important;
+    margin-top: -.2em;
+    margin-left: 15.5em;
+    font-size: 3em;
+    font-weight: 100;
+    font-variant: small-caps;
+    padding-left: .3em;
+    padding-bottom: .2em;
+}
+
+
+@media all and (max-width: 65.6em) {
+    h1.type-title {
+        margin-left: 10.2em;
+    }
+}
+
+@media all and (max-width: 45.8em) {
+    h1.type-title {
+        margin-left: 5em;
+    }
+}

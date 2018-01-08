@@ -1,3 +1,225 @@
-#albums {
+#albumContainer {
+    position: relative;
+    border: 1px solid mediumspringgreen;
+    border-radius: 8px;
+    width: 78%;
+    height: fit-content;
+    left: 67pt;
+    top: 326pt;
+    padding-top: 30pt;
+    padding-bottom: 30pt;   
+}
+
+.choosing {
+    visibility: hidden;
+    display: none;
+}
+
+.albumsHeader {
+    top: 53em;
+    left: 36pt;
+    margin: auto;
+    position: fixed;
+    width: 100%;
+    height: fit-content;  
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+h3.myAlbums {
+    color: rgb(31, 234, 156);
+    border-radius: 4px;
+    padding-right: 1px;
+    text-indent: 8px;
+    box-shadow: 0 0 2px 3px springgreen;
+    text-shadow: -1px -2px 3px mediumspringgreen;
+    width: 24px;
+    height: 4.4em;
+    height: calc(6.25rem + 16px);
+}
+
+.albums {
 	border: 1px solid aquamarine;
+    border-radius: 6px;
+    width: 80%;
+    height: 43pt;
+    margin-left: 52pt;
+    margin-bottom: 5pt;
+    position: relative;
+}
+
+ul {
+    height: 30pt;
+}
+
+li.albumLister {
+    color: floralwhite !important;
+    font-size: 1.5em;
+    list-style: none !important;
+    position: absolute;
+    margin-left: -1.5em;
+}
+
+
+h4 {
+    font-size: 1.1em !important;
+    font-family: 'Megrim', cursive;
+    cursor: pointer;
+}
+
+
+.fullAlbumTitle {
+    width: 5.2em;
+	opacity: 1;
+    color: #E94755;
+    position: relative;
+    top: .7em;
+    border-radius: 4px;
+    padding-right: 1em;
+    padding-left: 1em;
+    padding-top: .3em;
+    padding-bottom: .4em;
+    border-right: 2px solid beige;
+    border-left: 2px solid beige;
+	font-size: 1.2em;
+	-webkit-animation: neon1 1.1s ease-in-out alternate;
+    -moz-animation: neon1 1.1s ease-in-out alternate;
+    animation: neon1 1.1s ease-in-out alternate;
+}
+
+.fullAlbumTitle:hover {
+    border-bottom: 2px solid beige;
+    border-top: 2px solid beige;
+}
+
+.emptyAlbumTitle { 
+    width: 5.2em;
+	color: #E94755;
+    top: .7em;
+    border-radius: 4px;
+    padding-right: 1em;
+    padding-left: 1em;
+    padding-top: .3em;
+    padding-bottom: .4em;
+    border-right: 2px solid beige;
+    border-left: 2px solid beige;
+    font-size: 1.2em;
+	position: relative;
+}
+
+.eliminate {
+    position: absolute;
+    padding-left: 6px;
+    width: 41pt;
+    border-radius: 4px;
+    right: -4.7em;
+    top: 10pt;
+    writing-mode: vertical-lr;
+    transform: rotate(90deg);
+}
+
+
+div.moreAlbums.form-group {
+    position: fixed;
+    height: fit-content;
+    width: 100%;
+    top: 54.5em;
+    left: 84%;
+    margin-top: 1.5em;  
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+.custom-select.seeMore {
+    width: 7em;
+    font-weight: 500;
+    transform: rotate(-90deg);
+    color: dimgray;
+    border-radius: 4px;
+    padding-right: 2px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    border: 1px solid aliceblue;
+    box-shadow: 0px 0px 12px 4px aliceblue;
+}
+
+.tooltip {
+    border: 1px solid #E76126;
+    font-size: .8em;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    opacity: 1 !important;
+    position: absolute;
+    z-index: 1;
+    margin-left: 17.5em;
+    top: 7pt;
+	width: 290px;
+}
+
+.previewer {
+    display: inline-block;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.albumPreviews {
+    position: relative;
+    top: -1.6em;
+    width: 50px;
+    height: 40px;
+    border-radius: 2px;
+    box-shadow: -5px -3px 6px 0 rgba(240, 248, 255, 0.22);
+    margin-left: 5em;
+    cursor: pointer;
+}
+
+.albumLister div.previewer:first-of-type {
+    margin-left: 8em;
+}
+
+@-webkit-keyframes neon1 {
+    from {
+        text-shadow: 0 0 5px #03f59c, 0 0 10px #0b52e4,
+                     0 0 20px #48adbf, 0 0 30px #0abfe0,
+                     0 0 40px #0e27ca;
+    }
+    to {
+        text-shadow: 0 0 2.5px #03f59c, 0 0 5px #0b52e4,
+                     0 0 10px #48adbf, 0 0 15px #0abfe0,
+                     0 0 20px #0e27ca;
+    }
+}
+
+@media all and (max-height: 39em) {
+  .albumsHeader {
+    top: 84.5%;
+  }
+  #albumContainer {
+    top: 42em;
+  }
+  div.moreAlbums.form-group {
+    top: 88.5%;
+  }
+}
+
+@media all and (max-height: 31.5em) {
+  .albumsHeader {
+    top: 82%;
+  }
+  div.moreAlbums.form-group {
+    top: 82%;
+  }
+}
+
+@media all and (min-width: 55.5em) {
+  div.moreAlbums.form-group {
+    left: 84%;
+  }
+}
+
+@media all and (min-width: 58em) and (max-width: 69.5em) {
+  div.moreAlbums.form-group {
+    left: 85%;
+  }
 }

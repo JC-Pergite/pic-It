@@ -1,0 +1,40 @@
+<div class ="main" *ngFor="let pic of photos; let i = index">
+  <div class="backForth">
+    <button type="button" class="btn btn-primary prior" (click)="backwards(pic)" 
+    [style.display] = "noLess ? 'none' : 'initial'" >
+        Prior
+    </button> 
+    <button type="button" class="btn btn-outline-secondary next" (click)="forward(pic)" 
+    [style.display] = "noMore ? 'none' : 'initial'">
+        Next
+    </button>   
+  </div>
+  <h2>{{pic?.name}}</h2>
+  <img src={{pic?.photoUrl}}/>
+  <button type="button" class="eliminate" (click)="deletePhoto(pic, i)">
+          XX
+      </button>
+  <div class="comentator">
+    <label><input type="comment" class="inputBox" placeholder="Comment" #newComment /></label>
+    <button type="button" class="btn btn-outline-warning comment"
+    (click)="addComment(pic, newComment.value); newComment.value=''">
+      Post
+    </button>
+  </div>  
+  <div class="commentary" *ngFor="let comment of pic?.comments; let odd = odd; let even = even
+    let i = index; trackBy: commentTracker">
+     <ul class="comments">
+      <table class="table table-striped table-hover table-bordered">
+       <tbody>
+          <tr  [ngClass]="{'active': odd}">
+            <td> - {{(comment)?.content}}</td>
+          </tr>
+        </tbody>
+      </table> 
+      <button type="button" *ngIf="comment.user_id === this.userId"
+        (click)="deleteComment(i)" class="btn btn-outline-danger comment">
+          X
+      </button>
+    </ul>
+  </div> 
+</div>

@@ -1,0 +1,208 @@
+.login-page {
+  position: absolute;
+  left: 46em;
+  top: 9em;
+}
+
+h2.login-header {
+  font-size: 5em;
+  font-variant: all-small-caps;
+  margin-left: 2.1em;
+  color: rgba(255, 140, 0, 0.67);
+  text-shadow: 4px 3px 2px;
+}
+
+legend.blue {
+    position: relative;
+    left: 9pt;
+    top: -1.5pt;
+    display: block;
+    width: -webkit-min-content;
+    width: -moz-min-content;
+    width: min-content;
+    font-size: 1.5rem;
+    line-height: inherit;
+    color: salmon;
+    text-shadow: 1px 4px 1px #E24456;
+    border-bottom: none;
+    text-align: -webkit-center;
+    padding: 1em;
+     -webkit-animation: blue 5s;
+    -webkit-animation-iteration-count: 1;
+}
+
+.ajar {
+    height: 100%;
+    position: relative;
+    width: 100%;
+    min-width: 11em;
+    background-color: rgba(30, 36, 53, 0.98);
+
+}
+
+.agape {
+      transition: transform 3s;
+      transform-style: preserve-3d;
+      transform-origin: left center;
+      transform: rotateY(-45deg);
+      border: 1px solid #8e8c84;
+      box-shadow: inset -9px -7px 16px 2px #b3b1ab;
+      transition-delay: 820ms;
+      transition: all 2.5s ease-in;
+}
+
+div.frame {
+  left: -3em;
+  padding: none;
+  height: 26vh;
+  top: 17em;
+  background-color: #272b30;
+  border:solid 5vmin #eee;
+  border-bottom-color:#fff;
+  border-bottom-style: groove;
+  border-left-color:#eee;
+  border-left-style: groove;
+  border-radius:2px;
+  border-right-color:#eee;
+  border-right-style: groove;
+  border-top-color:#ddd;
+  border-top-style: groove;
+  box-shadow: 0 0 4px 0 rgba(0,0,0,.20) inset, 0 5px 15px 4px rgba(0,0,0,.25);
+  display:inline-block;
+  margin:11vh 11vw;
+  position: absolute;
+  &:before {
+    border-radius:2px;
+    bottom:-2vmin;
+    box-shadow:0 2px 5px 0 rgba(0,0,0,.25) inset;
+    content:"";
+    left:-2vmin;
+    position:fixed;
+    right:-2vmin;
+    top:-2vmin;
+  }
+  &:after {
+    border-radius:2px;
+    bottom:-2.5vmin;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.25);
+    content:"";
+    left:-2.5vmin;
+    right:-2.5vmin;
+    top:-2.5vmin;
+  }
+}
+
+.abrakadabra {
+  z-index: 2;
+  transform: scale(0.9, 2);
+  transition: all 800ms ease-in;
+}
+
+div.col-lg-10.col-lg-offset-2 {
+  box-shadow: none !important;
+}
+
+div.col-lg-10 {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 0 0 0 0;
+    width: 80%;
+    left: 10pt;
+}
+
+div.email {
+	margin-bottom: 1em;
+}
+
+label {
+	color: silver;
+    text-align: left !important;
+    text-indent: .3em !important;
+}
+
+form {
+    margin-top: 13em;
+    margin-left: 30em;
+    width: 70%;
+    padding-left: 50pt;
+}
+
+@-webkit-keyframes blue
+{
+    from {
+        transform: rotate(240deg)
+                   translate(150px)
+                   rotate(-240deg);
+    }
+    to {
+        transform: rotate(600deg)
+                   translate(0px) 
+                   rotate(-600deg);
+    }
+}
+
+@media all and (max-height: 30em) {
+  legend.blue {
+    font-size: 1rem;
+    left: 21pt;
+  }
+}
+
+@media all and (max-height: 40em) {
+ div.frame {
+    top: 19.5em;
+  }
+  legend.blue {
+  font-size: 1.3rem;
+  left: 15pt;
+  }
+}
+
+@media (min-height: 41em) {
+  div.frame {
+    top: 16.5em;
+  }
+}
+
+
+@media all and (max-width: 33em) {
+  form {
+    padding-left: 0;
+  }
+  .login-page {
+    left: 19.5em;
+  }
+
+   div.frame {
+    top: 20.5em;
+  }
+}
+
+@media all and (max-width: 53em) {
+  form {
+    min-width: 41em;
+    margin-left: 20em;
+
+  }
+}
+
+@media all and (max-width: 60em) {
+  .login-page {
+    left: 27.5em;
+  }
+}
+
+@media all and (min-width: 70em) {
+  .col-lg-2 {
+      max-width: none !important;
+    }
+  .login-page {
+      left: 49em;
+    } 
+}
+
+@media all and (min-width: 75em) {
+  button {
+    position: relative;
+    left: -21%;
+  }
+}

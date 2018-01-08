@@ -1,80 +1,61 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ProfileService } from './profile.service';
-import { User } from './user';
-import { Album } from './albums/album';
+import { Component, OnInit } 				  from '@angular/core';
+import { FormArray, FormControl, 
+		 FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router, NavigationExtras } 		  from '@angular/router';
+
+import { AuthService }      from './auth.service';
+import { ProfileService }   from './profile.service';
+import { User }     		from './user';
+import { Album } 			from './albums/album';
 
 @Component({
   selector: 'pic-it-login',
-  template: `
-  <form class="form-horizontal" novalidate (ngSubmit)="onSubmit(user)" [formGroup]="user">
-	  <fieldset>
-	    <legend>Who Art Thou?</legend>
-	    <div class="form-group" has-warning>
-	      <label for="inputName" class="col-lg-2 control-label">Name</label>
-	      <div class="col-lg-10">
-	        <input type="text" class="form-control" id="inputWarning" 
-	        	   placeholder="Username" 
-	        	   formControlName="name"
-	        />
-	      </div>
-	    </div>
-	    <div formGroupName="account" class="form-group">
-	      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
-	      <div class="col-lg-10">
-	        <input type="text" class="form-control" id="inputEmail" 
-	        	   placeholder="Email" 
-	        	   formControlName="email"
-	       	/>
-	      </div>
-	      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
-	      <div class="col-lg-10">
-	        <input type="password" class="form-control" id="inputPassword" 
-	        		 placeholder="Password" 
-	        	   formControlName="password"
-	        />
-	      </div>
-	    </div>
-	    <div class="form-group">
-	      <label for="textArea" class="col-lg-2 control-label">Bio:</label>
-	      <div class="col-lg-10">
-	        <textarea class="form-control" formControlName="bio" rows="3" id="textArea"></textarea>
-	      </div>
-	    </div>
-	    <div class="form-group">
-	      <div class="col-lg-10 col-lg-offset-2">
-	        <button type="reset" class="btn btn-default">Cancel</button>
-	        <button type="submit" class="btn btn-primary" [disabled]="user.invalid">Submit</button>
-	      </div>
-	    </div>
-	  </fieldset>
-	</form>
-  `
+  templateUrl: './login.component.html',
+  styleUrls: ['login.component.css']
 })
 export class LoginComponent implements OnInit {
 
   user: FormGroup;
   currentUser: User;
-
-  constructor(private fb: FormBuilder, private profileService: ProfileService) { }
+  public whenClicked = true;
+  
+  constructor(private router: Router, private fb: FormBuilder, 
+  			  private profileService: ProfileService, public authService: AuthService) { 
+  }
 
   ngOnInit() {
    	this.user = this.fb.group({
-     	name: ['', [Validators.required, Validators.minLength(1)]],
-     	bio: ['', Validators.required],
+     	// name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(9)]],
+     	// bio: ['', [Validators.required, Validators.maxLength(30), Validators.minLength(6)]],
+      name: ['', [Validators.required]],
+     bio: ['', [Validators]],
      	account: this.fb.group({
-       	email: ['', Validators.required],
-       	password: ['', Validators.required]
+       	email: ['', Validators],
+       	password: ['', Validators]
      	}),
      	albums: this.fb.array([])
     });
 	}
 
   onSubmit({ value, valid }: { value: User, valid: boolean }) {
+    this.whenClicked = false;
     this.profileService.saveUser(value)
-    					.subscribe((data: User) => { 
-				  			{ this.currentUser = data }  
-				  		});
+    					.subscribe((data: User) => 
+				  			 {this.currentUser = data },
+				  			 error => { console.log('Whoops') },
+				  			 () => { this.login(); }
+				  		);
+    this.authService.firstLogIn = true;
   }
 
+  login() {
+    this.authService.login().subscribe(() => {
+      if (this.authService.isLoggedIn) {
+        let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/profile';
+        setTimeout(() => {
+          this.router.navigate([redirect]);
+        }, 3000)
+      }
+    });
+  }
 }

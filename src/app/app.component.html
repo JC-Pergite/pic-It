@@ -1,21 +1,29 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Pic-It!</a>
+      <h1 class="navbar-brand">Pic-It!</h1>
     </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav nav-tabs">
-        <li class="active"><a [routerLink]="['/categories']" data-toggle="tab">Categories</a></li>
-        <li><a [routerLink]="['/profile']" data-toggle="tab">Profile</a></li>
-        <li><a [routerLink]="['/login']" data-toggle="tab">Login</a></li>
-      </ul>
-    </div>
+    <div *ngIf="!authService.isLoggedIn; then guest else member"></div>
+    <ng-template #guest>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse">
+        <ul class="nav nav-tabs">
+          <li><a class="profile" [routerLink]="['/categories']" data-toggle="tab">Categories</a></li>
+          <li><a class="profile" [routerLink]="['/profile']" data-toggle="tab">Profile</a></li>
+          <li><a class="profile" [routerLink]="['/login']" data-toggle="tab">Login</a></li>
+        </ul>
+      </div>
+    </ng-template>
+    <ng-template #member>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse">
+        <ul class="nav nav-tabs">
+          <li><a class="profile" [routerLink]="['/categories']" data-toggle="tab">Categories</a></li>
+          <li><a class="profile" [routerLink]="['/profile']" data-toggle="tab">Profile</a></li>
+          <li><a class="logout" (click)="logout()">Logout</a></li>
+        </ul>
+      </div>
+    </ng-template>
   </div>
 </nav>
       <router-outlet></router-outlet>
+      <router-outlet name="albumPopUp"></router-outlet>
+      <router-outlet name="likersPopUp"></router-outlet>
