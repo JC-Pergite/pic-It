@@ -21,82 +21,82 @@ import { Observable } from 'rxjs/Observable';
 export class PhotoDetailsComponent implements OnInit, OnDestroy { 
   albumPhotos: Album[];
   albums: Album[] = []; 
-  choice: any;
+  private choice: any;
   selectedAlbum: Album;
-  class1 = true;
-  green = false;
   @Input() photos: Photo[] = [];
   private paramId: number;
   public id: number;
-  user: User[] = [];
+  user: User[];
   private alive: boolean = true;
   public albumsExist: boolean = false;
   public likes: number;
   trendiest = this.categoryService.getCoolLimiter();
-  public userId: number;
+  private userId: number;
   whenClicked = [true];
-  likerId: number;
-  beenLiked: boolean;
+  private beenLiked: boolean = false;
   private lovingIt: boolean = false;
-  public noMore: boolean = false;
-  public noLess: boolean = false;
+  private noMore: boolean;
+  private noLess: boolean;
   currentCategory: Category[] = [];
+  private guest: boolean = true;
+  private guestLiked: boolean = false;
+  popup: boolean = false;
 
   constructor(private route: ActivatedRoute, private categoryService: CategoryService, 
               private profileService: ProfileService, private ref: ChangeDetectorRef, 
-              private router: Router) { 
-
-       this.route.parent.params.takeWhile(() => this.alive)
-                        .subscribe(params => this.paramId = +params['id']); 
-                        let currentCat = this.categoryService.getCurrentCats();
-                        if(!currentCat.length) {
-                          this.currentCategory.push(currentCat);
-                        }
-                        else {
-                          this.currentCategory = currentCat;
-                        }
-                        // console.log(Object.is(currentCat, this.currentCategory));
-
+              private router: Router) 
+  { 
+                this.guest = this.profileService.guest;
+                if(!this.guest){
+                  this.user = Array(this.profileService.getCurrentUser());
+                  this.userId = this.user[0].id;
+                }
+                this.currentCategory = this.categoryService.getCurrentCats();
   }                      
 
   ngOnInit(): void { 
-    let be = this.categoryService.getCurrentComments();
-    this.photos.push(be);    
+    this.photos = Array(this.categoryService.getCurrentComments());  
+    if(!this.guest){
+      this.viewAlbums();
+    }
     this.likeOmeter(this.photos[0]);
-    this.viewAlbums();
     this.ref.markForCheck();
   }
 
   viewAlbums(): void { 
-    let getuser = this.profileService.getCurrentUser();
-    this.user.push(getuser);
-    this.userId = this.user[0].id;
     if (this.user[0].albums != undefined && this.user[0].albums.length != 0) {
       this.albumsExist = true;
       this.albums = this.user[0].albums;
       this.ref.detectChanges();
+      this.ref.markForCheck();
     }
-    this.ref.markForCheck();
   }
 
   newAlbum() {
+    this.albums = this.user[0].albums;
+    this.albumsExist = true;
+    let original = this.albums.length;
     this.router.navigate([{ outlets: { albumPopUp: ['createAlbum'] } }]);
-    setTimeout(() => {
-      this.albumsExist = true;
-      this.albums = this.user[0].albums;
+    this.popup = true;
+    let creator = setInterval(() => {
+      if(this.albums.length > original) {
+        this.popup = false;
+        clearInterval(creator);
+      }
       this.ref.markForCheck();
-    }, 4500);
-      this.ref.markForCheck();
+    }, 2500);
+    this.ref.markForCheck();
   }
 
   albumChosen(selection: Album): void {
     this.profileService.setUserAlbum(selection);
-    this.selectedAlbum = selection;
     this.profileService.currentUserAlbum
                          .takeWhile(() => this.alive) 
                          .subscribe(album => {
-                           this.choice = album ;
-                         });                          
+                           this.choice = album;
+                           this.ref.markForCheck();                        
+                         }); 
+    this.ref.markForCheck();                        
   }
   
   trackByFn(index, item) {
@@ -109,21 +109,18 @@ export class PhotoDetailsComponent implements OnInit, OnDestroy {
     }  
   } 
 
-  // trackLikers(index, item) {
-  //    return item.name;
-  // } 
-
   likeOmeter(photo) {
-     if(photo.likes.user_id == [] || undefined || null){
-            photo.likes.user_id.push(10);
+    if(photo.likes.user_id == [] || undefined || null){
+        photo.likes.user_id.push(10);
     }
-      if(photo.likes.likes == undefined){
-            photo.likes.likes = 0;
-      this.likes = photo.likes.likes;
+    if(photo.likes.likes == undefined){
+        photo.likes.likes = 0;
+        this.likes = photo.likes.likes;
+        this.ref.markForCheck(); 
     }
     else {
       this.likes = photo.likes.likes; 
-      if(photo.likes.user_id.find((user: User) => user.id !== this.userId)) {
+      if(photo.likes.user_id.find((user: User) => user.id == this.userId)) {
         this.beenLiked = true;
         this.lovingIt = true;
         this.whenClicked = [false];
@@ -132,26 +129,33 @@ export class PhotoDetailsComponent implements OnInit, OnDestroy {
         this.beenLiked = false;
         this.lovingIt = false;
         this.whenClicked = [true];
-      }   
+      }
       this.ref.markForCheck(); 
     }
   }
 
   likedBy(pic) {
-    let photoLiker = this.photos[0].likes.user_id;
-    if(photoLiker.find((user: User) => user.id === this.userId)) {
-    }
-    else {
+    if(!this.guest){
+      let photoLiker = this.photos[0].likes.user_id;
       photoLiker.push(this.user[0]);
       this.photos[0].likes.likes += 1;
       this.likes = this.photos[0].likes.likes;
-    };
-    if(this.likes > this.trendiest) {
-      this.categoryService.setTrending(pic);          
+      if(this.likes > this.trendiest) {
+        this.categoryService.setTrending(pic);          
+      }
+      this.lovingIt = true;
+      this.beenLiked = true;
+      this.ref.markForCheck();
     }
-    this.lovingIt = true;
-    this.beenLiked = true;
-    this.ref.markForCheck();
+    else {
+      this.guestLiked = true;
+      setTimeout(() => {
+         this.guestLiked = false;  
+         this.whenClicked = [true];
+         this.ref.markForCheck();
+      }, 2000);
+      this.ref.markForCheck();
+    }
   }
 
   likers() {
@@ -164,15 +168,15 @@ export class PhotoDetailsComponent implements OnInit, OnDestroy {
       let noLikey = photoLiker.indexOf(photoLiker[i]);
       if(noLikey != -1) {
         photoLiker.splice(noLikey, 1);
+        this.beenLiked = false;
+        this.ref.markForCheck();
       }
-      this.ref.markForCheck();
     }
-    this.beenLiked = false;
   }
 
   addPhoto(newPhoto): void { 
     let pics = this.choice.photos;
-    this.green = true;
+    this.selectedAlbum = this.choice;
     if(pics.find((photo: Photo) => photo.name === newPhoto.name )) {   
         console.log("Whoops; duplicate!");
     }
@@ -192,6 +196,7 @@ export class PhotoDetailsComponent implements OnInit, OnDestroy {
       pics.push(userPhoto);
       this.profileService.setUserAlbum(this.choice);
     };
+    this.ref.markForCheck();
   }
 
   addComment(comment): void { 
@@ -214,32 +219,38 @@ export class PhotoDetailsComponent implements OnInit, OnDestroy {
   }
 
   forward() {
-    let nextId = this.photos[0].id + 1; 
-    let nextPic = this.currentCategory[0].photos[nextId];
+    let nextId = this.currentCategory[0]['photos'].indexOf(this.photos[0]) + 1; 
+    let nextPic = this.currentCategory[0]['photos'][nextId];
     let finalPic = this.currentCategory[0].photos.length; 
     if(nextId >= finalPic) {
       this.noMore = true;
     }
     else {
-      this.router.navigate(['/categories/' + this.currentCategory[0].id + '/photo/' + nextId]);
+      this.router.navigate(['/categories/' + this.currentCategory[0].id + '/photo/' + nextPic.id]);
       this.photos.splice(0, 1, nextPic);
       this.categoryService.setPhotoComments(nextPic);
-      this.likeOmeter(this.photos[0]);  
+      this.likeOmeter(this.photos[0]);
+      if(this.noLess) {
+        this.noLess = false;
+      }  
       this.ref.markForCheck();
     }
   }
 
   backwards() {
-    let priorId = this.photos[0].id - 1;
-    let priorPic = this.currentCategory[0].photos[priorId];
+    let priorId = this.currentCategory[0]['photos'].indexOf(this.photos[0]) - 1;
+    let priorPic = this.currentCategory[0]['photos'][priorId];
     if(priorId < 0) {
       this.noLess = true;
     }
     else {
-      this.router.navigate(['/categories/' + this.currentCategory[0].id + '/photo/' + priorId]);
+      this.router.navigate(['/categories/' + this.currentCategory[0].id + '/photo/' + priorPic.id]);
       this.photos.splice(0, 1, priorPic);
       this.categoryService.setPhotoComments(priorPic);
-      this.likeOmeter(this.photos[0]);  
+      this.likeOmeter(this.photos[0]);
+      if(this.noMore) {
+        this.noMore = false;
+      }
       this.ref.markForCheck();
     }
   }

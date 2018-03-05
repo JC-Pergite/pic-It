@@ -1,27 +1,34 @@
-.photo-container {
-    margin-left: 80pt;
+div#main.mainDeets.container {
+    background-color: #272b30 !important;
+    position: relative;
+    width: 90% !important;
+    top: 9em;
+    min-height: 1000px !important;
+    border-radius: 6px;
 }
 
-a#details {   
+#pictures {
+    margin-left: 1.5em;
+    position: relative;
+    top: 2em;
+}
+
+#details {   
     position: absolute;
     font-size: 1.15em;
-    margin-top: -52pt;
-    margin-left: -2.5pt; 
+    margin-top: 0.5em;
+    margin-left: 0.5em; 
     color: peachpuff;  
     letter-spacing: .03em;
     text-shadow: 2px 3px 3px rgba(0,0,0,0.25);
-    -webkit-transform-origin: 0 0;
-    -moz-transform-origin: 0 0;
-    -webkit-transform: rotate(90deg); 
-    -moz-transform: rotate(90deg); 
 } 
 
-a#details:focus, a#details:hover {
+#details:focus, #details:hover {
     color: sandybrown;
     text-decoration: underline;
 }   
 
-ul.pics {
+.pics {
     float: left;
     margin-top: 44pt;
     margin-left: 20pt;
@@ -31,19 +38,19 @@ img {
     width: 250px;
     height: 250px;
     border-radius: 4.5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
     cursor: pointer;
 }
 
-h1.type-title {
+.type-title {
     position: absolute;
-    border-left: 1pt solid royalblue;
-    border-bottom: 1pt solid palegoldenrod;
-    color: salmon !important;
-    margin-top: -.2em;
-    margin-left: 15.5em;
+    border-top: 1pt solid #90888c;
+    border-bottom: 1pt solid #90888c;
+    color: #4447f5 !important;
+    top: 3em;
+    left: 18em;
     font-size: 3em;
-    font-weight: 100;
+    font-weight: 200;
     font-variant: small-caps;
     padding-left: .3em;
     padding-bottom: .2em;

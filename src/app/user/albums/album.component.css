@@ -16,10 +16,14 @@
 }
 
 .albumsHeader {
-    top: 53em;
+/*    top: 53em;
     left: 36pt;
     margin: auto;
     position: fixed;
+*/
+    position: absolute;
+    left: -4%;
+    top: 24%;
     width: 100%;
     height: fit-content;  
     writing-mode: vertical-rl;
@@ -192,9 +196,9 @@ div.moreAlbums.form-group {
 }
 
 @media all and (max-height: 39em) {
-  .albumsHeader {
+  /*.albumsHeader {
     top: 84.5%;
-  }
+  }*/
   #albumContainer {
     top: 42em;
   }
@@ -204,9 +208,9 @@ div.moreAlbums.form-group {
 }
 
 @media all and (max-height: 31.5em) {
-  .albumsHeader {
+  /*.albumsHeader {
     top: 82%;
-  }
+  }*/
   div.moreAlbums.form-group {
     top: 82%;
   }

@@ -1,14 +1,28 @@
-<div>
+<div class="main" id="full">
   <div class="backForth">
-  <button type="button" [style.display] = "noLess ? 'none' : 'initial'"  (click)="backwards()"
-    class="btn btn-primary prior">
-      Prior
-  </button>
-  <button type="button" [style.display] = "noMore ? 'none' : 'initial'" (click)="forward()" 
-  class="btn btn-outline-secondary next">
-      Next
-  </button>
-  <div *ngIf="!albumsExist">
+ <div *ngIf="!noLess; then theresLess else zero"></div>
+    <ng-template #theresLess>
+      <button type="button" (click)="backwards()" class="btn btn-primary prior">
+        Prior
+      </button>
+    </ng-template>
+    <ng-template #zero>
+      <div class="btn btn-outline-secondary end">
+        Prior
+      </div>
+    </ng-template>
+  <div *ngIf="!noMore; then theresMore else end"></div>
+    <ng-template #theresMore>
+      <button type="button" (click)="forward()" class="btn btn-outline-secondary next">
+        Next
+      </button>
+    </ng-template>
+    <ng-template #end>
+      <div class="btn btn-outline-secondary end">
+        Next
+      </div>
+    </ng-template>
+  <div *ngIf="!guest && !albumsExist">
     <div class="createAlbum noAlbumsYet">
       <button type="button" class="btn btn-outline-warning create firstOne" id="popupNewAlbum" 
         (click)="newAlbum()">
@@ -26,14 +40,18 @@
         </button>
       </div>
       <li *ngFor="let album of albums" (click)="albumChosen(album)"  
-          [ngClass]="{'addedPulse': green}" [class.selected]="album === selectedAlbum">
-        {{album?.title}}
+          [ngClass]="{ 'selected': album?.id == choice?.id }" 
+          [class.addedPulse]="album?.id == selectedAlbum?.id">
+        <span *ngIf="albums.length">{{album?.title}}</span>
       </li>
     </ul>
   </div>
 </div> 
 <div *ngFor="let pic of photos">
-  <a class="photoCategory" [routerLink]="['../../']">{{pic.type}}</a>
+  <a class="photoCategory" [style.display] = "!popup ? 'initial' : 'none'" 
+    [routerLink]="['../../']">
+    {{pic.type}}
+  </a>
   <div class="title-container">
     <h1>{{pic.name}}</h1> 
   </div>  
@@ -43,21 +61,24 @@
   </button>
  </div> 
  <img src={{pic.photoUrl}}/>
-  <div *ngIf="beenLiked" [ngClass]="{ 'unlike': hover}">
-   <button type="button" id="noLikey" class="btn btn-outline-danger" [ngClass]="{ 'unlike': hover}"
-    (click)="noBueno(pic)">
-     Unlike
-   </button>
- </div>
- <div class="like" (mouseover)="hover=true" 
-          (mouseleave)="hover=false">
-   <button type="button" *ngIf="!beenLiked"
-   (click)="whenClicked=!whenClicked" 
-     class="btn btn-outline-info likes" [style.display] = "whenClicked ? 'initial' : 'none'"
-           (click)="likedBy(pic)">
-           ^
-   </button>
-   <h3 class="amountLiked" [ngClass]="{ 'liked': lovingIt}">{{likes}}</h3>
+ <div class="likeContainer">
+   <div class="like" (mouseover)="hover=true" 
+            (mouseleave)="hover=false" [ngClass]="{ 'unLike': hover && beenLiked }" >
+     <button type="button" *ngIf="!beenLiked"
+     (click)="whenClicked=!whenClicked" 
+       class="btn btn-outline-info likes" [style.display] = "whenClicked ? 'initial' : 'none'"
+             (click)="likedBy(pic)">
+             ^
+     </button>
+     <button *ngIf="beenLiked" type="button" id="noLikey" 
+      class="btn btn-outline-danger" [ngClass]="{ 'unlike': hover }" (click)="noBueno(pic)">
+       Unlike
+     </button>
+     <h3 class="amountLiked" [ngClass]="{ 'liked': lovingIt, 'unlike': hover && beenLiked }">
+      {{likes}}
+     </h3>
+     <span *ngIf="guestLiked" class="guestLiked">Login First</span>
+   </div>
    <button type="button" class="btn btn-outline-primary likes" (click)="likers()">Likes</button>
            <router-outlet name="likersPopUp"></router-outlet>
  </div>        
@@ -78,7 +99,7 @@
           </tr>
         </tbody>
       </table> 
-      <button type="button" *ngIf="comment.user_id === this.user[0].id" 
+      <button type="button" *ngIf="!guest && comment.user_id === this.user[0].id" 
         (click)="deleteComment(comment, i)" class="btn btn-outline-danger comment">
           X
       </button>

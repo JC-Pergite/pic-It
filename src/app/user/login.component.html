@@ -1,6 +1,86 @@
 <div class="login-page">
 <h2 class="login-header">Login</h2>
 </div>
+<form class="form-horizontal" novalidate (ngSubmit)="onSubmit(userForm)" [formGroup]="userForm">
+  <fieldset>
+  <div class="frame" [ngClass]="{'abrakadabra': !whenClicked}">
+    <div class="ajar" [ngClass]="{'agape': !whenClicked}">
+        <legend class="blue"><b>Who Art Thou?</b></legend>
+    </div>
+  </div>  
+    <div class="form-group name" 
+      [ngClass]="{'has-success': name.valid, 'has-danger': name.invalid && (name.dirty || name.touched)}">
+      <label for="name" class="col-lg-2 form-control-label required">Name</label>
+        <div class="col-lg-10">
+          <input type="text" class="form-control" id="inputValid"
+               placeholder="Username" formControlName="name"/> 
+        </div>
+      <div class="invalid-feedback" style="color: #d9534f" 
+          *ngIf="name.invalid && (name.dirty || name.touched)">
+          <div *ngIf="name.errors.required">
+            'Name' is required.
+          </div>
+          <div *ngIf="name.errors.minlength">
+            'Name' must be at least 2 characters long.
+          </div>
+          <div *ngIf="name.errors.maxlength">
+            'Name' cannot be over 9 characters long.
+          </div>
+      </div>
+    </div>
+    <div formGroupName="account" class="form-group account">
+      <label for="inputEmail" class="col-lg-2 form-control-label">Email</label>
+      <div class="col-lg-10 email">
+        <input type="text" class="form-control" id="inputEmail" 
+             placeholder="Email" 
+             formControlName="email"
+        />
+      </div>
+      <label for="inputPassword" class="col-lg-2 form-control-label">Password</label>
+      <div class="col-lg-10">
+        <input type="password" class="form-control" id="inputPassword" 
+             placeholder="Password" 
+             formControlName="password"
+        />
+      </div>
+    </div>
+    <div class="form-group bio" [ngClass]="{'has-success': bio.valid, 'has-danger': bio.invalid && (bio.dirty || bio.touched)}">
+      <label for="textArea" class="col-lg-2 form-control-label required">About You</label>
+      <div class="col-lg-10">
+        <textarea class="form-control" formControlName="bio" rows="3" id="textArea"
+        placeholder="Share a few words from the story that is your life ~">
+      </textarea>
+      </div>
+      <div class="invalid-feedback" style="color: #d9534f" 
+          *ngIf="bio.invalid && (bio.dirty || bio.touched)">
+          <div *ngIf="bio.errors.required">
+            'About You' is required.
+          </div>
+          <div *ngIf="bio.errors.maxlength">
+            'About You' cannot be over 30 characters long.
+          </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="reset" class="btn btn-default" 
+      [style.display] = "whenClicked ? 'initial' : 'none'">
+        Cancel
+      </button>
+        <button type="submit" class="btn btn-outline-success" *ngIf="!authService.isLoggedIn" 
+         [disabled]="userForm.invalid" [style.display] = "whenClicked ? 'initial' : 'none'">
+        Submit
+        </button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+
+
+
+<!-- <div class="login-page">
+<h2 class="login-header">Login</h2>
+</div>
 <form class="form-horizontal" novalidate (ngSubmit)="onSubmit(user)" [formGroup]="user">
   <fieldset>
   <div class="frame" [ngClass]="{'abrakadabra': !whenClicked}">
@@ -12,10 +92,7 @@
       <label for="inputName" class="col-lg-2 control-label">Name</label>
       <div class="col-lg-10">
         <input type="text" class="form-control is-valid" id="inputValid"
-        	   placeholder="Username" 
-        	   formControlName="name"
-        /> 
-
+        	   placeholder="Username" formControlName="name"/> 
       </div>
     </div>
     <div formGroupName="account" class="form-group account">
@@ -55,4 +132,4 @@
       </div>
     </div>
   </fieldset>
-</form>
+</form> -->

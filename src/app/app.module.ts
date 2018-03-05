@@ -27,7 +27,7 @@ import { PopupLikersComponent } from './popup-likers.component';
     ReactiveFormsModule,
     NgbModule.forRoot(),
     AppRoutingModule,
-    InMemoryWebApiModule.forRoot(PhotoDataService, { delay: 500 }),
+    InMemoryWebApiModule.forRoot(PhotoDataService),
     CategoryModule,
     UserModule
   ],

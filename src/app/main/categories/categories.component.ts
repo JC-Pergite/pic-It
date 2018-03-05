@@ -16,8 +16,8 @@ import { Photo } from '../../shared/photo';
   template: `
     <div class="categories" *ngFor="let category of categories; let i = index">
       <div class="categoryHeader">
-    	  <a  class="categoryName" [routerLink]="['./' + category.id]">
-          {{category.name}}
+    	  <a  class="categoryName" (click)="setter(category)">
+          <h2>{{category.name}}</h2>
         </a>
       </div>  
   		<div class="categoryPics flipper" *ngFor="let pic of category.photos | slice:start:end;
@@ -28,12 +28,13 @@ import { Photo } from '../../shared/photo';
       </div>    
     </div>  
     <div class="trending" *ngIf="trender.length">
-      <ul class="trendMaster"> 
+      <ul class="trendMaster">
         <table class="table table-striped table-hover table-bordered" *ngFor="let trend of trender">
         <thead class="thead-dark">
           <tr>
             <th>
-              <img src="{{trend.photoUrl}}" alt="Responsive image" id="miniTrender">
+              <img src="{{trend.photoUrl}}" alt="Responsive image" id="miniTrender"
+              (click)="trends(trend)">
             </th>
           </tr>
         </thead>
@@ -78,32 +79,37 @@ export class CategoriesComponent implements OnInit, OnDestroy {
   @Input() categories: Category[] = []; 
   private start = 0;
   private end = 3;
-  public shuffler : any;
+  private shuffler : any;
   getEm = [];
   @Input() category: Category;
   thePic: Photo[] = [];
+  private alive: boolean = true;
 
   constructor(private route: ActivatedRoute, private categoryService: CategoryService,
-    private ref: ChangeDetectorRef, private router: Router) { }
+    private ref: ChangeDetectorRef, private router: Router) { 
+      this.trendiest = this.categoryService.getCoolLimiter();
+  }
 
   ngOnInit() { 
-      this.categoryService.getCategories()
+    if(this.categoryService.getAllCats()[0] ===  undefined){
+      this.categoryService.getCategories().takeWhile(() => this.alive)
         .subscribe(categoriess => 
           { 
                        this.getEm.push(categoriess);
                        this.categories = this.getEm[0];
-           this.ref.markForCheck(); 
-          },
-          error => { console.log('Not Quite') },
-          () => { 
-           this.shuffleAway(this.categories); 
-                   this.trendSetter(this.categories[0].photos);
-                      this.ref.detectChanges();
-          }
-        )
+                       this.shuffleAway(this.categories); 
+                       this.ref.markForCheck(); 
+          });
+    }
+    else {
+      this.categories = this.categoryService.getAllCats();
+      this.shuffleAway(this.categories);
+      this.trender = this.categoryService.trending;
+      this.ref.markForCheck();  
+    }
   }    
 
-  shuffleAway(categories) {    
+  shuffleAway(categories) {  
       let categoryPhotos = null;
       this.shuffler = setInterval(() => {
       for (var i = 0; i < categories.length; i++) {
@@ -114,43 +120,50 @@ export class CategoriesComponent implements OnInit, OnDestroy {
           categoryPhotos[randomIndex] = categoryPhotos[j]; 
           categoryPhotos[j] = itemAtIndex;
         }
-        this.trendSetter(categoryPhotos);
+          this.trendSetter(categoryPhotos);
       } 
     }, 7000);
-      this.ref.detectChanges();
       return categoryPhotos; 
   }       
 
-  trendSetter(pics) {
-      this.trendiest = this.categoryService.getCoolLimiter();
-      if(this.categoryService.trending.length) {
-      }
-      else { 
-        for (var i = 0; i < pics.length; i++) {
-          let num = pics[i];
-           if(num.likes.likes > this.trendiest) {
-              this.categoryService.setTrending(pics[i]);
-             this.ref.detectChanges();
-           }
+  trendSetter(pics?) {
+    this.trendiest = this.categoryService.getCoolLimiter();
+    if(!this.categoryService.trending.length) {
+      for (var i = 0; i < pics.length; i++) {
+        let num = pics[i];
+        if(num.likes.likes > this.trendiest) {
+          this.categoryService.setTrending(pics[i]);
+          this.ref.detectChanges();
         }
-        this.ref.markForCheck();  
-        this.trender = this.categoryService.trending;
-      } 
-      this.ref.detectChanges();
+      }
+      this.trender = this.categoryService.trending;
       this.ref.markForCheck();  
+    }
+    else { 
+      this.trender = this.categoryService.trending;
+      this.ref.markForCheck();  
+    } 
   }
 
-  setter(cat, pic) { 
-    this.categoryService.currentPhotoComments.subscribe((data) => { this.thePic = data });
-    if (pic.id != this.thePic['id']) {
-      this.categoryService.setPhotoComments(pic);
+  setter(cat, pic?) { 
+    if(pic === undefined) {
+      this.router.navigate(['/categories/' + cat.id]);
+          this.ref.markForCheck();
     }
     else {
-      this.categoryService.setPhotoComments(this.thePic);
-      pic = this.thePic;
-    }   
-    this.categoryService.setCats(cat);
-    this.ref.markForCheck();
+      this.categoryService.currentPhotoComments.subscribe((data) => { this.thePic = data });
+      if (pic.id != this.thePic['id']) {
+        this.categoryService.setPhotoComments(pic);
+            this.ref.markForCheck();
+      }
+      else {
+        this.categoryService.setPhotoComments(this.thePic);
+        pic = this.thePic;
+            this.ref.markForCheck();
+      } 
+    }
+    this.categoryService.setCats(Array(cat));
+    this.ref.detectChanges();
   }
 
   trends(pic) {

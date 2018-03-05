@@ -12,6 +12,10 @@
     text-shadow: 3px 3px 3px rgba(0,0,0,0.2);
 }
 
+.nav-tabs>li>a:hover {
+  border-color: transparent !important; 
+}
+
 li {
   font-size: 1.5em !important;
   list-style: none !important;
@@ -91,10 +95,16 @@ div#bs-example-navbar-collapse.collapse.navbar-collapse {
   }
 }
 
-@media all and (max-width: 61em) {
+@media all and (max-width: 63em) {
+  .navbar.navbar-default {
+    width: 1032px;
+  }
   .navbar>.container-fluid .navbar-brand {
     left: -6.3em;
   }
+  div#bs-example-navbar-collapse.collapse.navbar-collapse {
+    left: 20em;
+  }  
 }
 
 @media all and (min-width: 75em) {

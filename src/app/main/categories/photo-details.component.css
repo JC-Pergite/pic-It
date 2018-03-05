@@ -1,14 +1,23 @@
+div#full.main {
+  margin-top: 30%;
+  background-color: #272b30 !important;
+  padding-top: 1em;
+  padding-bottom: 5em;
+}
+
 img {
+  position: absolute;
+  left: 36em;
+  top: 22.5em;
   width: 400px;
   height: 400px;
 	border-radius: 8px;
-  margin-left: 275pt;
-  margin-top: 77pt;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
 }
 
 .backForth {
-  margin-left: 15pt; 
+  left: 2.5%;
+  top: 12.5em;
   position: absolute; 
 }
 
@@ -25,14 +34,28 @@ button.btn.btn-primary.prior:hover {
   background: none !important;
 }
 
+button.btn.btn-outline-secondary {
+  color: #868181 !important;
+  letter-spacing: .03em;
+  font-weight: 100;
+} 
+
 .btn.btn-outline-secondary.next:hover {
   color: snow !important;
 }
 
+.btn.btn-outline-secondary.end {
+  color: rgba(232, 230, 230, 0.61) !important;
+  text-decoration: line-through;
+  border: 1px solid rgba(222, 15, 84, 0.47) !important;
+  background: none !important;
+  cursor: text !important;
+}
+
 a.photoCategory {
-    position: relative;
+    position: absolute;
     left: 17em;
-    top: 1em;
+    top: 3.5em;
     border-left: 1pt solid royalblue;
     border-bottom: 1pt solid palegoldenrod;
     color: salmon !important;
@@ -46,8 +69,8 @@ a.photoCategory {
 .title-container {
   height: 400px;
   position: absolute;
-  top: 18em;
-  left: 16em;
+  top: 23em;
+  left: 13em;
   padding-top: 5em;
 }
 
@@ -55,36 +78,30 @@ a.photoCategory {
   background-color: #2E3C71;
 }
 
+.likeContainer {
+  position: absolute;
+}
+
 .like {   
   display: block;
   width: 70px;
   height: 70px;
   line-height:50px;
-  border: 2px solid #5167F4;
+  border: 2px solid;
+  border-color: #5167F4;
   border-radius: 50%;
   text-decoration:none;
   background: none;
   font-size:20px;
-  position: absolute;
-  left: 12em;
-  top: 15.5em;
+  position: relative;
+  left: 11.8em;
+  top: -10.5em;
   -webkit-padding-before: initial;
 }
 
-.unlike {   
-  display: block;
-  width: 62px;
-  height: 62px;
-  line-height:50px;
-  border: 1.5px solid #fb2d2d;
-  border-radius: 50%;
-  text-decoration:none;
-  background: #3a3f44;
-  font-size:20px;
-  position: absolute;
-  left: 12.2em;
-  top: 15.7em;
-  -webkit-padding-before: initial;
+.unLike {   
+  border-color: #fb2d2d !important;
+  background: #313539 !important;
 }
 
 #noLikey.btn.btn-outline-danger {
@@ -95,16 +112,18 @@ a.photoCategory {
 #noLikey.btn.btn-outline-danger.unlike {
     display: inherit;
     visibility: visible;
-    padding-left: 8px;
+    left: -57%;
+    top: 1.4em;
     color: #f70b4a;
+    font-size: .9em;
     font-weight: 300;
-    position: fixed;
+    position: relative;
     border: none;
-    letter-spacing: .25em;
+    letter-spacing: .9em;
     background-image: none;
     background-color: transparent;
     font-variant: petite-caps;
-    transform: rotate(30deg);
+    transform: rotate(40deg);
 } 
 
 .btn.btn-outline-info.likes {
@@ -135,18 +154,34 @@ h3.amountLiked {
     text-orientation: upright;
 }
 
+h3.amountLiked.unlike {
+  display: none;
+}
+
 h3.amountLiked.liked {
     transition: all 2s ease-in;
     transform: translate(12px);
     border-right: none; 
 }
 
-.btn.btn-outline-primary.likes {
+span.guestLiked {
+  color: #d0dada;
+  font-size: .5em;
+  display: block;
+  width: 60px;
+  height: 66px;
+  border-radius: 50%;
+  background: #282b31;
   position: absolute;
-  top: 8em;
-  left: 1em;
-  border-radius: 13px;
+  padding-top: 5pt;
+  text-indent: 8px;
+}
 
+.btn.btn-outline-primary.likes {
+  position: relative;
+  border-radius: 13px;
+  top: -19em;
+  left: 24.7em;
   color: white;
   margin-top: -.3em;
   margin-left: -.2em;
@@ -177,7 +212,6 @@ div#userAlbums  {
 #userAlbums ul {
   padding: 0 0 0 0;
 }
-
 
 #userAlbums li {
   cursor: pointer;
@@ -243,13 +277,12 @@ h2 {
 }
 
 h1 {
-    color: lightsalmon !important;
-    writing-mode: vertical-lr;
-    text-orientation: upright;    
-    font-size: 3em;
-    font-weight: 100;
-    font-variant: small-caps;
-    text-shadow: 2px 6px 3px #E24456;
+  color: #c71d49 !important;
+  writing-mode: vertical-lr;
+  text-orientation: upright;    
+  font-size: 3em;
+  font-weight: 100;
+  text-shadow: -4px 9px 3px rgba(226, 68, 86, 0.65);
 }
 
 h4 {   
@@ -276,21 +309,21 @@ h4 {
     font-weight: bold;
     position: absolute;
     left: 40.5em;
-    top: 15.5em;
+    top: 19.5em;
     -webkit-padding-before: initial;
 }  
 
 .collect:hover {
-    background-color: #313539;
-    border: 2px solid #E30754;
-    color: #E76122;
+  background-color: #272b30;
+  border: 2px solid #E30754;
+  color: #E76122;
 }
 
 .comentator {
-  left: 38pt;
-  top: -14pt;
-  position: relative;
-  margin-bottom: 22pt;
+  margin-bottom: 22pt; 
+  padding-bottom: 2em;
+  margin-left: 3.5em;
+  margin-top: 17em;
 }
 
 input.inputBox {
@@ -321,11 +354,16 @@ button.btn.btn-outline-warning.comment {
 }
 
 .commentary {
-  margin-bottom: -2em !important;
+  position: relative;
+  margin-bottom: -3.5em !important;
 }
 
-.commentary ul.comments:first-of-type {
+/*.commentary ul.comments:first-of-type {
     margin-top: -26px;
+}*/
+
+ul.comments:nth-child(1) {
+  margin-top: 26px;
 }
 
 ul.comments {
@@ -336,8 +374,9 @@ ul.comments {
 
 table.table {
   position: relative;
-  width: 32.5em !important;
-  left: 250pt;
+  width: 18.8em !important;
+  top: 1em;
+  left: 31em;
   margin-bottom: -1em !important;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -345,8 +384,8 @@ table.table {
 
 .btn.btn-outline-danger.comment {
   position: relative;
-  left: 73.5em;;
-  top: -2.15em;
+  left: 60em;
+  top: -1.05em;
   height: 25pt;
   width: 30px;
   font-weight: 400;
@@ -357,17 +396,17 @@ table.table {
 }
 
 .addedPulse {
-    animation: pulse ease-out 2.5s;
-    -webkit-animation: pulse ease-out 2.5s;
+  animation: pulse ease-out 2.5s;
+  -webkit-animation: pulse ease-out 2.5s;
 }
 
 @keyframes pulse {
-    0% {
-        background-color: #3a3f44;
-    }
-    100% {
-        background-color: mediumseagreen
-    }
+  0% {
+      background-color: #3a3f44;
+  }
+  100% {
+      background-color: mediumseagreen
+  }
 }
 
 @media all and (min-width: 69em) {

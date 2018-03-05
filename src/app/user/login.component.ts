@@ -15,7 +15,7 @@ import { Album } 			from './albums/album';
 })
 export class LoginComponent implements OnInit {
 
-  user: FormGroup;
+  userForm: FormGroup;
   currentUser: User;
   public whenClicked = true;
   
@@ -24,11 +24,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-   	this.user = this.fb.group({
-     	// name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(9)]],
-     	// bio: ['', [Validators.required, Validators.maxLength(30), Validators.minLength(6)]],
-      name: ['', [Validators.required]],
-     bio: ['', [Validators]],
+   	this.userForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(9)]],
+     	bio: ['', [Validators.required, Validators.maxLength(30)]],
      	account: this.fb.group({
        	email: ['', Validators],
        	password: ['', Validators]
@@ -37,13 +35,17 @@ export class LoginComponent implements OnInit {
     });
 	}
 
+   get name() { return this.userForm.get('name'); }
+
+   get bio() { return this.userForm.get('bio'); }
+
   onSubmit({ value, valid }: { value: User, valid: boolean }) {
     this.whenClicked = false;
     this.profileService.saveUser(value)
     					.subscribe((data: User) => 
 				  			 {this.currentUser = data },
 				  			 error => { console.log('Whoops') },
-				  			 () => { this.login(); }
+				  			 () => { this.login(); this.profileService.guest = false }
 				  		);
     this.authService.firstLogIn = true;
   }

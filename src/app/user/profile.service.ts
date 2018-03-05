@@ -12,7 +12,7 @@ import { Photo } from '../shared/photo';
 
   private userUrl = 'http://localhost:4200/pic-it/users';
   private albumUrl = 'http://localhost:4200/pic-it/albums';
-
+  public guest: boolean = true;
   private currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(User);
   public currentUser = this.currentUserSubject.asObservable().distinctUntilChanged();
 
@@ -23,7 +23,6 @@ import { Photo } from '../shared/photo';
   constructor (private http: Http) { }
 
   setUserAlbum(album) {
-    console.log(album);
     this.currentUserAlbumSubject.next(album);
  }
 

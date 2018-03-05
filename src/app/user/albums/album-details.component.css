@@ -19,6 +19,7 @@ a.details:focus, a.details:hover, h3.details:hover {
 }   
 
 ul.pics {
+    list-style: none;
     float: left;
     margin-top: 5em;
     margin-left: 3em;
@@ -29,7 +30,7 @@ img {
     height: 250px;
     border-radius: 4.5px;
     top: 130pt;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
     cursor: pointer;
 }
 

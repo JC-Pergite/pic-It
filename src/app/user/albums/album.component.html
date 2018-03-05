@@ -9,8 +9,7 @@
 			[routerLink]="['./album/' + collection?.id]">
 				<h4 class="fullAlbumTitle">{{collection?.title}}</h4>
 				<div class="previewer" *ngFor="let pic of collection?.photos | slice:0:4">
-					<img src="{{pic?.photoUrl}}"
-			              alt="Responsive image"  class="albumPreviews" />
+					<img src="{{pic?.photoUrl}}"  alt="Responsive image"  class="albumPreviews" />
 		        </div>      
 			</li>
 			<ng-template #title>
@@ -30,13 +29,15 @@
 	       	</button>
 		</ul>
 	</div>	
+	<fieldset>
 	<div class="moreAlbums form-group" *ngIf="albums.length >= 4">
 		<select class="custom-select seeMore" (click)="albumRanger(selected.value);
 		     selected.value=''" #selected>
-		      <option [ngClass]="{'choosing': chosen}" value="0" selected="">See More</option>
+		      <option [disabled]="selected.value == 0" [ngClass]="{'choosing': chosen}" value="0" selected="">See More</option>
 		      <option value="1">Next Three</option>
 		      <option value="2">Prior Three</option>
 		      <option value="3">Gimme All</option>
 	    </select>
 		</div>
+	</fieldset>
 </div>	

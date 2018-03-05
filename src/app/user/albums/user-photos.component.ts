@@ -31,8 +31,7 @@ export class UserPhotosComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private router: Router, 
               private categoryService: CategoryService,
               private profileService: ProfileService, private ref: ChangeDetectorRef) { 
-      let getUser = this.profileService.getCurrentUser();
-      this.user.push(getUser);
+      this.user = Array(this.profileService.getCurrentUser());
       this.userId = this.user[0].id;
       this.album.push(this.profileService.getCurrentAlbum());
   }
@@ -51,9 +50,8 @@ export class UserPhotosComponent implements OnInit, OnDestroy {
                             .takeWhile(() => this.alive)
                             .subscribe((photo: Photo) => { 
                                this.photos.push(photo);
+                               this.ref.markForCheck();
                             });
-                                      this.ref.markForCheck();
-
   }
           
   commentTracker(index, item) {
@@ -86,8 +84,8 @@ export class UserPhotosComponent implements OnInit, OnDestroy {
     for (var i = 0; i < commentary.length; i++) {
           if ( commentId === commentary[i].id  ) {
             commentary.splice(index, 1);
+            this.ref.markForCheck();
           }
-      this.ref.markForCheck();
     }      
   }
 
@@ -103,7 +101,7 @@ export class UserPhotosComponent implements OnInit, OnDestroy {
     else {
       this.router.navigate(['/profile/album', this.albumId ]);
     } 
-        this.ref.markForCheck();
+    this.ref.markForCheck();
   }
 
   forward(pic: Photo) {
@@ -115,8 +113,11 @@ export class UserPhotosComponent implements OnInit, OnDestroy {
     else {
       this.router.navigate(['/profile/album/' + this.albumId + '/photo/' + nextPic]);
       this.photos = [];
+      if(this.noLess) {
+        this.noLess = false;
+      }
+      this.ref.markForCheck();
     }
-    this.ref.markForCheck();
   }
 
   backwards(pic: Photo) {
@@ -126,8 +127,11 @@ export class UserPhotosComponent implements OnInit, OnDestroy {
     }
     else {
      this.router.navigate(['/profile/album/' + this.albumId + '/photo/' + priorPic]);
-      this.photos = [];
-      this.ref.markForCheck();
+     this.photos = [];
+     if(this.noMore) {
+        this.noMore = false;
+      }
+     this.ref.markForCheck();
     }
   }
   

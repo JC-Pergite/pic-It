@@ -28,12 +28,9 @@ export class AlbumComponent implements OnInit {
 							private ref: ChangeDetectorRef) { }
 	
 	ngOnInit(): void {
-		let getUser = this.profileService.getCurrentUser();
-		this.user.push(getUser);
+		this.user = Array(this.profileService.getCurrentUser());
 		this.albums = this.user[0].albums;
 		this.userId = this.user[0].id;
-		console.log(this.userId);
-		console.log(this.albums);
   	}
 
   	albumTracker(index, item) {
@@ -57,36 +54,37 @@ export class AlbumComponent implements OnInit {
     }
 
     albumRanger(value) { 
-    	this.chosen = true;
-    	let albumPreview = 1 * value;
-    	if (albumPreview === 1 && this.albums.length +3) {
-    		if(this.albums.length < 6) {
-    			this.start += this.albums.length - 3;
-    			this.end += this.albums.length - 3;
-    		}
-    		else {
-	    		this.start += 3;
-	    		this.end += 3;
-    		}
-    	}
-    	if (albumPreview === 2 && this.albums.length -3 > 0) {
-			if(this.albums.length < 6) {
-    			this.start -= this.albums.length - 3;
-    			this.end -= this.albums.length - 3;
-    		}
-    		else {
-	    		this.start -= 3;
-	    		this.end -= 3;
-    		} 
-    	}
-    	else {
-    		this.start = 0;
-    		this.end = this.albums.length;    	
-    	}
-    	setTimeout(() => {
-    		this.chosen = false;
-    	}, 4500);
-	    this.ref.markForCheck();	
+    	console.log(value)
+  //   	let albumPreview = 1 * value;
+  //   	    	console.log(albumPreview)
+  //   	if (albumPreview === 1) {
+	 //    		this.start += 1;
+	 //    		this.end += 1;
+  //   				    this.ref.markForCheck();	
+  //   	}
+  //   	if (albumPreview === 2) {
+	 //    		this.start -= 1;
+	 //    		this.end -= 1;
+	 //    		    			console.log('if2', this.start, this.end)
+  //   				    		    			console.log('else2', albumPreview)
+
+  //   				    this.ref.markForCheck();	
+  //   	}
+		// if (albumPreview === 3) {
+  //   		this.start = 0;
+  //   		this.end = this.albums.length;  
+  //   			    		    			console.log('else', this.start, this.end)
+	 //    				    		    			console.log('else', albumPreview)
+
+  //   				    this.ref.markForCheck();	
+  //   	}
+  //   	    				    // this.ref.markForCheck();	
+  //   	    				    console.log(this.start, this.end)
+    	// setTimeout(() => {
+    	// 	this.chosen = false;
+    	// 			    this.ref.markForCheck();	
+    	// }, 1100);
+	    // this.ref.markForCheck();	
     }
 
    	deleteAlbum(index) { 

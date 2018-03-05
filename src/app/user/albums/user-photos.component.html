@@ -9,7 +9,8 @@
         Next
     </button>   
   </div>
-  <h2>{{pic?.name}}</h2>
+  <h2>{{pic.name}}</h2>
+  <a class="photoCategory" [routerLink]="['../../']">{{album[0].title}}</a>
   <img src={{pic?.photoUrl}}/>
   <button type="button" class="eliminate" (click)="deletePhoto(pic, i)">
           XX
