@@ -128,10 +128,10 @@ export class CategoriesComponent implements OnInit, OnDestroy {
 
   trendSetter(pics?) {
     this.trendiest = this.categoryService.getCoolLimiter();
-    if(!this.categoryService.trending.length) {
+    if(!this.categoryService.trending.length || this.trender.length !> 4) {
       for (var i = 0; i < pics.length; i++) {
         let num = pics[i];
-        if(num.likes.likes > this.trendiest) {
+        if(this.categoryService.trending.length >= 5 && num.likes.likes > this.trendiest) {
           this.categoryService.setTrending(pics[i]);
           this.ref.detectChanges();
         }
@@ -174,6 +174,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
           this.categoryService.setCats(this.categories[i]);
           this.categoryService.setPhotoComments(pic);
           this.router.navigate(['/categories/' + coolCat + '/photo/' + pic.id]);
+          this.ref.markForCheck();
         }
       }
     } 

@@ -43,7 +43,8 @@ p#create {
 	margin-top: 1em;
     font-size: 1.1em;
     text-align: center;
-    color: seashell !important;
+    font-weight: 500;
+    color: rgba(68, 75, 197, 0.91) !important;
 }
 
 input.inputBox.create {

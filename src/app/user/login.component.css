@@ -59,7 +59,7 @@ legend.blue {
       border: 1px solid #8e8c84;
       box-shadow: inset -9px -7px 16px 2px #b3b1ab;
       /*transition-delay: 820ms;*/
-      transition: all .4s ease-in;
+      transition: all .1s ease-in;
 }
 
 div.frame {
@@ -154,6 +154,7 @@ form {
 .btn-outline-success {
   border-color: #08ca26;
   letter-spacing: .03em;
+  color: #08ca26;
 }
 
 .btn-outline-success:hover {

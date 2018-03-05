@@ -56,11 +56,11 @@ a.photoCategory {
     position: absolute;
     left: 17em;
     top: 3.5em;
-    border-left: 1pt solid royalblue;
-    border-bottom: 1pt solid palegoldenrod;
-    color: salmon !important;
+    border-top: 1pt solid #90888c;    
+    border-bottom: 1pt solid #90888c;
+    color: #4a4de2;
     font-size: 3em;
-    font-weight: 100;
+    font-weight: 200;
     font-variant: small-caps;
     padding-left: .3em;
     padding-bottom: .2em;
@@ -75,11 +75,7 @@ a.photoCategory {
 }
 
 .selected {
-  background-color: #2E3C71;
-}
-
-.likeContainer {
-  position: absolute;
+  background-color: #a9b0e0;
 }
 
 .like {   
@@ -93,9 +89,9 @@ a.photoCategory {
   text-decoration:none;
   background: none;
   font-size:20px;
-  position: relative;
+  position: absolute;
   left: 11.8em;
-  top: -10.5em;
+  top: 19em;
   -webkit-padding-before: initial;
 }
 
@@ -140,9 +136,8 @@ a.photoCategory {
 
 h3.amountLiked {
     border-right: 2px solid #5bc0de;
-    left: -0.2em;
     border-radius: 5px;
-    position: absolute;
+    position: inherit;
     text-shadow: 1px 1px 3px deepskyblue;
     font-size: .6em;
     text-align: center;
@@ -168,23 +163,21 @@ span.guestLiked {
   color: #d0dada;
   font-size: .5em;
   display: block;
-  width: 60px;
+  width: 66px;
   height: 66px;
   border-radius: 50%;
   background: #282b31;
-  position: absolute;
+  position: relative;
   padding-top: 5pt;
   text-indent: 8px;
 }
 
 .btn.btn-outline-primary.likes {
-  position: relative;
+  position: absolute;
   border-radius: 13px;
-  top: -19em;
+  top: 46.5em;
   left: 24.7em;
   color: white;
-  margin-top: -.3em;
-  margin-left: -.2em;
   font-weight: 300;
   letter-spacing: .15em;
   background-image: none;
@@ -194,14 +187,14 @@ span.guestLiked {
 } 
 
 .btn.btn-outline-primary.likes:hover {
-    color: #06e8f7;
-    background-color: #313539;
-    border-color: whitesmoke;
+  color: #06e8f7;
+  background-color: #313539;
+  border-color: whitesmoke;
 }    
 
 div#userAlbums  {
-  border: 1.2pt solid rgba(255, 222, 173, 0.94);
-  top: 15.5em;
+  border: 1.2pt solid #868179;
+  top: 15.3em;
   position: absolute;
   border-radius: 8px;
   left: 90em;
@@ -214,8 +207,9 @@ div#userAlbums  {
 }
 
 #userAlbums li {
+  text-transform: capitalize;
   cursor: pointer;
-  color: #E94755 !important;
+  color: rgb(66, 76, 160) !important;
   list-style: none;
   height: 2em;
   font-size: 1.5em;
@@ -224,22 +218,18 @@ div#userAlbums  {
   margin-bottom: 5.5pt;
   padding-top: 5pt;
   text-align: center;
-  border-top: 1px solid coral;
+  border-top: 1.2px solid #868179;
   text-shadow: 2px 2px 3px rgba(0,0,0,0.15);
 }
 
 #userAlbums li:hover {
-  background-color: #0D47CA;
-}
-
-#userAlbums li.selected:hover {
-  background-color: #3a3f44 !important;
+  background-color: rgba(220, 218, 127, 0.58);
 }
 
 .createAlbum {
   height: 23pt;
   text-align: center;
-  border-top: 1px solid coral;
+  border-top: 1px solid #f89406;
 }
 
 .noAlbumsYet {
@@ -247,7 +237,7 @@ div#userAlbums  {
   height: 20pt !important;
   left: 87em;
   top: 22.5em;
-  border-bottom: 1px solid coral !important;
+  border-bottom: 1px solid #f89406 !important;
   border-radius: 4px;
 }
 
@@ -261,7 +251,7 @@ button.btn.btn-outline-warning#popupNewAlbum.create {
   padding-bottom: 3px;
   margin-top: 2.5pt;
   font-size: 1.2em !important;
-  color: peachpuff !important;
+  color: #f96a46 !important;
 } 
 
 button.btn.btn-outline-warning#popupNewAlbum.create:hover {
@@ -286,7 +276,7 @@ h1 {
 }
 
 h4 {   
-    color: rgba(255, 127, 80, 0.94);
+    color: rgba(73, 84, 175, 0.94);
   	font-size: initial;
     padding: 8pt 13pt 6pt 12pt;
     font-variant: all-petite-caps;
@@ -309,7 +299,7 @@ h4 {
     font-weight: bold;
     position: absolute;
     left: 40.5em;
-    top: 19.5em;
+    top: 19em;
     -webkit-padding-before: initial;
 }  
 
@@ -317,6 +307,20 @@ h4 {
   background-color: #272b30;
   border: 2px solid #E30754;
   color: #E76122;
+}
+
+span.guestAttempt {
+  color: #d0dada;
+  font-size: .5em;
+  display: block;
+  width: 66px;
+  height: 65px;
+  border-radius: 50%;
+  background-color: #272b30;
+  position: relative;
+  top: -5em;
+  left: -.7em;
+  padding-top: 5pt;
 }
 
 .comentator {
@@ -402,7 +406,7 @@ table.table {
 
 @keyframes pulse {
   0% {
-      background-color: #3a3f44;
+      background-color: #a9b0e0;
   }
   100% {
       background-color: mediumseagreen

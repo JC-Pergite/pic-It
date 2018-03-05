@@ -40,8 +40,8 @@
         </button>
       </div>
       <li *ngFor="let album of albums" (click)="albumChosen(album)"  
-          [ngClass]="{ 'selected': album?.id == choice?.id }" 
-          [class.addedPulse]="album?.id == selectedAlbum?.id">
+          [ngClass]="{ 'selected': album?.id === selectedAlbum?.id }" 
+          [class.addedPulse]="album?.id === choice?.id">
         <span *ngIf="albums.length">{{album?.title}}</span>
       </li>
     </ul>
@@ -58,10 +58,11 @@
  <div>
   <button type="button" class="collect" (click)="addPhoto(pic)">
     +
+   <span *ngIf="guestAttempted" class="guestAttempt">Login First</span>
   </button>
  </div> 
  <img src={{pic.photoUrl}}/>
- <div class="likeContainer">
+ <div>
    <div class="like" (mouseover)="hover=true" 
             (mouseleave)="hover=false" [ngClass]="{ 'unLike': hover && beenLiked }" >
      <button type="button" *ngIf="!beenLiked"

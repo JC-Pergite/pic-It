@@ -40,6 +40,7 @@ export class PhotoDetailsComponent implements OnInit, OnDestroy {
   currentCategory: Category[] = [];
   private guest: boolean = true;
   private guestLiked: boolean = false;
+  private guestAttempted: boolean = false;
   popup: boolean = false;
 
   constructor(private route: ActivatedRoute, private categoryService: CategoryService, 
@@ -93,7 +94,7 @@ export class PhotoDetailsComponent implements OnInit, OnDestroy {
     this.profileService.currentUserAlbum
                          .takeWhile(() => this.alive) 
                          .subscribe(album => {
-                           this.choice = album;
+                           this.selectedAlbum = album;
                            this.ref.markForCheck();                        
                          }); 
     this.ref.markForCheck();                        
@@ -175,28 +176,39 @@ export class PhotoDetailsComponent implements OnInit, OnDestroy {
   }
 
   addPhoto(newPhoto): void { 
-    let pics = this.choice.photos;
-    this.selectedAlbum = this.choice;
-    if(pics.find((photo: Photo) => photo.name === newPhoto.name )) {   
-        console.log("Whoops; duplicate!");
+    if (!this.guest) {
+      if(this.selectedAlbum.photos.find((photo: Photo) => photo.name === newPhoto.name )) {   
+          console.log("Whoops; duplicate!");
+      }
+      else {
+        this.choice = this.selectedAlbum;
+        let pics = this.choice.photos;
+        let permanentPic = Map({
+          id: newPhoto.id,
+          name: newPhoto.name,
+          type: newPhoto.type,
+          photoUrl: newPhoto.photoUrl,
+          comments: newPhoto.comments
+        });
+        let userPic = permanentPic.merge({
+          id: this.id,
+          comments: null,
+        });
+        let userPhoto = userPic.toObject();
+        pics.push(userPhoto);
+        this.profileService.setUserAlbum(this.choice);
+      };
+      this.ref.markForCheck();
     }
     else {
-      let permanentPic = Map({
-        id: newPhoto.id,
-        name: newPhoto.name,
-        type: newPhoto.type,
-        photoUrl: newPhoto.photoUrl,
-        comments: newPhoto.comments
-      });
-      let userPic = permanentPic.merge({
-        id: this.id,
-        comments: null,
-      });
-      let userPhoto = userPic.toObject();
-      pics.push(userPhoto);
-      this.profileService.setUserAlbum(this.choice);
-    };
-    this.ref.markForCheck();
+      this.guestAttempted = true;
+      setTimeout(() => {
+         this.guestAttempted = false;  
+         this.whenClicked = [true];
+         this.ref.markForCheck();
+      }, 2000);
+      this.ref.markForCheck();
+    }
   }
 
   addComment(comment): void { 

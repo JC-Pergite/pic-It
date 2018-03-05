@@ -46,7 +46,7 @@ h2 {
   width: 60px;
   height: 60px;
   line-height: 50px;
-  border: 2px dashed #E76122;
+  border: 2px dotted #E76122;
   border-radius: 50%;
   color: rgba(193, 38, 51, 0.97);
   text-decoration: none;
@@ -54,7 +54,7 @@ h2 {
   font-size: 16px;
   font-weight: bold;
   position: absolute;
-  top: 26.2em;
+  top: 28em;
   left: 53.5em;
   -webkit-padding-before: initial;
 }  

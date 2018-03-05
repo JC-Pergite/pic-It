@@ -1,3 +1,12 @@
+div.container {
+    background-color: #272b30 !important;
+    position: relative;
+    width: 90% !important;
+    top: 9em;
+    min-height: 1000px !important;
+    border-radius: 6px;
+}
+
 #albums {
     display: inline;
     flex-wrap: wrap;
@@ -5,7 +14,6 @@
 }
 
 a.details, h3.details {   
-    position: relative;
     font-size: 1.2em;
     position: relative;
     top: 10.5em;
@@ -36,13 +44,13 @@ img {
 
 h1.album-title {
     position: absolute;
-    border-left: 1pt solid royalblue;
-    border-bottom: 1pt solid palegoldenrod;
-    color: salmon !important;
-    margin-top: -.2em;
-    margin-left: 19.3em;
+    border-top: 1pt solid #90888c;
+    border-bottom: 1pt solid #90888c;
+    color: #4a4de2 !important;
+    top: 3em;
+    left: 18em;
     font-size: 3em;
-    font-weight: 100;
+    font-weight: 200;
     font-variant: small-caps;
     padding-left: .3em;
     padding-bottom: .2em;

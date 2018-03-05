@@ -16,12 +16,8 @@ export class CategoryService {
   public trending: Photo[] = []; 
   public topRanks = [];
   public likedPic: Photo;
-  // public likedSubject: BehaviorSubject<any> = new BehaviorSubject<Photo[]>([]);
 	private categoryUrl = 'http://localhost:4200/pic-it/categories';
 	private photoUrl = 'http://localhost:4200/pic-it/photos';
-
-
-  // public currentLikeToD : BehaviorSubject<any> = new BehaviorSubject<boolean>(true);
 
   //multiple Cats
   private everySubject: BehaviorSubject<Category[]> = new BehaviorSubject<Category[]>([]);
@@ -82,19 +78,6 @@ export class CategoryService {
     this.coolLimiterSubject.next(coolMin +2);
   }
 
-  // setCurrentPicLiker(likedPic, picLiker) {
-  //   if(likedPic.likes.user_id.find((user: User) => user.id !== picLiker)) {
-  //     console.log('Over-enthusistic much?');
-  //   }
-  //   else {
-  //     console.log('else setCurrentLiker');
-  //     this.currentLikeToD.next(false);
-  //     this.likedPic = likedPic;
-  //     this.likedSubject.next(likedPic.likes.user_id);
-  //     console.log(this.likedSubject.value);
-  //   }
-  // }
-  
   getCoolLimiter() {
     return this.coolLimiterSubject.value;
   }
@@ -104,8 +87,6 @@ export class CategoryService {
   }
 
   setCats(cat) {
-    console.log("activated", cat)
-
     this.currentSubject.next(cat)
   }
 
@@ -113,11 +94,11 @@ export class CategoryService {
     this.currentPhotoCommentsSubject.next(data);
   }
 
-  getCurrentComments(): any  { //photo
+  getCurrentComments(): any  { 
     return this.currentPhotoCommentsSubject.value;
   }
 
-  getCurrentCats(): any { //category
+  getCurrentCats(): any {
     return this.currentSubject.value;
   }
 

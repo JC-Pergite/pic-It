@@ -16,11 +16,6 @@
 }
 
 .albumsHeader {
-/*    top: 53em;
-    left: 36pt;
-    margin: auto;
-    position: fixed;
-*/
     position: absolute;
     left: -4%;
     top: 24%;
@@ -196,9 +191,6 @@ div.moreAlbums.form-group {
 }
 
 @media all and (max-height: 39em) {
-  /*.albumsHeader {
-    top: 84.5%;
-  }*/
   #albumContainer {
     top: 42em;
   }
@@ -208,9 +200,6 @@ div.moreAlbums.form-group {
 }
 
 @media all and (max-height: 31.5em) {
-  /*.albumsHeader {
-    top: 82%;
-  }*/
   div.moreAlbums.form-group {
     top: 82%;
   }

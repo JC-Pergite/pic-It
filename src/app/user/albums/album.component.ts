@@ -55,36 +55,26 @@ export class AlbumComponent implements OnInit {
 
     albumRanger(value) { 
     	console.log(value)
-  //   	let albumPreview = 1 * value;
-  //   	    	console.log(albumPreview)
-  //   	if (albumPreview === 1) {
-	 //    		this.start += 1;
-	 //    		this.end += 1;
-  //   				    this.ref.markForCheck();	
-  //   	}
-  //   	if (albumPreview === 2) {
-	 //    		this.start -= 1;
-	 //    		this.end -= 1;
-	 //    		    			console.log('if2', this.start, this.end)
-  //   				    		    			console.log('else2', albumPreview)
-
-  //   				    this.ref.markForCheck();	
-  //   	}
-		// if (albumPreview === 3) {
-  //   		this.start = 0;
-  //   		this.end = this.albums.length;  
-  //   			    		    			console.log('else', this.start, this.end)
-	 //    				    		    			console.log('else', albumPreview)
-
-  //   				    this.ref.markForCheck();	
-  //   	}
-  //   	    				    // this.ref.markForCheck();	
-  //   	    				    console.log(this.start, this.end)
-    	// setTimeout(() => {
-    	// 	this.chosen = false;
-    	// 			    this.ref.markForCheck();	
-    	// }, 1100);
-	    // this.ref.markForCheck();	
+    	let albumPreview = 1 * value;
+    	if (albumPreview === 1) {
+	    		this.start += 1;
+	    		this.end += 1;
+    				    this.ref.markForCheck();	
+    	}
+    	if (albumPreview === 2) {
+	    		this.start -= 1;
+	    		this.end -= 1;
+    				    this.ref.markForCheck();	
+    	}
+		if (albumPreview === 3) {
+    		this.start = 0;
+    		this.end = this.albums.length;  
+    	}
+    	setTimeout(() => {
+    		this.chosen = false;
+    				    this.ref.markForCheck();	
+    	}, 1100);
+	    this.ref.markForCheck();	
     }
 
    	deleteAlbum(index) { 

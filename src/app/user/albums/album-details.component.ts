@@ -10,20 +10,22 @@ import { Album } from './album';
   selector: 'pic-it-album-details',
   template: `
 	<h1 class="album-title">{{album?.title}}</h1>
-	<div id="albums" *ngFor="let pic of album?.photos; let i = index; trackBy: picsTracker">
-		<ul class="pics">
-			<li>
-				<a class="details" [routerLink]="['./' + 'photo/' + pic.id]">
-					<h3 class="details">{{pic?.name}}</h3>
-				</a>
-				<img [routerLink]="['./' + 'photo/' + pic.id]" src="{{pic?.photoUrl}}"
-	              alt="Responsive image"  id="img-responsive" />
-				<button type="button" *ngIf="album.user_id === this.userId" (click)="deletePhoto(i)"
-			 			class="btn btn-outline-danger eliminate">
-		            Destroy
-		        </button>
-		    <li>    
-		</ul>	
+  <div id="main" class="mainDeets container">
+		<div id="albums" *ngFor="let pic of album?.photos; let i = index; trackBy: picsTracker">
+			<ul class="pics">
+				<li>
+					<a class="details" [routerLink]="['./' + 'photo/' + pic.id]">
+						<h3 class="details">{{pic?.name}}</h3>
+					</a>
+					<img [routerLink]="['./' + 'photo/' + pic.id]" src="{{pic?.photoUrl}}"
+		              alt="Responsive image"  id="img-responsive" />
+					<button type="button" *ngIf="album.user_id === this.userId" (click)="deletePhoto(i)"
+				 			class="btn btn-outline-danger eliminate">
+			            Destroy
+			        </button>
+			    <li>    
+			</ul>	
+		</div>
 	</div>
   `,
     styleUrls: ['./album-details.component.css'],

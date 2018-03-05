@@ -38,6 +38,7 @@ export class PopupCreateComponent {
   album: Album[];
   user: User[] = [];
   public userId: number;
+  newAlbumId: number;
 
   constructor(private router: Router, private profileService: ProfileService) {
     let getUser = this.profileService.getCurrentUser();
@@ -48,7 +49,14 @@ export class PopupCreateComponent {
 
   send(title) {
     this.details = title;
-    let makeNew = new Album(null, title, [], this.userId);
+    if(this.album.length) {
+      let latest = this.album[this.album.length - 1];
+      this.newAlbumId = latest.id + 1;  
+    }
+    else {
+      this.newAlbumId = 0;
+    }
+    let makeNew = new Album(this.newAlbumId, title, [], this.userId);
     this.album.push(makeNew);  
     this.closePopup();
   }
