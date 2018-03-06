@@ -22,7 +22,6 @@ export class AlbumComponent implements OnInit {
 	public userId: number;
 	public start = 0;
   	public end = 3;
-  	public chosen: boolean = false;
 
 	constructor(private route: ActivatedRoute, private profileService: ProfileService,
 							private ref: ChangeDetectorRef) { }
@@ -54,27 +53,85 @@ export class AlbumComponent implements OnInit {
     }
 
     albumRanger(value) { 
-    	console.log(value)
     	let albumPreview = 1 * value;
-    	if (albumPreview === 1) {
-	    		this.start += 1;
-	    		this.end += 1;
-    				    this.ref.markForCheck();	
-    	}
-    	if (albumPreview === 2) {
-	    		this.start -= 1;
-	    		this.end -= 1;
-    				    this.ref.markForCheck();	
-    	}
-		if (albumPreview === 3) {
-    		this.start = 0;
-    		this.end = this.albums.length;  
-    	}
-    	setTimeout(() => {
-    		this.chosen = false;
-    				    this.ref.markForCheck();	
-    	}, 1100);
-	    this.ref.markForCheck();	
+    	let length = this.albums.length;
+    	switch(albumPreview) {
+		    case 1:
+		        if (length < 6) {
+		    		if(this.end <= length -2) {
+		    			this.start += length - this.end;
+			    		this.end += 2;
+		    		}
+		    		else {
+    		    		this.start += 2;
+		    		}
+    			}
+	    		else {
+			    	let halfish = Math.round(length / 2);
+		    		if(halfish%2 == 0 && length < this.end +3) {
+		    			let compromise = Math.abs(length - this.end);
+		    			this.start += compromise;
+		    			this.end += compromise;
+		    			if(Math.abs(this.start - this.end) <= 2) {
+	    					this.end += Math.abs(this.start - this.end);
+		    			}
+		    			if(Math.abs(this.start - this.end) > 3) {
+		    				this.end -= Math.abs(this.start - this.end);
+		    			}
+		    		}
+		    		else {
+			    		this.start += 3;
+			    		this.end += 3;    			
+		    		}
+	    		}
+			    this.ref.markForCheck();	
+		        break;
+		    case 2:
+		        if(length >= 6 && 0 <= this.start -2) {
+	    			if(0 > this.start -2 ){
+		    			this.start = 0;
+	    			}
+	    			else {
+	    				this.start -= 2;
+	    			}
+	    			this.end -= 2;
+	    		}
+	    		if(this.start == 0 && this.end == length) {
+			    	let halfish = Math.round(length / 2);
+	    			this.end -= halfish; 
+	    			if(Math.abs(this.start - this.end) <= 2) {
+	    				this.end += 1;
+	    			}
+	    			if(Math.abs(this.start - this.end) > 3) {
+	    				this.end -= 1;
+	    			}
+	    		}
+    	    	if(length < 6 && 0 <= this.start -2 && this.end >= this.start +2) {
+    				this.start -= length - this.end;
+	    			this.end -= this.start;
+	    		} 
+		    	if (length < 6 && this.start != 0) {
+		    			this.start -= 2;
+	    				this.end -= 2;
+		    	}
+		    	this.ref.markForCheck();
+		        break;
+	        case 3:
+		        this.start = 0;
+	    		this.end = this.albums.length;  
+			    this.ref.markForCheck();
+		        break;
+		    default:
+				if(this.end > length || this.start < 0) {
+		    		this.start = 0;
+		    		this.end = 3;
+				}
+				if(this.end < 3  || this.start < 0) {
+		    		this.start = 0;
+		    		this.end = 3;
+				}
+			    this.ref.markForCheck();			
+		}		
     }
 
    	deleteAlbum(index) { 

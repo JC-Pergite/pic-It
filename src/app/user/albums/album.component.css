@@ -10,11 +10,6 @@
     padding-bottom: 30pt;   
 }
 
-.choosing {
-    visibility: hidden;
-    display: none;
-}
-
 .albumsHeader {
     position: absolute;
     left: -4%;
@@ -133,7 +128,7 @@ div.moreAlbums.form-group {
     width: 7em;
     font-weight: 500;
     transform: rotate(-90deg);
-    color: dimgray;
+    color: dimgrey;
     border-radius: 4px;
     padding-right: 2px;
     padding-left: 5px;
