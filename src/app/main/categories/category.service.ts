@@ -35,7 +35,6 @@ export class CategoryService {
 
   private currentTrendingSubject: BehaviorSubject<any> = new BehaviorSubject<Photo[]>([]);
   public currentTrendiest = this.currentTrendingSubject.asObservable().distinctUntilChanged();
-  
 
 	constructor (private http: Http) { } 
 

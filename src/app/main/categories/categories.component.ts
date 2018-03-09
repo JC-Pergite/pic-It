@@ -27,6 +27,7 @@ import { Photo } from '../../shared/photo';
       </div>    
     </div>  
     <div class="trending" *ngIf="trender.length">
+      <h2 class="trendHead">Trending</h2>
       <ul class="trendMaster">
         <table class="table table-striped table-hover table-bordered" *ngFor="let trend of trender">
         <thead class="thead-dark">
@@ -96,6 +97,9 @@ export class CategoriesComponent implements OnInit, OnDestroy {
           { 
                        this.getEm.push(categoriess);
                        this.categories = this.getEm[0];
+                       this.categoryService.trending.push(this.categories[0].photos[2], 
+                       this.categories[0].photos[1], this.categories[1].photos[2]);
+                       this.trender = this.categoryService.trending;
                        this.shuffleAway(this.categories); 
                        this.ref.markForCheck(); 
           });
@@ -119,7 +123,8 @@ export class CategoriesComponent implements OnInit, OnDestroy {
           categoryPhotos[randomIndex] = categoryPhotos[j]; 
           categoryPhotos[j] = itemAtIndex;
         }
-          this.trendSetter(categoryPhotos);
+          // this.trendSetter(categoryPhotos);
+          this.ref.markForCheck();  
       } 
     }, 15000);
       return categoryPhotos; 

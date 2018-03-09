@@ -21,6 +21,20 @@ div.trending {
     top: 20.9em;
 }
 
+h2.trendHead {
+	position: relative;
+	color: rgba(39, 37, 38, 0.89);
+    padding-left: 3.5em;
+    padding-top: .6em;
+    width: 11.7em;
+    top: -1em;
+    font-size: 1.8em;
+    font-weight: 400;
+    letter-spacing: .03em;
+    border-top: 1.5px solid rgba(88, 84, 86, 0.9);
+    text-shadow: none !important;
+}
+
 table.table-bordered>tbody>tr>td {
 	padding-bottom: 0px;
 }
@@ -66,6 +80,7 @@ div.categories:nth-child(1) {
 }
 
 .categoryTitle {
+	width: 2em;
     color: rgba(64, 62, 63, 0.89);
     margin-left: 1.2em;
     margin-bottom: -.3em;
@@ -79,9 +94,9 @@ div.categories:nth-child(1) {
 }
 
 .categoryTitle:hover {
-	font-size: 1.9em !important;
+	font-size: 1.8em !important;
 	letter-spacing: -.03em;
-    color: rgba(39, 43, 48, 0.83) !important;
+    color: rgba(39, 43, 48, 0.80) !important;
 } 
 
 h1.coolest {
