@@ -7,29 +7,22 @@ table.table-striped.table-hover.table-bordered {
 }
 
 .table-bordered>thead>tr>th, .table-bordered>thead>tr>td {
-	border-bottom: 1px solid rgba(31, 32, 35, 0.93);
+	border-bottom: 1px solid #272b30;
 }
 
 div.trending {
 	position: absolute;
     width: 19.1%;
-    border: 4px double;
-	box-shadow: 0px 0px 9px 1px #747082;
+    padding-left: 1.5em;
+    border-left: 1.5px solid rgba(88, 84, 86, 0.8);
     height: 100%;
     max-height: max-content;
     right: 51pt;
     top: 20.9em;
-    border-radius: 7px;
 }
 
 table.table-bordered>tbody>tr>td {
 	padding-bottom: 0px;
-}
-
-table.table>tbody>tr.active>td {
-	background-color: rgb(66, 71, 78) !important;
-    font-size: 1.2em;
-    cursor: pointer;
 }
 
 table.table-bordered {
@@ -60,42 +53,36 @@ table.table {
 }
 
 div.categories {
-	margin-left: 77pt;
-    height: 200px;
+	margin-left: 9em;
+    height: 17em;
     width: 52.5%;
-    margin-bottom: 25pt;
-    border-radius: 6px;
-    border: 4px double;
-    padding: 0 0 0 0;
+	margin-bottom: 9em;
+	padding: 0 0 0 0;
     max-width: 60em;
-    color: #2f3a5d;
-	box-shadow: 0px 0px 9px 1px #747082;
-
 }
 
 div.categories:nth-child(1) {
-	margin-top: 15em;
-	margin-bottom: 9em;
+	margin-top: 12em;
 }
 
-div.categoryHeader {
-	position: absolute;
-    margin-top: 6em;
-    height: 200px;
-    left: 6.5em;
-}
-
-h2 {
-	position: relative;
-	color: #f0ad4e;
-	top: -5.2em;
-    left: 1.85em;
-    border: 3px double;
-    border-radius: 5px;
-    border-bottom-width: 4px;
+.categoryTitle {
+    color: rgba(64, 62, 63, 0.89);
+    margin-left: 1.2em;
+    margin-bottom: -.3em;
+    text-shadow: none !important;
     padding: 5px;
     cursor: pointer;
+    font-weight: 300;
+    font-variant: all-small-caps;
+    letter-spacing: .02em;
+    font-size: 2em;
 }
+
+.categoryTitle:hover {
+	font-size: 1.9em !important;
+	letter-spacing: -.03em;
+    color: rgba(39, 43, 48, 0.83) !important;
+} 
 
 h1.coolest {
     font-size: .8em;
@@ -116,14 +103,42 @@ div.categoryPics.flipper {
 	padding-right: 15pt;
 }
 
+div.categoryPics.flipper::before {
+    background: rgba(66, 44, 44, 0.3);
+    border-radius: 6px;
+    content: " " !important;
+    height: 9em;
+    left: 3.7em;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 3.2em;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    width: 9.5em;
+    z-index: 3;
+}
+
+div.categoryPics.flipper:hover::before {
+	-webkit-animation: tapAnimation 0.25s cubic-bezier(0.31, 1, 0.34, 1) forwards;
+    animation: tapAnimation 0.25s cubic-bezier(0.31, 1, 0.34, 1) forwards;
+    animation-name: tapAnimation;
+    animation-duration: 0.25s;
+    animation-timing-function: cubic-bezier(0.31, 1, 0.34, 1);
+    animation-delay: initial;
+    animation-iteration-count: initial;
+    animation-direction: initial;
+    animation-fill-mode: forwards;
+    animation-play-state: initial;
+}
+
 img#img-responsive {
 	width: 170px;
-	height: 150px;
+	height: 150px;	
 	border-radius: 4.5px;
 	perspective: 1000px;
 	-webkit-transform-style: preserve-3d;
 	box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.60);
-    cursor: pointer;
 }
 
 #miniTrender {
@@ -133,6 +148,18 @@ img#img-responsive {
 	border-radius: 3px;
 	box-shadow: 0 5px 13px 0 rgba(240, 248, 255, 0.22);
 	cursor: pointer;
+}
+
+@-webkit-keyframes tapAnimation {
+  100% { -webkit-transform: scale(2);
+  opacity: 1
+  }
+}
+
+@keyframes tapAnimation {
+  100% { transform: scale(2); 
+  opacity: 1;
+  }
 }
 
 @media all and (max-width: 70em) {
@@ -147,15 +174,6 @@ img#img-responsive {
 }
 
 @media all and (max-width: 65em) {
-	div.categories {
-		min-width: 48em;
-		max-width: 52em;
-		height: 16em;
-	}
-	img#img-responsive {
-		width: 130px;
-		height: 110px;	
-	}
 	#miniTrender {
 		width: 60px;
 		height: 50px;
@@ -163,18 +181,6 @@ img#img-responsive {
 }
 
 @media all and (max-width: 53em) {
-	div.categories {
-		min-width: 41em;
-	}
-	img#img-responsive {
-		width: 110px;
-		height: 100px;	
-	}
-	div.categories:nth-child(1) {
-	}
-	div.categoryHeader {
-		left: 6.5em;
-	}
 	div.trending {
 		position: static;
 		margin-top: -38.7em;
@@ -193,7 +199,7 @@ img#img-responsive {
 	}
 	img#img-responsive {
 		width: 190px;
-		height: 150px;	
+		height: 165px;	
 	}
 	div.trending {
 		position: static;

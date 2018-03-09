@@ -54,6 +54,7 @@ h1.album-title {
     font-variant: small-caps;
     padding-left: .3em;
     padding-bottom: .2em;
+    text-decoration: none !important;
 }
 
 button.eliminate {   

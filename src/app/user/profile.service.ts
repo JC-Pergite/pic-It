@@ -46,7 +46,7 @@ import { Photo } from '../shared/photo';
       .post(this.userUrl, body, options)
       .mergeMap(userData => { this.setUser(userData.json().data); 
         return  Observable.of([userData.json().data]) })
-      .do(data => console.log(JSON.parse(JSON.stringify(data))))
+      // .do(data => console.log(JSON.parse(JSON.stringify(data))))
       .catch((error: any) => Observable.throw(error.json().error || 'Server error')) 
   }
 
@@ -57,7 +57,7 @@ import { Photo } from '../shared/photo';
     return this.http
         .post(`${this.albumUrl}`, body, options)
           .map((res:Response) => res.json().data) 
-          .do(data => console.log(JSON.parse(JSON.stringify(data))))
+          // .do(data => console.log(JSON.parse(JSON.stringify(data))))
           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
     }
 
@@ -68,7 +68,7 @@ import { Photo } from '../shared/photo';
       return this.http
         .post(`${this.albumUrl}`, body, options)
           .map((res:Response) => res.json().data as Album) 
-          .do(album => console.log(JSON.parse(JSON.stringify(album))))
+          // .do(album => console.log(JSON.parse(JSON.stringify(album))))
           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   } 
 }

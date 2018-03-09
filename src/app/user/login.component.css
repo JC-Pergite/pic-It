@@ -18,48 +18,34 @@ label.form-control-label.required:after {
 h2.login-header {
   font-size: 5em;
   font-variant: all-small-caps;
-  margin-left: 2.1em;
+  margin-left: 1.9em;
   color: rgba(255, 140, 0, 0.7);
   text-shadow: 4px 3px 2px;
 }
 
 legend.blue {
-    position: relative;
-    left: 9pt;
-    top: -1.5pt;
-    display: block;
-    width: -webkit-min-content;
-    width: -moz-min-content;
-    width: min-content;
-    font-size: 1.5rem;
-    line-height: inherit;
-    color: salmon;
-    text-shadow: 1px 4px 1px #E24456;
-    border-bottom: none;
-    text-align: -webkit-center;
-    padding: 1em;
-     -webkit-animation: blue 3s;
-    -webkit-animation-iteration-count: 1;
+  position: relative;
+  left: 9pt;
+  top: -1.5pt;
+  display: block;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  font-size: 1.5rem;
+  line-height: inherit;
+  color: salmon;
+  text-shadow: 1px 4px 1px #E24456;
+  border-bottom: none;
+  text-align: -webkit-center;
+  padding: 1em;
 }
 
 .ajar {
-    height: 100%;
-    position: relative;
-    width: 100%;
-    min-width: 11em;
-    background-color: rgba(30, 36, 53, 0.98);
-
-}
-
-.agape {
-      transition: transform 3s;
-      transform-style: preserve-3d;
-      transform-origin: left center;
-      transform: rotateY(-45deg);
-      border: 1px solid #8e8c84;
-      box-shadow: inset -9px -7px 16px 2px #b3b1ab;
-      /*transition-delay: 820ms;*/
-      transition: all .1s ease-in;
+  height: 100%;
+  position: relative;
+  width: 100%;
+  min-width: 11em;
+  background-color: rgba(30, 36, 53, 0.98);
 }
 
 div.frame {
@@ -103,21 +89,15 @@ div.frame {
   }
 }
 
-.abrakadabra {
-  z-index: 2;
-  transform: scale(0.9, 2);
-  transition: all .4s ease-in;
-}
-
 div.col-lg-10.col-lg-offset-2 {
   box-shadow: none !important;
 }
 
 div.col-lg-10 {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    padding: 0 0 0 0;
-    width: 80%;
-    left: 10pt;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 0 0 0 0;
+  width: 80%;
+  left: 10pt;
 }
 
 div.email {
@@ -131,24 +111,10 @@ label {
 }
 
 form {
-    margin-top: 13em;
-    margin-left: 30em;
-    width: 70%;
-    padding-left: 50pt;
-}
-
-@-webkit-keyframes blue
-{
-    from {
-        transform: rotate(240deg)
-                   translate(150px)
-                   rotate(-240deg);
-    }
-    to {
-        transform: rotate(600deg)
-                   translate(0px) 
-                   rotate(-600deg);
-    }
+  margin-top: 13em;
+  margin-left: 30em;
+  width: 70%;
+  padding-left: 50pt;
 }
 
 .btn-outline-success {

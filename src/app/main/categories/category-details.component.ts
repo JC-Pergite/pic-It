@@ -12,18 +12,20 @@ import { Photo } from '../../shared/photo';
   <div>
 		<div *ngFor="let type of category | async">
 			<h1 class="type-title">{{type.name}}</h1>
-      <div id="main" class="mainDeets container">
-  			<div *ngFor="let pic of type?.photos" id="pictures">
+  			<div *ngFor="let pic of type?.photos">
   				<ul class="pics"> 
-  					<img [routerLink]="['./' + 'photo/' + pic.id]" src="{{pic.photoUrl}}"
-                  class="img-responsive" alt="Responsive image" (click)="setter(pic)" 
-            /> 
-  	   			<a id="details" [routerLink]="['photo/' + pic.id]" (click)="setter(pic)">
-  	    				{{pic?.name}}
-  	 				</a>
+            <div id="pictures" class="card mb-3 photoDetails" [routerLink]="['photo/' + pic.id]" 
+            (click)="setter(pic)">
+              <img src="{{pic.photoUrl}}" class="img-responsive" alt="Card image" />
+              <div class="card-footer text-muted photoDetails">
+                <h5 class="card-title photoDetails" (click)="setter(pic)">
+                   {{pic?.name}}
+                </h5>
+                <h6 class="card-subtitle text-muted photoDetails">Likes: {{pic?.likes?.likes}}</h6> 
+              </div>
+            </div>  
   				</ul>
   		 	</div>
-		  </div>
     </div>	
   </div>
   `,

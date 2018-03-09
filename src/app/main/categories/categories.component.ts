@@ -10,14 +10,13 @@ import { trigger, state, style, animate, transition,
          keyframes, AnimationEvent, query, stagger } from '@angular/animations';
 import { Photo } from '../../shared/photo';
 
-
 @Component({
   selector: 'pic-it-categories',
   template: `
     <div class="categories" *ngFor="let category of categories; let i = index">
       <div class="categoryHeader">
     	  <a  class="categoryName" (click)="setter(category)">
-          <h2>{{category.name}}</h2>
+          <h2 class="categoryTitle">{{category.name}}</h2>
         </a>
       </div>  
   		<div class="categoryPics flipper" *ngFor="let pic of category.photos | slice:start:end;
@@ -122,7 +121,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
         }
           this.trendSetter(categoryPhotos);
       } 
-    }, 7000);
+    }, 15000);
       return categoryPhotos; 
   }       
 
@@ -133,7 +132,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
         let num = pics[i];
         if(this.categoryService.trending.length >= 5 && num.likes.likes > this.trendiest) {
           this.categoryService.setTrending(pics[i]);
-          this.ref.detectChanges();
+          // this.ref.detectChanges();
         }
       }
       this.trender = this.categoryService.trending;

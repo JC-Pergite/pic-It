@@ -17,7 +17,12 @@ a.photoCategory {
   font-variant: small-caps;
   padding-left: .3em;
   padding-bottom: .2em;
+  text-decoration: none !important;
 }
+
+a.photoCategory:hover {
+  transform: scale(0.95);
+}    
 
 img {
   width: 400px;

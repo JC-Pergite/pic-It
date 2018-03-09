@@ -53,18 +53,23 @@ button.btn.btn-outline-secondary {
 }
 
 a.photoCategory {
-    position: absolute;
-    left: 17em;
-    top: 3.5em;
-    border-top: 1pt solid #90888c;    
-    border-bottom: 1pt solid #90888c;
-    color: #4a4de2;
-    font-size: 3em;
-    font-weight: 200;
-    font-variant: small-caps;
-    padding-left: .3em;
-    padding-bottom: .2em;
+  position: absolute;
+  left: 17em;
+  top: 3.5em;
+  border-top: 1pt solid #90888c;    
+  border-bottom: 1pt solid #90888c;
+  color: #4a4de2;
+  font-size: 3em;
+  font-weight: 200;
+  font-variant: small-caps;
+  padding-left: .3em;
+  padding-bottom: .2em;
+  text-decoration: none !important;
 }
+
+a.photoCategory:hover {
+  transform: scale(0.95);
+}    
 
 .title-container {
   height: 400px;
@@ -359,15 +364,15 @@ button.btn.btn-outline-warning.comment {
 
 .commentary {
   position: relative;
-  margin-bottom: -3.5em !important;
+  margin-bottom: -2.5em !important;
 }
-
-/*.commentary ul.comments:first-of-type {
-    margin-top: -26px;
-}*/
 
 ul.comments:nth-child(1) {
   margin-top: 26px;
+}
+
+ul:first-child::before {
+  content: '';
 }
 
 ul.comments {

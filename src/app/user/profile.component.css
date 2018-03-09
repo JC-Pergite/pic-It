@@ -1,161 +1,125 @@
+.card-footer.createAlbum {
+  position: relative;
+  top: 15em;
+  background-color: transparent;
+}
+
+.card-title.createAlbum{
+  margin-bottom: .75rem;
+  color: rgba(9, 118, 226, 0.77);
+  font-size: 1.7em;
+  text-shadow: none;
+  margin-left: -0.3em;
+}
+
+.card-subtitle.createAlbum {
+  margin-top: -.375rem;
+  position: relative;
+  margin-bottom: 0;
+  margin-left: .5em;
+  top: 4.5em;
+}    
+
 li {
   color: floralwhite !important;
   font-size: 1.5em;
   list-style: none !important;
 }
 
-h3.myBio {
-  color: #f0ad4e;
-  position: absolute;
-  right: -2.9em;
-  top: 2.7em;
-  writing-mode: tb;
-  border-radius: 4px;
-  padding-right: 2px;
-  padding-left: 5px;
-  padding-bottom: 5px;
-  text-indent: 8px;
-  box-shadow: 0 0 2px 3px #f0ad4e;
-  text-shadow: -1px -2px 3px #f0ad4e;
-}
-
 div#bio {
-
-  left: 270pt;
+  left: 10em;
   position: absolute;
-  top: 137pt;
-  height: 193px;
-  width: 500px;
-  word-wrap: break-word;  
+  top: 25%;
+  height: 40%;
+  width: 25em;
+  word-wrap: break-word;
   overflow-wrap: break-word;
-  line-height: 2;
   font-size: 1.3em;
   font-variant: all-small-caps;
   padding: 5em 7em 7em 7em;
-  border-radius: 6px;
-  border: 1px solid aliceblue;
-  box-shadow: 0px 0px 12px 4px aliceblue;
+  border-radius: 6px;    
   text-align: center;
 }
 
-p.bio::first-letter{
-  font-size: 1.8em;
+#bio:hover {
+  box-shadow: 0px 0px 12px 4px gainsboro;
 }
 
-
-.mystic {
-  border: 1px solid #8e8c84;
-  border-bottom-width: medium;
-  border-bottom-color: rgba(24, 30, 47, 0.51);
-  background-color: rgba(30, 36, 53, 0.98);
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  left: .01em;
-  top: .04em;
-  transition: all .1s ease-in;
+p.about {
+  position: relative;
+  top: -2em;
+  color: #79756f;
+  font-size: 1em;
+  font-variant: titling-caps;
+  width: 20em;
+  left: -4.9em;
 }
-
-.poof{
-  transition: transform 3s;
-  transform-style: preserve-3d;
-  transform-origin: left center;
-  transform: rotateY(45deg);
-  box-shadow: inset -9px -7px 16px 2px #b3b1ab;
-  transition: all .1s ease-in;
-}
-
-div.frame {
-  left: -244pt;
-  top: 26pt;
-  background-color: #272b30;
-  border:solid 5vmin #eee;
-  border-bottom-color:#fff;
-  border-bottom-style: groove;
-  border-left-color:#eee;
-  border-left-style: groove;
-  border-radius:2px;
-  border-right-color:#eee;
-  border-right-style: groove;
-  border-top-color:#ddd;
-  border-top-style: groove;
-  box-shadow: 0 0 4px 0 rgba(0,0,0,.20) inset, 0 5px 15px 4px rgba(0,0,0,.25);
-  display:inline-block;
-  margin-left: 308pt;
-  margin-top: 60pt;
-    height: 51vh;
-    width: 15vh;
-    padding: 8vmin;
-    position: absolute;
-  &:before {
-    border-radius:2px;
-    bottom:-2vmin;
-    box-shadow:0 2px 5px 0 rgba(0,0,0,.25) inset;
-    content:"";
-    left:-2vmin;
-    position:absolute;
-    right:-2vmin;
-    top:-2vmin;
-  }
-  &:after {
-    border-radius:2px;
-    bottom:-2.5vmin;
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,.25);
-    content:"";
-    left:-2.5vmin;
-    position:absolute;
-    right:-2.5vmin;
-    top:-2.5vmin;
-  }
-}
-
 
 h2.userName {
-  font-weight: 200;
-  margin-left: 1.74em;
-  font-size: 2em;
-  writing-mode: vertical-rl;
-  text-orientation: upright;
+  top: -1.8em;
+  font-weight: 500;
   letter-spacing: .05em;
   display: block;
   position: relative;
-  width: -webkit-min-content;
-  width: -moz-min-content;
-  width: min-content;
-  padding-top: 1.3em;
-  font-size: 2rem;
-  border-bottom: none;
-  text-align: -webkit-center;
-  color: darksalmon;
+  font-size: 2.5rem;
   font-variant: small-caps;
-  text-shadow: 3px -7px 5px #E24456;
-
+  color: #445365;
+  text-shadow: none !important;
 }
 
-div.newAlbum {
+h2.userName::first-letter{
+  font-size: 2.8rem;
+}
+
+span.quote {
+  font-size: 0.4em;
+  color: #7587f5;
+}
+
+span.quote:after {
+  content: '';
+  width: 100%;
+  height: .8em;
+  display: block;
+}
+
+.card-header {
+  padding: 0 0 0 0 !important;
+  border-bottom: 1.1px groove rgba(99, 57, 57, 0.20);
+  background-color: none !important;
+}
+
+div#newAlbum {
   position: absolute;
-  left: 408pt;
-  top: 275pt;
+  width: 30em;
+  height: 26em;
+  left: 60%;
+  top: 15.5em;
+  background-color: rgba(234, 233, 228, 0.18);
+  border-radius: 4px;
+  box-shadow: -1px 1px 2px 1px #ccc5c5;
 }
 
 input.inputBox {
-  width: 45%;
+  width: 299px;
+  color: whitesmoke;
   position: relative;
-  left: -317pt;
   text-align: center;
-  border-radius: 4px;
-  color: seashell;
-  margin-left: 285pt;
-  margin-top: 35pt;
-  margin-bottom: 3pt;
-  background-color: rgba(41, 42, 43, 0.2);
-  height: 20pt;
-  letter-spacing: .03em;
-  font-weight: lighter;
-}
+  border: 1.5px groove rgba(241, 236, 236, 0.18);
+  background-color: rgba(58, 46, 52, 0.42);
+  height: 27pt;
+  border-radius: 2px;
+  border-bottom-width: 1px;
+  border-bottom-color: #e0dfdf;
+  font-size: 1.2em;
+  font-variant: all-small-caps;
+  letter-spacing: .05em;
+  font-weight: bolder;
+} 
 
 input[type="album"].inputBox::-webkit-input-placeholder {
-  color: gainsboro;
+  color: whitesmoke;
+  font-size: 1.2em;
 }
 
 input[type="album"].inputBox:focus::-webkit-input-placeholder {
@@ -163,42 +127,25 @@ input[type="album"].inputBox:focus::-webkit-input-placeholder {
 }
 
 button.btn.btn-outline-success {
-  left: 2.5em;
+  left: 5.5em;
+  width: 80px;
+  height: 80px;
+  line-height: 50px;
+  border: 2px solid;
+  border-radius: 50%;
   position: relative;
-  border-color: lightseagreen !important;
+  top: 3.2em;
+  text-align: center;
+  font-size: 2em;
+  color: #0976e2;
+  font-weight: 300 !important;
+  border-color: lightseagreen;
+  background-color: #ada7a9;
 }
 
-@media all and (max-height: 32.5em) {
-  h2.userName {
-    margin-left: 1.3em;
-  }
-}
-
-@media all and (max-width: 40em) {
-  div.mystic {
-    left: -.3pt;
-    top: .1pt;  
-  }
-}
-
-@media all and (min-width: 70em) {
-    button.btn.btn-outline-success {
-      left: -46.5em;
-      top: 3.5em;
-    }
-} 
-
-@media all and (max-width: 60.5em) {
-  button.btn.btn-outline-success {
-    left: .5em;
-  }
-}
-
-@media all and (min-height: 40em) and (min-width: 70.1em) {
-  h2.userName {
-    left: -.2pt;
-    font-size: 2.8rem;
-    margin-left: 1.4em;
-    padding-top: 1.8em;
-  }
+button.btn.btn-outline-success:hover {
+  border: 3px dotted !important;
+  background-color: white;
+  border-color: #0976e2 !important;
+  color: lightseagreen !important;
 }

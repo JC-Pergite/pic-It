@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
    	this.userForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(9)]],
-     	bio: ['', [Validators.required, Validators.maxLength(30)]],
+     	bio: ['', [Validators.required, Validators.maxLength(250)]],
      	account: this.fb.group({
        	email: ['', Validators],
        	password: ['', Validators]
@@ -54,9 +54,7 @@ export class LoginComponent implements OnInit {
     this.authService.login().subscribe(() => {
       if (this.authService.isLoggedIn) {
         let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/profile';
-        setTimeout(() => {
-          this.router.navigate([redirect]);
-        }, 3000)
+        this.router.navigate([redirect]);
       }
     });
   }

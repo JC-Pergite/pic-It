@@ -1,41 +1,38 @@
 <div id="albumContainer">
-		<div class="albumsHeader">
-			<h3 class="myAlbums">Albums</h3>
-		</div>
+	<div class="albumsHeader">
+		<h3 class="myAlbums">My Albums</h3>
+	</div>
 	<div class="albums" *ngFor="let collection of albums | slice:start:end; 
 		let i = index; trackBy: albumTracker">
-		<ul>
-			<li class="albumLister" *ngIf="(collection?.photos)?.length != 0; else title" 
-			[routerLink]="['./album/' + collection?.id]">
-				<h4 class="fullAlbumTitle">{{collection?.title}}</h4>
-				<div class="previewer" *ngFor="let pic of collection?.photos | slice:0:4">
-					<img src="{{pic?.photoUrl}}"  alt="Responsive image"  class="albumPreviews" />
-		        </div>      
-			</li>
-			<ng-template #title>
-				<li class="albumLister">
-					<h4 class="emptyAlbumTitle" (mouseover)="hover=true" 
-					(mouseleave)="hover=false">
-						{{collection?.title}}
-					</h4>
-					<div [ngClass]="{'tooltip': hover}">
-						<span *ngIf="hover">So empty inside.. need pics soooon</span>
-					</div>
-				</li>	
-			</ng-template>
-			<button type="button" *ngIf="collection?.user_id == this.userId" 
-					(click)="deleteAlbum(i)" class="btn btn-outline-danger eliminate">
-	        	Eliminate
-	       	</button>
-		</ul>
+		<ul class="albumPreviews">
+				<li class="albumLister" [routerLink]="['./album/' + collection?.id]">
+ 			    <div class="card mb-3 myAlbum _og _2h"> 
+	        		<div class="card-body myAlbum _2h _2j">
+	        			<img src="{{collection?.photos[0]?.photoUrl}}" alt="Empty (o_O)" class="picPreview" />
+	        		</div>
+	        		<div class="card-body myAlbum _2h _5h">
+		        		<img src="{{collection?.photos[1]?.photoUrl}}" alt="Empty (o_O)" class="picPreview" />
+	        		</div>
+		     		<div class="card-body myAlbum _2h _2f _2k">
+			     		<img src="{{collection?.photos[2]?.photoUrl}}" alt="Empty (o_O)" class="picPreview"/>
+		     		</div>
+			        <div class="card-footer myAlbum">
+			          <h4 class="card-title myAlbum">{{collection?.title}}</h4>
+			          <h6 class="card-subtitle text-muted myAlbum">
+			          	Photo Amount: {{collection?.photos.length}}
+			          </h6> 
+			        </div>
+	        	</div>
+	        </li>
+	    </ul>    	
 	</div>	
 	<fieldset>
 		<div class="moreAlbums form-group" *ngIf="albums.length >= 4">
 			<select class="custom-select seeMore" [(ngModel)]="selected.value" 
 				(ngModelChange)="albumRanger(selected.value); selected.value=''" #selected>
 			    <option [disabled]="selected.value == 0" value="0" selected="">See More</option>
-			    <option value="1">Next Three</option>
-			    <option value="2">Prior Three</option>
+			    <option value="1">Next</option>
+			    <option value="2">Prior</option>
 		        <option value="3">Gimme All</option>
 		    </select>
 		</div>
