@@ -44,7 +44,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 	user: User[] = [];
 	@Input() albums: Album[];
 	private alive: boolean = true;
-	public placeAlbum: string = "Add New Album Name";
+	public placeAlbum: string = "Add Album Name";
 
 	constructor(private router: Router, private route: ActivatedRoute,
 				private profileService: ProfileService, public authService: AuthService) { }

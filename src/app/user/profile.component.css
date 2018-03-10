@@ -106,7 +106,9 @@ input.inputBox {
   position: relative;
   text-align: center;
   border: 1.5px groove rgba(241, 236, 236, 0.18);
-  background-color: rgba(58, 46, 52, 0.42);
+  background-color: rgba(54, 58, 63, 0.55);
+  box-shadow: inset -1px 1px 12px 2px #ccc5c5;
+  cursor: pointer;
   height: 27pt;
   border-radius: 2px;
   border-bottom-width: 1px;
