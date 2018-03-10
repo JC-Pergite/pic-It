@@ -32,7 +32,7 @@
           </tr>
         </tbody>
       </table> 
-      <button type="button" *ngIf="comment.user_id === this.userId"
+      <button type="button" *ngIf="comment?.user_id === this.userId"
         (click)="deleteComment(i)" class="btn btn-outline-danger comment">
           X
       </button>

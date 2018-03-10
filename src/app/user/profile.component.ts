@@ -32,10 +32,6 @@ import { Album } from './albums/album';
 						+
 					</button>
 			  </div>
-	        <div class="card-footer createAlbum">
-	        	<h2 class="card-title createAlbum">Create Album</h2>
-	        </div>
-
 			</div>	
 	</div>			
   `,

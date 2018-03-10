@@ -111,7 +111,7 @@ input.inputBox {
   border-radius: 2px;
   border-bottom-width: 1px;
   border-bottom-color: #e0dfdf;
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-variant: all-small-caps;
   letter-spacing: .05em;
   font-weight: bolder;
@@ -119,7 +119,7 @@ input.inputBox {
 
 input[type="album"].inputBox::-webkit-input-placeholder {
   color: whitesmoke;
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
 
 input[type="album"].inputBox:focus::-webkit-input-placeholder {

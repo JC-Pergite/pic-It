@@ -10,23 +10,23 @@ import { Album } from './album';
   selector: 'pic-it-album-details',
   template: `
 	<h1 class="album-title">{{album?.title}}</h1>
-  <div id="main" class="mainDeets container">
 		<div id="albums" *ngFor="let pic of album?.photos; let i = index; trackBy: picsTracker">
 			<ul class="pics">
-				<li>
-					<a class="details" [routerLink]="['./' + 'photo/' + pic.id]">
-						<h3 class="details">{{pic?.name}}</h3>
-					</a>
-					<img [routerLink]="['./' + 'photo/' + pic.id]" src="{{pic?.photoUrl}}"
-		              alt="Responsive image"  id="img-responsive" />
-					<button type="button" *ngIf="album.user_id === this.userId" (click)="deletePhoto(i)"
+			<div id="userAlbum" class="card mb-3 albumDetails" [routerLink]="['photo/' + pic.id]">
+              <img src="{{pic?.photoUrl}}" class="img-responsive" alt="Card image" />
+              <div class="card-footer text-muted albumDetails">
+                <h5 class="card-title albumDetails" (click)="setter(pic)">
+                   {{pic?.name}}
+                </h5>
+                <h6 class="card-subtitle text-muted albumDetails">Likes: {{pic?.likes?.likes}}</h6>
+                <button type="button" *ngIf="album.user_id === this.userId" (click)="deletePhoto(i)"
 				 			class="btn btn-outline-danger eliminate">
 			            Destroy
-			        </button>
-			    <li>    
+			    </button> 
+              </div>
+            </div>  
 			</ul>	
 		</div>
-	</div>
   `,
     styleUrls: ['./album-details.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush  

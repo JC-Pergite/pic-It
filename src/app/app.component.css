@@ -7,9 +7,8 @@
 .navbar-brand {
     color: bisque;
     font-size: 3.6em;
-    font-family: garamond;
+    font-family: Palantino;
     font-style: italic;
-    text-shadow: 3px 3px 3px rgba(0,0,0,0.2);
 }
 
 .nav-tabs>li>a:hover {
@@ -30,8 +29,10 @@ ul.nav.nav-tabs {
 }
 
 a.profile {
-  font-family: fantasy;
+  font-family: Garamond;
+  font-size: 1.1em;
   color: #5167F4;
+  letter-spacing: .02em;
 }
 
 a:focus, a:hover {
@@ -40,7 +41,7 @@ a:focus, a:hover {
 }
 
 a.logout {
-  font-family: fantasy;
+  font-family: Garamond;
   color: #d6514d;
   text-decoration: none;
 }
@@ -52,7 +53,7 @@ a.logout:hover {
 div#bs-example-navbar-collapse.collapse.navbar-collapse {
   position: relative;
   left: 25em;
-  top: .3em;
+  top: .1em;
   font-size: 1.1em;
 }
 

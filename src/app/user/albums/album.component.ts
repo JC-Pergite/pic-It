@@ -44,7 +44,7 @@ export class AlbumComponent implements OnInit {
 
   	albumCreator(title) {
 		let makeNew = new Album(this.id, title, [], this.userId);
-		this.albums.push(makeNew);	
+		this.albums.push(makeNew);
 	    this.ref.markForCheck();	
   	}
 

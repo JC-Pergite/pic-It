@@ -55,14 +55,16 @@ div.card-mb-3 {
     background-color: #e8e3e3;
 }
 
+
 .card-footer.myAlbum {
     background-color: #efefef;
     position: absolute;
-    top: 23em;
+    top: 23.2em;
+    height: 5em;
     width: 100%;
     left: -.05em;
     cursor: pointer;
-    border-radius: 3px;
+    border-radius: 6px;
 }
 
 h4.card-title.myAlbum{
@@ -115,6 +117,13 @@ ul.albumPreviews {
 li.albumLister {
     list-style: none !important;
     padding-bottom: 7em;
+    height: 28.5em;
+    margin-bottom: 2em;
+    border-radius: 6px
+}
+
+li.albumLister:hover {
+    box-shadow: 0px 0px 14px 3px rgba(181, 178, 178, 0.81);
 }
 
 img.picPreview {
@@ -124,15 +133,11 @@ img.picPreview {
     color: #7587f5;
 }
 
-.eliminate {
-    position: absolute;
-    padding-left: 6px;
-    width: 41pt;
+button.eliminate {
+    position: relative;
     border-radius: 4px;
-    right: -4.7em;
-    top: 10pt;
-    writing-mode: vertical-lr;
-    transform: rotate(90deg);
+    top: .9em;
+    left: 16em;
 }
 
 div.moreAlbums.form-group {

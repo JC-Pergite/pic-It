@@ -257,6 +257,7 @@ button.btn.btn-outline-warning#popupNewAlbum.create {
   margin-top: 2.5pt;
   font-size: 1.2em !important;
   color: #f96a46 !important;
+  text-shadow: none !important;
 } 
 
 button.btn.btn-outline-warning#popupNewAlbum.create:hover {
