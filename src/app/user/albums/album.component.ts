@@ -22,6 +22,7 @@ export class AlbumComponent implements OnInit {
 	public userId: number;
 	public start = 0;
   	public end = 3;
+	albumCreated: boolean = false;
 
 	constructor(private route: ActivatedRoute, private profileService: ProfileService,
 							private ref: ChangeDetectorRef) { }
@@ -45,6 +46,11 @@ export class AlbumComponent implements OnInit {
   	albumCreator(title) {
 		let makeNew = new Album(this.id, title, [], this.userId);
 		this.albums.push(makeNew);
+		this.albumCreated = true;		
+		setTimeout(()=> {
+				this.albumCreated = false;
+			    this.ref.markForCheck();	
+			}, 2000);	
 	    this.ref.markForCheck();	
   	}
 

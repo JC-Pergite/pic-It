@@ -63,6 +63,7 @@ a.photoCategory {
   font-weight: 200;
   font-variant: small-caps;
   padding-left: .3em;
+  padding-right: .3em;
   padding-bottom: .2em;
   text-decoration: none !important;
 }
@@ -199,7 +200,7 @@ span.guestLiked {
 
 div#userAlbums  {
   border: 1.2pt solid #868179;
-  top: 15.3em;
+  top: 15em;
   position: absolute;
   border-radius: 8px;
   left: 90em;
@@ -208,7 +209,8 @@ div#userAlbums  {
 }
 
 #userAlbums ul {
-  padding: 0 0 0 0;
+  padding-right: 0px;
+  padding-left: 0px;
 }
 
 #userAlbums li {
@@ -220,8 +222,8 @@ div#userAlbums  {
   font-size: 1.5em;
   margin-right: 0pt;
   margin-left: 0pt;
-  margin-bottom: 5.5pt;
   padding-top: 5pt;
+  padding-bottom: 2em;
   text-align: center;
   border-top: 1.2px solid #868179;
   text-shadow: 2px 2px 3px rgba(0,0,0,0.15);
@@ -232,7 +234,7 @@ div#userAlbums  {
 }
 
 .createAlbum {
-  height: 23pt;
+  height: 3.9em;
   text-align: center;
   border-top: 1px solid #f89406;
 }
@@ -253,8 +255,9 @@ div#userAlbums  {
 button.btn.btn-outline-warning#popupNewAlbum.create {
   background: none;
   border: none; 
-  padding-bottom: 3px;
-  margin-top: 2.5pt;
+  border-radius: 6px;
+  padding-bottom: 4px;
+  margin-top: .5em;
   font-size: 1.2em !important;
   color: #f96a46 !important;
   text-shadow: none !important;
@@ -308,6 +311,10 @@ h4 {
     top: 19em;
     -webkit-padding-before: initial;
 }  
+
+button.collect:focus {
+  outline: none
+}
 
 .collect:hover {
   background-color: #272b30;

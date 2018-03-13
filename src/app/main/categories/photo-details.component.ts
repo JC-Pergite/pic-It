@@ -85,7 +85,7 @@ export class PhotoDetailsComponent implements OnInit, OnDestroy {
         clearInterval(creator);
       }
       this.ref.markForCheck();
-    }, 2500);
+    }, 1500);
     this.ref.markForCheck();
   }
 
@@ -168,8 +168,12 @@ export class PhotoDetailsComponent implements OnInit, OnDestroy {
     for (var i = 0; i < photoLiker.length; i++) {
       let noLikey = photoLiker.indexOf(photoLiker[i]);
       if(noLikey != -1) {
+        this.photos[0].likes.likes -= 1;
+        this.likes = this.photos[0].likes.likes;
         photoLiker.splice(noLikey, 1);
+        this.lovingIt = false;
         this.beenLiked = false;
+        this.whenClicked = [false];
         this.ref.markForCheck();
       }
     }

@@ -1,5 +1,6 @@
 table.table-striped.table-hover.table-bordered {
 	border: none !important;
+	cursor: pointer;
 }
 
 tr {
@@ -32,7 +33,7 @@ div.trending {
 
 h2.trendHead {
 	position: relative;
-	color: rgba(39, 37, 38, 0.89);
+	color: rgba(64, 62, 68, 0.89);
     padding-left: 3.5em;
     padding-top: .6em;
     width: 11.7em;

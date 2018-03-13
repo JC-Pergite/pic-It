@@ -1,3 +1,8 @@
+div.invalid-feedback {
+  color: #d9534f;
+  margin-left: 2em;
+}
+
 label.form-control-label.required:after { 
   content:"  *Required";
   font-size: .8em !important; 

@@ -15,8 +15,7 @@
           <input type="text" class="form-control" id="inputValid"
                placeholder="Username" formControlName="name"/> 
         </div>
-      <div class="invalid-feedback" style="color: #d9534f" 
-          *ngIf="name.invalid && (name.dirty || name.touched)">
+      <div class="invalid-feedback" *ngIf="name.invalid && (name.dirty || name.touched)">
           <div *ngIf="name.errors.required">
             'Name' is required.
           </div>
@@ -51,8 +50,7 @@
         placeholder="Share a few words from the story that is your life ~">
       </textarea>
       </div>
-      <div class="invalid-feedback" style="color: #d9534f" 
-          *ngIf="bio.invalid && (bio.dirty || bio.touched)">
+      <div class="invalid-feedback" *ngIf="bio.invalid && (bio.dirty || bio.touched)">
           <div *ngIf="bio.errors.required">
             'About You' is required.
           </div>

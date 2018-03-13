@@ -175,7 +175,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
       for (const name in this.categories[i]) {
         if (pic.type == this.categories[i][name]) {
           let coolCat = this.categories[i].id;
-          this.categoryService.setCats(this.categories[i]);
+          this.categoryService.setCats(Array(this.categories[i]));
           this.categoryService.setPhotoComments(pic);
           this.router.navigate(['/categories/' + coolCat + '/photo/' + pic.id]);
           this.ref.markForCheck();

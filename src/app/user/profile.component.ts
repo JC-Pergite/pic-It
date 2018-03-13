@@ -58,7 +58,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
 	goGet(info, title) {
 		if(title.length) {
-			this.albumy.albumCreator(title);			
+			this.albumy.albumCreator(title);
 		}
 		else {
 			this.placeAlbum = "Umm..Name Me?";

@@ -1,6 +1,8 @@
 <div id="albumContainer">
 	<div class="albumsHeader">
-		<h3 class="myAlbums">My Albums</h3>
+		<h3 class="myAlbums" [style.color]="albumCreated ? '#23c7b3' : 'rgba(88, 84, 86, 0.8)'">
+			My Albums
+		</h3>
 	</div>
 	<div class="albums" *ngFor="let collection of albums | slice:start:end; 
 		let i = index; trackBy: albumTracker">

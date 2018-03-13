@@ -85,10 +85,22 @@
  </div>        
  <div class="comentator">
     <label><input type="comment" class="inputBox" placeholder="Comment" #newComment /></label>
-    <button type="button" class="btn btn-outline-warning comment"
-        (click)="addComment(newComment.value); newComment.value=''">
-      Post
-    </button>
+    <div *ngIf="!guest; then member else visitor"></div>
+      <ng-template #member>
+        <button type="button" class="btn btn-outline-warning comment"
+          (click)="addComment(newComment.value); newComment.value=''">
+          Post
+        </button>
+      </ng-template>
+      <ng-template #visitor>
+        <button type="button" class="btn btn-outline-warning comment"
+        (mouseover)="noPost=true" (mouseleave)="noPost=false">
+            <span *ngIf="noPost">
+              Please Login First!
+            </span>
+           <span *ngIf="!noPost">Post</span>
+        </button>
+      </ng-template>
   </div>  
     <div class="commentary" *ngFor="let comment of pic?.comments; let odd = odd; let even = even; 
         let i = index; trackBy: trackByFn">
