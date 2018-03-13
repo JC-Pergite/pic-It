@@ -69,11 +69,11 @@
      (click)="whenClicked=!whenClicked" 
        class="btn btn-outline-info likes" [style.display] = "whenClicked ? 'initial' : 'none'"
              (click)="likedBy(pic)">
-             ^
+        <i class="far fa-thumbs-up"></i>
      </button>
      <button *ngIf="beenLiked" type="button" id="noLikey" 
       class="btn btn-outline-danger" [ngClass]="{ 'unlike': hover }" (click)="noBueno(pic)">
-       Unlike
+        <i class="far fa-thumbs-down"></i>
      </button>
      <h3 class="amountLiked" [ngClass]="{ 'liked': lovingIt, 'unlike': hover && beenLiked }">
       {{likes}}

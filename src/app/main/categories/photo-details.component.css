@@ -114,29 +114,24 @@ a.photoCategory:hover {
 #noLikey.btn.btn-outline-danger.unlike {
     display: inherit;
     visibility: visible;
-    left: -57%;
-    top: 1.4em;
+    left: .7em;
+    top: 1em;
     color: #f70b4a;
-    font-size: .9em;
-    font-weight: 300;
+    font-size: 1em;
     position: relative;
     border: none;
-    letter-spacing: .9em;
     background-image: none;
     background-color: transparent;
-    font-variant: petite-caps;
-    transform: rotate(40deg);
 } 
 
 .btn.btn-outline-info.likes {
-    color: mediumslateblue;
+    color: rgba(35, 106, 245, 0.98);
     float: right;
     height: 50.5pt;
     background-image: none;
     background-color: transparent;
     border: none;
-    padding-right: 15px;
-    font-size: .7em;
+    font-size: .75em;
 }    
 
 
@@ -144,10 +139,10 @@ h3.amountLiked {
     border-right: 2px solid #5bc0de;
     border-radius: 5px;
     position: inherit;
-    text-shadow: 1px 1px 3px deepskyblue;
+    text-shadow: 1px 1px 6px deepskyblue;
     font-size: .6em;
     text-align: center;
-    color: cyan;
+    color: #14b4f7;
     height: 100%;
     letter-spacing: -5px;
     padding: 4px 4px 4px 4px;
@@ -160,8 +155,10 @@ h3.amountLiked.unlike {
 }
 
 h3.amountLiked.liked {
-    transition: all 2s ease-in;
-    transform: translate(12px);
+    font-size: .9em;
+    font-weight: 400;
+    transition: all 1.5s ease-in;
+    transform: translate(2px);
     border-right: none; 
 }
 

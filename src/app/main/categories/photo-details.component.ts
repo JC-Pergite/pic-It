@@ -141,12 +141,15 @@ export class PhotoDetailsComponent implements OnInit, OnDestroy {
       photoLiker.push(this.user[0]);
       this.photos[0].likes.likes += 1;
       this.likes = this.photos[0].likes.likes;
+      this.ref.markForCheck();
       if(this.likes > this.trendiest) {
         this.categoryService.setTrending(pic);          
       }
-      this.lovingIt = true;
-      this.beenLiked = true;
-      this.ref.markForCheck();
+      setTimeout(() => {
+        this.lovingIt = true;
+        this.beenLiked = true;
+        this.ref.markForCheck();
+      }, 1500);
     }
     else {
       this.guestLiked = true;
