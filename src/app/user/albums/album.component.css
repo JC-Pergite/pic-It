@@ -1,3 +1,25 @@
+.arrows {
+    font-size: 9em;
+    position: absolute;
+    top: 29%;
+    color: #4ee0d8;
+    cursor: pointer;
+}
+
+div.albumNext.arrows {
+    left: 100%;
+}
+
+#backer:hover {
+    font-size: .9em;
+    color: #5973da;
+}
+
+#nexter:hover {
+    font-size: .9em;
+    color: #5973da;
+}
+
 div.card-mb-3 {
     width: 302px;
     height: 300px;
@@ -119,7 +141,8 @@ li.albumLister {
     padding-bottom: 7em;
     height: 28.5em;
     margin-bottom: 2em;
-    border-radius: 6px
+    border-radius: 6px;
+    cursor: pointer;
 }
 
 li.albumLister:hover {

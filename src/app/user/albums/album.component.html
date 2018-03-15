@@ -4,6 +4,9 @@
 			My Albums
 		</h3>
 	</div>
+	<div (click)="albumRanger(2)" class="albumBack arrows" *ngIf="albums.length >=4 && this.start != 0">
+		<i class="fas fa-caret-left" id="backer"></i>
+	</div>
 	<div class="albums" *ngFor="let collection of albums | slice:start:end; 
 		let i = index; trackBy: albumTracker">
 		<ul class="albumPreviews">
@@ -32,15 +35,8 @@
 	        </li>
 	    </ul>    	
 	</div>	
-	<fieldset>
-		<div class="moreAlbums form-group" *ngIf="albums.length >= 4">
-			<select class="custom-select seeMore" [(ngModel)]="selected.value" 
-				(ngModelChange)="albumRanger(selected.value); selected.value=''" #selected>
-			    <option [disabled]="selected.value == 0" value="0" selected="">See More</option>
-			    <option value="1">Next</option>
-			    <option value="2">Prior</option>
-		        <option value="3">Gimme All</option>
-		    </select>
-		</div>
-	</fieldset>
+	<div (click)="albumRanger(1)" class="albumNext arrows" 
+		*ngIf="albums.length >=4 && albums.length >= this.end + 1">
+		<i class="fas fa-caret-right" id="nexter"></i>
+	</div>
 </div>	

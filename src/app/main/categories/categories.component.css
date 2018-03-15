@@ -121,6 +121,7 @@ div.categoryPics.flipper {
 	top: 17pt;
 	left: 16pt;
 	padding-right: 15pt;
+    cursor: pointer;
 }
 
 div.categoryPics.flipper::before {
@@ -158,7 +159,7 @@ img#img-responsive {
 	border-radius: 4.5px;
 	perspective: 1000px;
 	-webkit-transform-style: preserve-3d;
-	box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.60);
+	box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.62);
 }
 
 #miniTrender {
@@ -183,6 +184,12 @@ img#img-responsive {
 }
 
 @media all and (max-width: 70em) {
+	div.categoryPics.flipper::before { 
+		height: 8.7em;
+	    left: 3.3em;
+	    top: 3.3em;
+	    width: 8.45em;
+	}
 	div.categories {
 		min-width: 54em;
 		width: 48.5%;
@@ -190,6 +197,9 @@ img#img-responsive {
 	img#img-responsive {
 		width: 150px;
 		height: 150px;	
+	}
+	ul.trendMaster {
+	    margin-left: 3em;
 	}
 }
 
@@ -201,18 +211,13 @@ img#img-responsive {
 }
 
 @media all and (max-width: 53em) {
-	div.trending {
-		position: static;
-		margin-top: -38.7em;
-		margin-left: 56em
-	}
 	#miniTrender {
 		width: 50px;
 		height: 50px;
 	}
 }
 
-@media all and (min-width: 75.5em) {
+@media all and (min-width: 75em) {
 	div.categoryPics.flipper::before { 
 		height: 9.5em;
 	    left: 4.2em;
@@ -226,10 +231,5 @@ img#img-responsive {
 	img#img-responsive {
 		width: 190px;
 		height: 165px;	
-	}
-	div.trending {
-		position: static;
-		margin-top: -52.2em;
-		margin-left: 91em
 	}
 }

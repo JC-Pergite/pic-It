@@ -36,24 +36,24 @@ h6.card-subtitle.albumDetails {
     top: 2em;
     margin: -8px;
     padding: 8px;
-    border-radius: 6px;
 }
 
 #userAlbum.albumDetails:hover {
     background-color: rgba(66, 44, 44, 0.07);
-    border-radius: 6px !important;
+    border-radius: 6.5px !important;
 }
 
 #userAlbum.albumDetails::before {
     background: rgba(66, 44, 44, 0.07);
-    border-radius: 6px;
+    box-shadow: 0px 0px 11px 5px gainsboro;
+    border-radius: 4px;
     content: " " !important;
     height: 17.5em;
     left: 6em;
     opacity: 0;
     pointer-events: none;
     position: absolute;
-    top: 7.3em;
+    top: 7.1em;
     -webkit-transform: scale(0);
     transform: scale(0);
     width: 14.5em;
@@ -97,9 +97,9 @@ ul:first-child::before {
 img {
     width: 250px;
     height: 250px;
-    border-radius: 4.5px;
+    border-radius: 5.5px;
     top: 130pt;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
+    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.4);
     cursor: pointer;
 }
 

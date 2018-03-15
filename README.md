@@ -2,7 +2,7 @@
 
 *This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.0.
 
-"Pinterest-like app where you can browse through pictures and create collections of those that you love!"
+"Pinterest-inspired app where you can browse through pictures and create collections of those that you love!"
 
 ## Development server
 

@@ -25,7 +25,7 @@ export class AlbumComponent implements OnInit {
 	albumCreated: boolean = false;
 
 	constructor(private route: ActivatedRoute, private profileService: ProfileService,
-							private ref: ChangeDetectorRef) { }
+				private ref: ChangeDetectorRef) { }
 	
 	ngOnInit(): void {
 		this.user = Array(this.profileService.getCurrentUser());
@@ -61,17 +61,17 @@ export class AlbumComponent implements OnInit {
     albumRanger(value) { 
     	let albumPreview = 1 * value;
     	let length = this.albums.length;
+    	console.log(albumPreview)
     	switch(albumPreview) {
 		    case 1:
-		        if (length < 6) {
-		    		if(this.end <= length -2) {
-		    			this.start += length - this.end;
+		        if (length > 6) {
+			    		this.start += 2;
 			    		this.end += 2;
-		    		}
-		    		else {
-    		    		this.start += 2;
-		    		}
-    			}
+	    		}
+    			if(length < 6 && this.end <= length -1) {
+	    			this.start += length - this.end;
+		    		this.end += 2;
+		    	}
 	    		else {
 			    	let halfish = Math.round(length / 2);
 		    		if(halfish%2 == 0 && length < this.end +3) {
@@ -82,25 +82,29 @@ export class AlbumComponent implements OnInit {
 	    					this.end += Math.abs(this.start - this.end);
 		    			}
 		    			if(Math.abs(this.start - this.end) > 3) {
-		    				this.end -= Math.abs(this.start - this.end);
+		    				this.start -= Math.abs(this.start - this.end);
 		    			}
 		    		}
 		    		else {
 			    		this.start += 3;
-			    		this.end += 3;    			
+			    		this.end += 3;    	
 		    		}
 	    		}
 			    this.ref.markForCheck();	
 		        break;
 		    case 2:
-		        if(length >= 6 && 0 <= this.start -2) {
-	    			if(0 > this.start -2 ){
-		    			this.start = 0;
+		    		        	console.log('f', this.end, this.start)
+
+		        if(length >= 6 && 0 <= this.start -1) {
+		        	console.log('f1', this.end, this.start)
+	    			if(this.start == 1){
+		    			this.start -= 1;
+		    			this.end -= 1;
 	    			}
 	    			else {
 	    				this.start -= 2;
+	    				this.end -= 2;
 	    			}
-	    			this.end -= 2;
 	    		}
 	    		if(this.start == 0 && this.end == length) {
 			    	let halfish = Math.round(length / 2);
@@ -111,14 +115,26 @@ export class AlbumComponent implements OnInit {
 	    			if(Math.abs(this.start - this.end) > 3) {
 	    				this.end -= 1;
 	    			}
+	    				    				    					    		console.log('fish', this.end, this.start)
+
 	    		}
-    	    	if(length < 6 && 0 <= this.start -2 && this.end >= this.start +2) {
-    				this.start -= length - this.end;
-	    			this.end -= this.start;
-	    		} 
-		    	if (length < 6 && this.start != 0) {
-		    			this.start -= 2;
-	    				this.end -= 2;
+    	  //   	if(length > 6 && 0 <= this.start -1 && this.end >= this.start +2) {
+    			// 	this.start -= length - this.end;
+	    		// 	this.end -= this.start;
+	    		// 		    				    					    		console.log('fnew', this.end, this.start)
+
+	    		// } 
+		    	if (length < 6 && this.start >= 1) {
+		    		console.log(this.end, this.start)
+    				this.start -= 1;
+	    			this.end -= 1;
+	    				    					    		console.log('f2', this.end, this.start)
+
+	    			if(this.start == 0 && this.end !== 3) {
+	    				this.end -= 1;
+	    					    					    		console.log('f3', this.end, this.start)
+
+	    			}
 		    	}
 		    	this.ref.markForCheck();
 		        break;

@@ -64,20 +64,24 @@
  <img src={{pic.photoUrl}}/>
  <div>
    <div class="like" (mouseover)="hover=true" 
-            (mouseleave)="hover=false" [ngClass]="{ 'unLike': hover && beenLiked }" >
-     <button type="button" *ngIf="!beenLiked"
-     (click)="whenClicked=!whenClicked" 
-       class="btn btn-outline-info likes" [style.display] = "whenClicked ? 'initial' : 'none'"
-             (click)="likedBy(pic)">
-        <i class="far fa-thumbs-up"></i>
-     </button>
-     <button *ngIf="beenLiked" type="button" id="noLikey" 
-      class="btn btn-outline-danger" [ngClass]="{ 'unlike': hover }" (click)="noBueno(pic)">
-        <i class="far fa-thumbs-down"></i>
-     </button>
+            (mouseleave)="hover=false" [ngClass]="{ 'unLike': hover && beenLiked }">
+     <div class="thumbsUp" [ngClass]="{ 'unlike':  hover && beenLiked }">  
+       <button type="button" *ngIf="!beenLiked"
+       (click)="whenClicked=!whenClicked" 
+         class="btn btn-outline-info likes" [style.display] = "whenClicked ? 'initial' : 'none'"
+               (click)="likedBy(pic)">
+          <i class="far fa-thumbs-up"></i>
+       </button>
+       <button *ngIf="beenLiked" type="button" id="noLikey" 
+        class="btn btn-outline-danger" [ngClass]="{ 'unlike': hover }" (click)="noBueno(pic)">
+          <i class="far fa-thumbs-down"></i>
+       </button>
+      </div> 
+     <div class="likeAmount" [ngClass]="{ 'unlike':  hover && beenLiked }">
      <h3 class="amountLiked" [ngClass]="{ 'liked': lovingIt, 'unlike': hover && beenLiked }">
       {{likes}}
      </h3>
+     </div>
      <span *ngIf="guestLiked" class="guestLiked">Login First</span>
    </div>
    <button type="button" class="btn btn-outline-primary likes" (click)="likers()">Likes</button>

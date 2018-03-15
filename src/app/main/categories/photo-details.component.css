@@ -97,13 +97,12 @@ a.photoCategory:hover {
   font-size:20px;
   position: absolute;
   left: 11.8em;
-  top: 19em;
+  top: 18.75em;
   -webkit-padding-before: initial;
 }
 
 .unLike {   
-  border-color: #fb2d2d !important;
-  background: #313539 !important;
+  border-color: #96062c !important;
 }
 
 #noLikey.btn.btn-outline-danger {
@@ -114,52 +113,94 @@ a.photoCategory:hover {
 #noLikey.btn.btn-outline-danger.unlike {
     display: inherit;
     visibility: visible;
-    left: .7em;
-    top: 1em;
-    color: #f70b4a;
+    left: 16%;
+    top: 50%;
+    color: #ca0c2f;
     font-size: 1em;
-    position: relative;
-    border: none;
+    position: absolute;
+    border-radius: 50%;
     background-image: none;
     background-color: transparent;
+    transform: rotate(180deg);
 } 
+
+.thumbsUp {
+    position: absolute;
+    top: 1.74em;
+    left: .05em;
+    height: 23pt;
+    width: 48pt;
+    background-image: none;
+    background-color: #ffffff;
+    border-right: 1px solid transparent;
+    border-top-color: transparent;
+    border-left: none;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-bottom-left-radius: 8%;
+    border-bottom-right-radius: 0em;
+    border-top-right-radius: 5em;
+    border-top-left-radius: 5em;
+    transform: rotate(180deg);
+}
+
+.thumbsUp.unlike {
+    background-color: transparent;
+}
 
 .btn.btn-outline-info.likes {
     color: rgba(35, 106, 245, 0.98);
-    float: right;
-    height: 50.5pt;
     background-image: none;
     background-color: transparent;
     border: none;
     font-size: .75em;
+    transform: rotate(180deg);
+    float: left;
+    margin-left: 1em;
 }    
 
+.btn.btn-outline-info.likes:hover {
+    font-size: 1em;
+    margin-left: .6em;
+}
 
-h3.amountLiked {
-    border-right: 2px solid #5bc0de;
-    border-radius: 5px;
-    position: inherit;
-    text-shadow: 1px 1px 6px deepskyblue;
-    font-size: .6em;
-    text-align: center;
+.likeAmount{
+    height: 25.5pt;
+    position: relative;
+    top: -0.5em;
+    width: 49.2pt;
+    background-image: none;
+    background-color: #282b31;
+    border-right: 1px solid transparent;
+    border-top-color: transparent;
+    border-left: none;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-bottom-left-radius: 8%;
+    border-bottom-right-radius: 14.8%;
+    border-top-right-radius: 5em;
+    border-top-left-radius: 5em;
     color: #14b4f7;
-    height: 100%;
-    letter-spacing: -5px;
-    padding: 4px 4px 4px 4px;
-    writing-mode: vertical-lr;
-    text-orientation: upright;
 }
 
-h3.amountLiked.unlike {
-  display: none;
+.likeAmount.unlike {
+    display: none;
 }
 
-h3.amountLiked.liked {
-    font-size: .9em;
-    font-weight: 400;
+.amountLiked {
+    letter-spacing: 0.07em;
+    margin-top: 0.74em;
+    padding-top: 1em;
+    text-shadow: 1px 1px 6px #04decf;
+    font-size: .65em;
+    text-align: center;
+}
+
+.amountLiked.liked {
+    font-size: .8em;
+    margin-top: .65em !important;
     transition: all 1.5s ease-in;
     transform: translate(2px);
-    border-right: none; 
 }
 
 span.guestLiked {
@@ -167,11 +208,12 @@ span.guestLiked {
   font-size: .5em;
   display: block;
   width: 66px;
-  height: 66px;
+  height: 63px;
+  top: -4em;
   border-radius: 50%;
   background: #282b31;
   position: relative;
-  padding-top: 5pt;
+  padding-top: 2pt;
   text-indent: 8px;
 }
 
@@ -239,8 +281,8 @@ div#userAlbums  {
 .noAlbumsYet {
   position: relative;
   height: 20pt !important;
-  left: 87em;
-  top: 22.5em;
+  left: 77.1em;
+  top: 31.2em;
   border-bottom: 1px solid #f89406 !important;
   border-radius: 4px;
 }
@@ -305,7 +347,7 @@ h4 {
     font-weight: bold;
     position: absolute;
     left: 40.5em;
-    top: 19em;
+    top: 18.75em;
     -webkit-padding-before: initial;
 }  
 
@@ -334,10 +376,8 @@ span.guestAttempt {
 }
 
 .comentator {
-  margin-bottom: 22pt; 
-  padding-bottom: 2em;
-  margin-left: 3.5em;
-  margin-top: 17em;
+  margin-left: 4.7em;
+  margin-top: 20em;
 }
 
 input.inputBox {
@@ -369,6 +409,7 @@ button.btn.btn-outline-warning.comment {
 
 .commentary {
   position: relative;
+  left: 1.3em;
   margin-bottom: -2.5em !important;
 }
 
@@ -423,8 +464,32 @@ table.table {
   }
 }
 
-@media all and (min-width: 69em) {
-  div.noAlbumsYet {
-    left: 92em;
+@media all and (max-width: 69em) {
+  div.comentator {
+    margin-top: 23em !important;
+  }
+}
+
+@media all and (max-width: 65em) {
+  div.comentator {
+    margin-top: 26em !important;
+  }
+}
+
+@media all and (max-width: 59em) {
+  div.comentator {
+    margin-top: 29em !important;
+  }
+}
+
+@media all and (max-width: 51em) {
+  div.comentator {
+    margin-top: 33em !important;
+  }
+}
+
+@media all and (min-width: 74em) {
+  div.comentator {
+    margin-top: 17.5em;
   }
 }
