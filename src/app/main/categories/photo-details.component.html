@@ -42,7 +42,7 @@
       <li *ngFor="let album of albums" (click)="albumChosen(album)"  
           [ngClass]="{ 'selected': album?.id === selectedAlbum?.id }" 
           [class.addedPulse]="album?.id === choice?.id">
-        <span *ngIf="albums.length">{{album?.title}}</span>
+        <span *ngIf="albums.length" id="myAlbumTitles">{{album?.title}}</span>
       </li>
     </ul>
   </div>

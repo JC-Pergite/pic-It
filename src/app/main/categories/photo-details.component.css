@@ -82,7 +82,7 @@ a.photoCategory:hover {
 }
 
 .selected {
-  background-color: #a9b0e0;
+  background-color: rgba(22, 45, 224, 0.22);
 }
 
 .like {   
@@ -241,13 +241,15 @@ span.guestLiked {
 
 div#userAlbums  {
   border: 1.2pt solid #868179;
-  background-color: rgba(236, 233, 233, 0.03);
-  top: 14.5em;  
+  /*background-color: rgba(236, 233, 233, 0.03);*/
+  background-color: rgba(233, 236, 236, 0.55);
+  top: 14em;  
   position: absolute;
   border-radius: 8px;
   left: 90em;
   width: 20em;
   padding-right: 1px;  
+  box-shadow: inset 0px -1px 5px 0px lightyellow;
 }
 
 #userAlbums ul {
@@ -258,13 +260,14 @@ div#userAlbums  {
 #userAlbums li {
   text-transform: capitalize;
   cursor: pointer;
-  color: rgb(66, 76, 160) !important;
+  /*color: rgb(66, 76, 160) !important;*/
+  color: `#4251ca !important;
   list-style: none;
   height: 2em;
   font-size: 1.4em;
   margin-right: 0pt;
   margin-left: 0pt;
-  padding-top: 5pt;
+  padding-top: 6pt;
   padding-bottom: 2em;
   text-align: center;
   border-top: 1.2px solid #868179;
@@ -272,7 +275,17 @@ div#userAlbums  {
 }
 
 #userAlbums li:hover {
-  background-color: rgba(220, 218, 127, 0.58);
+  background-color: rgba(239, 187, 114, 0.52);
+}
+
+span#myAlbumTitles {
+  box-shadow: inset 0px 0px 12px 4px gainsboro;
+  border-radius: 3px;
+  padding-left: 5.5em;
+  padding-right: 5.5em;
+  padding-bottom: 0.95em;
+  padding-top: .4em;
+  border: none;
 }
 
 .createAlbum {
@@ -329,10 +342,10 @@ h1 {
 }
 
 h4 {   
-    color: rgba(73, 84, 175, 0.94);
-  	font-size: initial;
+    /*color: rgba(73, 84, 175, 0.94);*/
+    color: #f89406;
+  	font-size: 1.5em;
     padding: 8pt 13pt 6pt 12pt;
-    font-variant: all-petite-caps;
     text-align: center;
     border-bottom: 1px solid #E94755;
     text-shadow: 0px 2px 2px rgba(0,0,0,0.1);

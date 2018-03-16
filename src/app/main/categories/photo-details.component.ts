@@ -149,7 +149,7 @@ export class PhotoDetailsComponent implements OnInit, OnDestroy {
         this.lovingIt = true;
         this.beenLiked = true;
         this.ref.markForCheck();
-      }, 500);
+      }, 1000);
     }
     else {
       this.guestLiked = true;
