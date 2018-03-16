@@ -19,6 +19,7 @@ img {
   left: 2.5%;
   top: 12.5em;
   position: absolute; 
+  font-family: 'Taviraj', serif;
 }
 
 button.btn.btn-primary.prior {
@@ -75,7 +76,7 @@ a.photoCategory:hover {
 .title-container {
   height: 400px;
   position: absolute;
-  top: 23em;
+  top: 24em;
   left: 13em;
   padding-top: 5em;
 }
@@ -218,6 +219,7 @@ span.guestLiked {
 }
 
 .btn.btn-outline-primary.likes {
+  font-family: 'Taviraj', serif;
   position: absolute;
   border-radius: 13px;
   top: 46.5em;
@@ -258,7 +260,7 @@ div#userAlbums  {
   color: rgb(66, 76, 160) !important;
   list-style: none;
   height: 2em;
-  font-size: 1.5em;
+  font-size: 1.4em;
   margin-right: 0pt;
   margin-left: 0pt;
   padding-top: 5pt;
@@ -297,9 +299,10 @@ button.btn.btn-outline-warning#popupNewAlbum.create {
   border-radius: 6px;
   padding-bottom: 4px;
   margin-top: .5em;
-  font-size: 1.2em !important;
+  font-size: 1.4em !important;
   color: #f96a46 !important;
   text-shadow: none !important;
+  font-family: 'Forum', cursive;
 } 
 
 button.btn.btn-outline-warning#popupNewAlbum.create:hover {
@@ -317,7 +320,8 @@ h2 {
 h1 {
   color: #c71d49 !important;
   writing-mode: vertical-lr;
-  text-orientation: upright;    
+  text-orientation: upright;  
+  text-indent: -.3em;  
   font-size: 3em;
   font-weight: 100;
   text-shadow: -4px 9px 3px rgba(226, 68, 86, 0.65);
@@ -435,6 +439,7 @@ table.table {
   margin-bottom: -1em !important;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  font-family: 'Taviraj', serif;
 }
 
 .btn.btn-outline-danger.comment {

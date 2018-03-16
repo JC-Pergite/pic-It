@@ -87,6 +87,7 @@ div.card-mb-3 {
     left: -.05em;
     cursor: pointer;
     border-radius: 6px;
+    font-family: 'Cardo', serif;
 }
 
 h4.card-title.myAlbum{
@@ -124,6 +125,7 @@ h6.card-subtitle.text-muted.myAlbum {
 }
 
 h3.myAlbums {
+    font-family: 'Raleway', sans-serif !important;
     color: rgba(88, 84, 86, 0.8);
     text-shadow: none !important;
     margin-left: -5em;

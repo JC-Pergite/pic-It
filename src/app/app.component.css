@@ -1,14 +1,13 @@
 .navbar>.container-fluid .navbar-brand {
     position: relative;
-    left: -9em;
+    left: -9.5em;
     top: .05em;
 }
 
 .navbar-brand {
     color: bisque;
     font-size: 3.6em;
-    font-family: Palantino;
-    font-style: italic;
+    font-family: 'Monoton', cursive;
 }
 
 .nav-tabs>li>a:hover {
@@ -29,21 +28,24 @@ ul.nav.nav-tabs {
 }
 
 a.profile {
-  font-family: Garamond;
-  font-size: 1.1em;
-  color: #5167F4;
-  letter-spacing: .02em;
+  font-family: 'Taviraj', serif;
+  font-size: .8em;
+  color: #fba66e;
+  letter-spacing: .02em; 
+  box-shadow: inset 1px 1px 0px 0px rgba(236, 232, 228, 0.97); 
 }
 
 a:focus, a:hover {
-  color: deepskyblue;
+  color: #f9ab4b;
   text-decoration: none;
 }
 
 a.logout {
-  font-family: Garamond;
+  font-family: 'Taviraj', serif;
+  font-size: .8em;
   color: #d6514d;
   text-decoration: none;
+  box-shadow: inset 1px 1px 0px 0px rgba(236, 232, 228, 0.97); 
 }
 
 a.logout:hover {
@@ -53,7 +55,7 @@ a.logout:hover {
 div#bs-example-navbar-collapse.collapse.navbar-collapse {
   position: relative;
   left: 25em;
-  top: .1em;
+  top: .3em;
   font-size: 1.1em;
 }
 

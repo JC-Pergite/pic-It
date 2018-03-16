@@ -5,7 +5,9 @@ table.table-striped.table-hover.table-bordered {
 
 tr {
     border-radius: 4px;
+    font-family: 'Cardo', serif; 
 }
+
 
 tr:hover {
     box-shadow: 0px 0px 12px 2px rgba(181, 178, 178, 0.71);
@@ -38,8 +40,9 @@ h2.trendHead {
     padding-top: .6em;
     width: 11.7em;
     top: -1em;
-    font-size: 1.8em;
-    font-weight: 400;
+    font-size: 1.7em;
+    font-weight: 600;
+    font-family: 'Taviraj', serif;
     letter-spacing: .03em;
     border-top: 1.5px solid rgba(88, 84, 86, 0.9);
     text-shadow: none !important;
@@ -97,7 +100,8 @@ div.categories:nth-child(1) {
     text-shadow: none !important;
     padding: 5px;
     cursor: pointer;
-    font-weight: 300;
+	font-weight: 600;
+    font-family: 'Taviraj', serif;
     font-variant: all-small-caps;
     letter-spacing: .02em;
     font-size: 2em;
@@ -113,6 +117,7 @@ h1.coolest {
     font-size: .8em;
     color: #f0ad4e;
     font-style: italic;
+    font-family: 'Cardo', serif;
 }
 
 div.categoryPics.flipper {

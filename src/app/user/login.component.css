@@ -21,25 +21,27 @@ label.form-control-label.required:after {
 }
 
 h2.login-header {
-  font-size: 5em;
+  font-size: 6em;
+  font-family: 'Rokkitt', serif;
   font-variant: all-small-caps;
-  margin-left: 1.9em;
+  margin-left: 1.3em;
   color: rgba(255, 140, 0, 0.7);
-  text-shadow: 4px 3px 2px;
+  text-shadow: 5px 5px 4px;
 }
 
 legend.blue {
   position: relative;
   left: 9pt;
-  top: -1.5pt;
+  top: -3.5pt;
   display: block;
   width: -webkit-min-content;
   width: -moz-min-content;
   width: min-content;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
+  font-family: 'Iceland', cursive;
   line-height: inherit;
-  color: salmon;
-  text-shadow: 1px 4px 1px #E24456;
+  color: #f38b7f;
+  text-shadow: 1px 3px 1px #E24456;
   border-bottom: none;
   text-align: -webkit-center;
   padding: 1em;
@@ -54,7 +56,7 @@ legend.blue {
 }
 
 div.frame {
-  left: -5em;
+  left: -4em;
   padding: none;
   height: 26vh;
   top: 17em;

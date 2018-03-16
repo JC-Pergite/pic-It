@@ -46,6 +46,7 @@ div#bio {
 }
 
 p.about {
+  font-family: 'Raleway', sans-serif;
   position: relative;
   top: -2em;
   color: #79756f;
@@ -62,8 +63,9 @@ h2.userName {
   display: block;
   position: relative;
   font-size: 2.5rem;
-  font-variant: small-caps;
-  color: #445365;
+  font-family: 'Bilbo Swash Caps', cursive;
+  font-variant: small-caps; 
+  color: #2c3f56;
   text-shadow: none !important;
 }
 
@@ -72,8 +74,9 @@ h2.userName::first-letter{
 }
 
 span.quote {
-  font-size: 0.4em;
+  font-size: 0.6em;
   color: #7587f5;
+  font-family: 'Forum', cursive;
 }
 
 span.quote:after {
@@ -101,6 +104,7 @@ div#newAlbum {
 }
 
 input.inputBox {
+  font-family: 'Rokkitt', serif;
   width: 299px;
   color: whitesmoke;
   position: relative;
@@ -113,15 +117,15 @@ input.inputBox {
   border-radius: 2px;
   border-bottom-width: 1px;
   border-bottom-color: #e0dfdf;
-  font-size: 1.1em;
+  font-size: 1.2em;
   font-variant: all-small-caps;
-  letter-spacing: .05em;
+  letter-spacing: .02em;
   font-weight: bolder;
 } 
 
 input[type="album"].inputBox::-webkit-input-placeholder {
   color: whitesmoke;
-  font-size: 1.1em;
+  font-size: 1.2em;
 }
 
 input[type="album"].inputBox:focus::-webkit-input-placeholder {

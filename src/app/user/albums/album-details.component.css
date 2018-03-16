@@ -1,4 +1,5 @@
 .card-footer.albumDetails {
+    font-family: 'Cardo', serif;
     margin-top: 1em;
     height: 4.5em;
     background-color: transparent;
@@ -11,7 +12,7 @@ h5.card-title.albumDetails {
     margin-bottom: .75rem;
     position: relative;
     top: 0.3em;
-    color: #0275d8!important;
+    color: #2e9dd6 !important;    
     font-size: 1.2em;
     font-weight: 400;
     font-variant: all-small-caps;
