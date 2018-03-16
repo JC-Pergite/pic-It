@@ -30,21 +30,19 @@ import { Photo } from '../../shared/photo';
       <h2 class="trendHead">Trending</h2>
       <ul class="trendMaster">
         <table class="table table-striped table-hover table-bordered" *ngFor="let trend of trender">
-        <thead class="thead-dark">
-          <tr>
-            <th>
-              <img src="{{trend.photoUrl}}" alt="Responsive image" id="miniTrender"
-              (click)="trends(trend)">
-            </th>
-          </tr>
-        </thead>
-         <tbody>
-            <tr class="active">
-              <td (click)="trends(trend)">
-                 <h1 class="coolest">{{trend.type}}: </h1>{{trend.name}}
-             </td>
+          <thead class="thead-dark">
+            <tr (click)="trends(trend)">
+              <th>
+                <img src="{{trend.photoUrl}}" alt="Responsive image" id="miniTrender">
+              </th>
+                <td>
+                  {{trend.type}}
+                  <br><br>
+                  <i [ngClass]="iconify(trend.type)" id="trendType"></i>
+                  <h1 class="coolest">{{trend.name}}</h1>
+                </td>
             </tr>
-          </tbody>
+          </thead>
         </table> 
       </ul>
     </div>
@@ -84,6 +82,21 @@ export class CategoriesComponent implements OnInit, OnDestroy {
   @Input() category: Category;
   thePic: Photo[] = [];
   private alive: boolean = true;
+  food = "fas fa-utensils";
+  voyage = "fas fa-plane";
+  public iconify(trendType) {
+    switch(trendType) {
+        case 'Culinary':
+           trendType = this.food;
+        break;
+        case 'Travel':
+          trendType = this.voyage;
+        break;
+        default:
+        trendType = "fas fa-smile";
+    }
+    return trendType
+  }  
 
   constructor(private route: ActivatedRoute, private categoryService: CategoryService,
     private ref: ChangeDetectorRef, private router: Router) { 

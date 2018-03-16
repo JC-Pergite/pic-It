@@ -35,7 +35,7 @@ div.modal.create {
 }
 
 div.modal-content.create {
-	background: none !important;
+    background-color: rgba(236, 233, 233, 0.03);
     border-radius: 14px !important;
 }
 

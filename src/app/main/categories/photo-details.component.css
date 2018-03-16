@@ -241,7 +241,8 @@ span.guestLiked {
 
 div#userAlbums  {
   border: 1.2pt solid #868179;
-  top: 15em;
+  background-color: rgba(236, 233, 233, 0.03);
+  top: 14.5em;  
   position: absolute;
   border-radius: 8px;
   left: 90em;

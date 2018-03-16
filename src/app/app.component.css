@@ -1,6 +1,6 @@
 .navbar>.container-fluid .navbar-brand {
     position: relative;
-    left: -9.5em;
+    left: -10.5em;
     top: .05em;
 }
 
@@ -36,7 +36,7 @@ a.profile {
 }
 
 a:focus, a:hover {
-  color: #f9ab4b;
+  color: #f3b00f;
   text-decoration: none;
 }
 
@@ -94,7 +94,7 @@ div#bs-example-navbar-collapse.collapse.navbar-collapse {
 
 @media all and (max-width: 72em) {
   .navbar>.container-fluid .navbar-brand {
-    left: -8.3em;
+    left: -9.3em;
   }
 }
 
@@ -103,7 +103,7 @@ div#bs-example-navbar-collapse.collapse.navbar-collapse {
     width: 1032px;
   }
   .navbar>.container-fluid .navbar-brand {
-    left: -6.8em;
+    left: -8.5em;
   }
   div#bs-example-navbar-collapse.collapse.navbar-collapse {
     left: 20em;
@@ -112,6 +112,6 @@ div#bs-example-navbar-collapse.collapse.navbar-collapse {
 
 @media all and (min-width: 75em) {
   .navbar>.container-fluid .navbar-brand {
-    left: -9.7em;
+    left: -10.7em;
   }
 }

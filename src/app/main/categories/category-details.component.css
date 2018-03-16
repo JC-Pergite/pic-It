@@ -110,6 +110,8 @@ img {
     font-weight: 200;
     font-variant: small-caps;
     text-align: center;
+    padding-left: .3em;
+    padding-right: .3em;
     padding-top: .2em;
     padding-bottom: .2em;
     text-decoration: none !important;
