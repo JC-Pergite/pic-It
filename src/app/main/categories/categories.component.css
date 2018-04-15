@@ -52,7 +52,7 @@ h2.trendHead {
     font-weight: 600;
     font-family: 'Taviraj', serif;
     letter-spacing: .03em;
-    border-top: 1.5px solid rgba(88, 84, 86, 0.9);
+    border-top: 1.5px solid rgba(88, 84, 86, 0.6);
     text-shadow: none !important;
 }
 
@@ -114,6 +114,7 @@ div.categories:nth-child(1) {
     font-family: 'Taviraj', serif;
     letter-spacing: .03em;
     font-size: 1.7em;
+    text-indent: .2em;
 }
 
 .categoryTitle:hover {
@@ -175,7 +176,7 @@ img#img-responsive {
 	width: 170px;
 	height: 150px;	
 	border-radius: 4.5px;
-	perspective: 1000px;
+	perspective: 800px;
 	-webkit-transform-style: preserve-3d;
 	box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.62);
 }

@@ -35,13 +35,14 @@ export class PhotoDetailsComponent implements OnInit, OnDestroy {
   whenClicked = [true];
   private beenLiked: boolean = false;
   private lovingIt: boolean = false;
-  private noMore: boolean;
-  private noLess: boolean;
+  public noMore: boolean;
+  public noLess: boolean;
   currentCategory: Category[] = [];
-  private guest: boolean = true;
+  public guest: boolean = true;
   private guestLiked: boolean = false;
   private guestAttempted: boolean = false;
   popup: boolean = false;
+  noAlbumSelected: boolean;
 
   constructor(private route: ActivatedRoute, private categoryService: CategoryService, 
               private profileService: ProfileService, private ref: ChangeDetectorRef, 
@@ -157,7 +158,7 @@ export class PhotoDetailsComponent implements OnInit, OnDestroy {
          this.guestLiked = false;  
          this.whenClicked = [true];
          this.ref.markForCheck();
-      }, 2000);
+      }, 2500);
       this.ref.markForCheck();
     }
   }
@@ -183,6 +184,12 @@ export class PhotoDetailsComponent implements OnInit, OnDestroy {
   }
 
   addPhoto(newPhoto): void { 
+    if (this.selectedAlbum == undefined) {
+        setTimeout(() => {
+          this.noAlbumSelected = true;
+          this.ref.markForCheck();
+        }, 1500);   
+    };
     if (!this.guest) {
       if(this.selectedAlbum.photos.find((photo: Photo) => photo.name === newPhoto.name )) {   
           console.log("Whoops; duplicate!");
@@ -213,7 +220,7 @@ export class PhotoDetailsComponent implements OnInit, OnDestroy {
          this.guestAttempted = false;  
          this.whenClicked = [true];
          this.ref.markForCheck();
-      }, 2000);
+      }, 2500);
       this.ref.markForCheck();
     }
   }

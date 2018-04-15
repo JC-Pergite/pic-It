@@ -42,7 +42,6 @@ export class CategoryService {
  setTrending(trends) { 
     let doppleganger = false;
     if(this.trending.find((photo: Photo) => photo.id === trends.id)) {       
-        console.log("Whoops; doppleganger!");
         doppleganger = true;
     }
     else {
@@ -55,12 +54,10 @@ export class CategoryService {
         console.log('Not cool enough');
       }   
       else {
-        console.log('Trendy!');
         if (!doppleganger && this.trending.length === 5){  
           for (var i = 0; i < this.trending.length; i++) {
              if (this.trending[i].likes.likes > this.coolLimiterSubject.value){ 
               let surpassed = this.trending.indexOf(this.trending[i]);
-              console.log(this.trending[i].name + ' has been SURPASSED!');
               this.trending.splice(surpassed, 1, trends);
               this.topRanks.push(trends.likes.likes);
               this.currentTrendingSubject.next(this.trending);
@@ -116,7 +113,7 @@ export class CategoryService {
       this.setAllCats(<Category[]>res.json().data as Category[]) ;
       return this.allCats;
     })      
-      .do(categories => console.log(JSON.parse(JSON.stringify(categories))))
+      // .do(categories => console.log(JSON.parse(JSON.stringify(categories))))
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));  
   }
 
@@ -127,7 +124,7 @@ export class CategoryService {
   return this.http
     .put(`${this.photoUrl}/${body['id']}`, body, options)
       .map((res:Response) => <Photo>res.json().data as Photo) 
-      .do(photo => console.log(JSON.parse(JSON.stringify(photo))))
+      // .do(photo => console.log(JSON.parse(JSON.stringify(photo))))
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
@@ -135,11 +132,10 @@ export class CategoryService {
     return this.http
     .get('/pic-it/categories/' + id) 
     .mergeMap((res:Response) => {
-      console.log(this.currentSubject.value);
       this.setCats( Array(<Category[]>res.json().data as Category[]) );
       return this.currentCats;
     })
-      .do(category => console.log(JSON.parse(JSON.stringify(category))))
+      // .do(category => console.log(JSON.parse(JSON.stringify(category))))
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'))    
   }
 

@@ -1,7 +1,9 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <h1 class="navbar-brand">Pic-It!</h1>
+      <a [routerLink]="['/categories']" data-toggle="tab">
+        <h1 class="navbar-brand">Pic-It!</h1>
+      </a>
     </div>
     <div *ngIf="!authService.isLoggedIn; then guest else member"></div>
     <ng-template #guest>

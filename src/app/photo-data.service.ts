@@ -28,8 +28,16 @@ export class PhotoDataService implements InMemoryDbService {
 			  									    { id: 4, name: 'Truffle Spaghettini', type: 'Culinary', photoUrl: 'http://cdn.ltstatic.com/2015/July/SC454592_942long.jpg', comments: [{id: 0, content: 'Benissimo!!!', photo_id: 15}, {id: 1, content: 'Tartuffi & Friends?! LOVE this place!', photo_id: 15}, {id: 2, content: "C'est magnifique", photo_id: 15}], likes: {likes: 7, user_id: []}}, 
 													{ id: 5, name: 'Mille-feuille', type: 'Culinary', photoUrl: 'https://ganachepatisserie.com.au/wp-content/uploads/2017/05/millefeuille.jpg', comments: [{id: 0, content: 'Vraiment superbe!', photo_id: 12}], likes: {likes: 7, user_id: []}},
 	  									   		    { id: 6, name: 'Rainbow Carrots', type: 'Culinary', photoUrl: 'https://www.naturenates.com/wp-content/uploads/RainbowSalad.jpg_1456461904_5659.jpeg', comments: [{id: 0, content: 'Yummm!', photo_id: 14}], likes: {likes: 3, user_id: []}}
-
-  									   			] }
+  									   			] },
+			{ id: 2, name: 'Architecture', photos: [  
+		  											{ id: 0, name: '', type: 'Architecture', photoUrl: '', comments: [{id: 0, content: '', photo_id: 18}], likes: {likes: 2, user_id: []}},
+		  											{ id: 1, name: '', type: 'Architecture', photoUrl: '', comments: [{id: 0, content: '', photo_id: 19}], likes: {likes: 8, user_id: []}},
+		  											{ id: 2, name: '', type: 'Architecture', photoUrl: '', comments: [{id: 0, content: '', photo_id: 20}], likes: {likes: 6, user_id: []}},
+		  											{ id: 3, name: '', type: 'Architecture', photoUrl: '', comments: [{id: 0, content: '', photo_id: 21}], likes: {likes: 11, user_id: []}},
+		  											{ id: 4, name: '', type: 'Architecture', photoUrl: '', comments: [{id: 0, content: '', photo_id: 22}], likes: {likes: 5, user_id: []}},
+		  											{ id: 5, name: '', type: 'Architecture', photoUrl: '', comments: [{id: 0, content: '', photo_id: 23}], likes: {likes: 7, user_id: []}}
+  										   		   ] 
+	   		}
 		];
 		return { users, albums, photos, categories };
 	}

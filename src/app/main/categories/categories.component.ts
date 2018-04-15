@@ -73,7 +73,7 @@ import { Photo } from '../../shared/photo';
 })
 export class CategoriesComponent implements OnInit, OnDestroy {
   private trendiest: number;
-  private trender: Photo[] = [];
+  public trender: Photo[] = [];
   @Input() categories: Category[] = []; 
   private start = 0;
   private end = 3;
@@ -136,10 +136,9 @@ export class CategoriesComponent implements OnInit, OnDestroy {
           categoryPhotos[randomIndex] = categoryPhotos[j]; 
           categoryPhotos[j] = itemAtIndex;
         }
-          // this.trendSetter(categoryPhotos);
           this.ref.markForCheck();  
       } 
-    }, 15000);
+    }, 5000);
       return categoryPhotos; 
   }       
 
@@ -150,7 +149,6 @@ export class CategoriesComponent implements OnInit, OnDestroy {
         let num = pics[i];
         if(this.categoryService.trending.length >= 5 && num.likes.likes > this.trendiest) {
           this.categoryService.setTrending(pics[i]);
-          // this.ref.detectChanges();
         }
       }
       this.trender = this.categoryService.trending;

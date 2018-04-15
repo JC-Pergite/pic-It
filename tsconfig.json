@@ -16,5 +16,10 @@
       "es2016",
       "dom"
     ]
-  }
+  },
+  "angularCompilerOptions": { 
+    "debug": true,                        
+    "genDir": "./dist",
+    "entryModule": "./src/app/app.module#AppModule"
+  }  
 }

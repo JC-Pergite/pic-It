@@ -1,13 +1,13 @@
 .navbar>.container-fluid .navbar-brand {
-    position: relative;
-    left: -10.5em;
-    top: .05em;
+  position: relative;
+  left: -10.5em;
+  top: .05em;
 }
 
 .navbar-brand {
-    color: bisque;
-    font-size: 3.6em;
-    font-family: 'Monoton', cursive;
+  color: bisque;
+  font-size: 3.6em;
+  font-family: 'Monoton', cursive;
 }
 
 .nav-tabs>li>a:hover {
@@ -32,10 +32,9 @@ a.profile {
   font-size: .8em;
   color: #fba66e;
   letter-spacing: .02em; 
-  box-shadow: inset 1px 1px 0px 0px rgba(236, 232, 228, 0.97); 
 }
 
-a:focus, a:hover {
+a.profile:focus, a.profile:hover {
   color: #f3b00f;
   text-decoration: none;
 }
@@ -49,7 +48,9 @@ a.logout {
 }
 
 a.logout:hover {
-  cursor: pointer
+  cursor: pointer;
+  color: #7f7d74;
+  text-decoration: none;
 }
 
 div#bs-example-navbar-collapse.collapse.navbar-collapse {

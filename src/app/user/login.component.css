@@ -16,8 +16,10 @@ label.form-control-label.required:after {
 
 .login-page {
   position: absolute;
-  left: 46em;
-  top: 9em;
+  left: 6em;
+  top: 22em;
+  writing-mode: vertical-lr;
+  text-orientation: upright;
 }
 
 h2.login-header {
@@ -26,74 +28,7 @@ h2.login-header {
   font-variant: all-small-caps;
   margin-left: 1.3em;
   color: rgba(255, 140, 0, 0.7);
-  text-shadow: 5px 5px 4px;
-}
-
-legend.blue {
-  position: relative;
-  left: 9pt;
-  top: -3.5pt;
-  display: block;
-  width: -webkit-min-content;
-  width: -moz-min-content;
-  width: min-content;
-  font-size: 1.8rem;
-  font-family: 'Iceland', cursive;
-  line-height: inherit;
-  color: #f38b7f;
-  text-shadow: 1px 3px 1px #E24456;
-  border-bottom: none;
-  text-align: -webkit-center;
-  padding: 1em;
-}
-
-.ajar {
-  height: 100%;
-  position: relative;
-  width: 100%;
-  min-width: 11em;
-  background-color: rgba(30, 36, 53, 0.98);
-}
-
-div.frame {
-  left: -4em;
-  padding: none;
-  height: 26vh;
-  top: 17em;
-  background-color: #272b30;
-  border:solid 5vmin #eee;
-  border-bottom-color:#fff;
-  border-bottom-style: groove;
-  border-left-color:#eee;
-  border-left-style: groove;
-  border-radius:2px;
-  border-right-color:#eee;
-  border-right-style: groove;
-  border-top-color:#ddd;
-  border-top-style: groove;
-  box-shadow: 0 0 4px 0 rgba(0,0,0,.20) inset, 0 5px 15px 4px rgba(0,0,0,.25);
-  display:inline-block;
-  margin:11vh 11vw;
-  position: absolute;
-  &:before {
-    border-radius:2px;
-    bottom:-2vmin;
-    box-shadow:0 2px 5px 0 rgba(0,0,0,.25) inset;
-    content:"";
-    left:-2vmin;
-    position:fixed;
-    right:-2vmin;
-    top:-2vmin;
-  }
-  &:after {
-    border-radius:2px;
-    bottom:-2.5vmin;
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,.25);
-    content:"";
-    left:-2.5vmin;
-    right:-2.5vmin;
-    top:-2.5vmin;
-  }
+  text-shadow: 2px -6px 6px;
 }
 
 div.col-lg-10.col-lg-offset-2 {
@@ -134,40 +69,9 @@ form {
   color: white;
 }
 
-@media all and (max-height: 30em) {
-  legend.blue {
-    font-size: 1rem;
-    left: 21pt;
-  }
-}
-
-@media all and (max-height: 40em) {
- div.frame {
-    top: 19.5em;
-  }
-  legend.blue {
-  font-size: 1.3rem;
-  left: 15pt;
-  }
-}
-
-@media (min-height: 41em) {
-  div.frame {
-    top: 16.5em;
-  }
-}
-
-
 @media all and (max-width: 33em) {
   form {
     padding-left: 0;
-  }
-  .login-page {
-    left: 19.5em;
-  }
-
-   div.frame {
-    top: 20.5em;
   }
 }
 
@@ -189,9 +93,6 @@ form {
   .col-lg-2 {
       max-width: none !important;
     }
-  .login-page {
-      left: 49em;
-    } 
 }
 
 @media all and (min-width: 75em) {

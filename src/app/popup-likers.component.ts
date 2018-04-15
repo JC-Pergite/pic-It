@@ -63,7 +63,7 @@ import { Photo } from './shared/photo';
 export class PopupLikersComponent { 
   @HostBinding('style.display')   display = 'block';
   @HostBinding('style.position')  position = 'absolute';
-  @Input() photo: Photo[];
+  @Input() photo: Photo;
 
   constructor(private router: Router, private categoryService: CategoryService) {
     let currentPic = this.categoryService.getCurrentComments();

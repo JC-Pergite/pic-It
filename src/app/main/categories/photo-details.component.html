@@ -58,7 +58,8 @@
  <div>
   <button type="button" class="collect" (click)="addPhoto(pic)">
     +
-   <span *ngIf="guestAttempted" class="guestAttempt">Login First</span>
+   <span *ngIf="guestAttempted" class="guestAttempt" [routerLink]="['/login']">Login First</span>
+   <span *ngIf="!guest && noAlbumSelected" class="guestAttempt">Pick Album</span>
   </button>
  </div> 
  <img src={{pic.photoUrl}}/>
@@ -82,7 +83,7 @@
       {{likes}}
      </h3>
      </div>
-     <span *ngIf="guestLiked" class="guestLiked">Login First</span>
+     <span *ngIf="guestLiked" class="guestLiked" [routerLink]="['/login']">Login First</span>
    </div>
    <button type="button" class="btn btn-outline-primary likes" (click)="likers()">Likes</button>
            <router-outlet name="likersPopUp"></router-outlet>

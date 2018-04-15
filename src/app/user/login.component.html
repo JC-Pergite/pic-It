@@ -3,11 +3,6 @@
 </div>
 <form class="form-horizontal" novalidate (ngSubmit)="onSubmit(userForm)" [formGroup]="userForm">
   <fieldset>
-  <div class="frame">
-    <div class="ajar">
-        <legend class="blue"><b>Who Art Thou?</b></legend>
-    </div>
-  </div>  
     <div class="form-group name" 
       [ngClass]="{'has-success': name.valid, 'has-danger': name.invalid && (name.dirty || name.touched)}">
       <label for="name" class="col-lg-2 form-control-label required">Name</label>
