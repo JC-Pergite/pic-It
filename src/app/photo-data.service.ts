@@ -29,7 +29,7 @@ export class PhotoDataService implements InMemoryDbService {
 													{ id: 5, name: 'Mille-feuille', type: 'Culinary', photoUrl: 'https://ganachepatisserie.com.au/wp-content/uploads/2017/05/millefeuille.jpg', comments: [{id: 0, content: 'Vraiment superbe!', photo_id: 12}], likes: {likes: 7, user_id: []}},
 	  									   		    { id: 6, name: 'Rainbow Carrots', type: 'Culinary', photoUrl: 'https://www.naturenates.com/wp-content/uploads/RainbowSalad.jpg_1456461904_5659.jpeg', comments: [{id: 0, content: 'Yummm!', photo_id: 14}], likes: {likes: 3, user_id: []}}
   									   			] },
-			{ id: 2, name: 'Architecture', photos: [  
+			{ id: 2, name: 'Design', photos: [  
 		  											{ id: 0, name: 'MahaNakhon', type: 'Architecture', photoUrl: 'https://www.worldbuild365.com/media/news/00Web/POTW/MahaNakhon/xMahaNakhon,P2004.jpg.pagespeed.ic.bfEubo9zA4.jpg', comments: [{id: 0, content: 'Thought the photo was pixelated, but that was just the building!hahaha', photo_id: 18}], likes: {likes: 2, user_id: []}},
 		  											{ id: 1, name: 'Carcassone', type: 'Architecture', photoUrl: 'http://pesciviaggi.it/wp-content/uploads/2016/08/TEMPLARI-SITO-OTTOBRE.jpg', comments: [{id: 0, content: 'Looks straight out of Game of Thrones!!', photo_id: 19}], likes: {likes: 8, user_id: []}},
 		  											{ id: 2, name: 'Gakuen Spiral', type: 'Architecture', photoUrl: 'https://i.pinimg.com/originals/ba/26/99/ba26997ff96704d4c145524d600eea4a.jpg', comments: [{id: 0, content: 'Impresionante lo que hace Japon!', photo_id: 20}], likes: {likes: 6, user_id: []}},
