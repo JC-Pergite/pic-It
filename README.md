@@ -1,8 +1,10 @@
 # pic-It
 
-*This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.0.
 
 "Pinterest-inspired app where you can browse through pictures and create collections of those that you love!"
+
+[![Pic-It!](https://raw.githubusercontent.com/JC-Pergite/pic-It/master/src/assets/pic-It.jpg "Photo Details Page")]()
+
 
 ## Development server
 
